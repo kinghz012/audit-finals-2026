@@ -1,0 +1,61 @@
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #f7f7f5;
+  color: #111;
+  font-family: "Times New Roman", "Songti SC", "STSong", "SimSun", "宋体", serif;
+  font-size: 17px;
+  line-height: 1.75;
+}
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: #fff; border-bottom: 1px solid #ddd;
+}
+.topbar-inner { max-width: 1180px; margin: 0 auto; padding: 10px 16px; }
+.site-name { font-weight: bold; font-size: 18px; margin-bottom: 6px; }
+.mainnav { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-bottom: 8px; }
+.mainnav a { color: #111; text-decoration: none; padding: 2px 6px; border-radius: 4px; }
+.mainnav a:hover { background: #eee; }
+.mainnav a.active { background: #111; color: #fff; }
+.searchbar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.searchbar input {
+  flex: 1 1 220px; padding: 6px 10px; font-size: 15px;
+  font-family: inherit; border: 1px solid #bbb; border-radius: 4px; background: #fff; color: #111;
+}
+.searchbar button {
+  padding: 6px 14px; font-size: 15px; font-family: inherit;
+  border: 1px solid #bbb; border-radius: 4px; background: #fff; color: #111; cursor: pointer;
+}
+.searchbar button:hover { background: #eee; }
+.search-count { font-size: 14px; color: #555; }
+.layout {
+  max-width: 1180px; margin: 0 auto; padding: 18px 16px 40px;
+  display: flex; gap: 28px; align-items: flex-start;
+}
+.toc-wrap { flex: 0 0 250px; position: sticky; top: 150px; max-height: calc(100vh - 170px); overflow: auto; }
+.toc-wrap summary { font-weight: bold; cursor: pointer; margin-bottom: 6px; }
+.toc ul { list-style: none; margin: 0; padding-left: 14px; font-size: 14.5px; line-height: 1.55; }
+.toc > ul { padding-left: 0; }
+.toc a { color: #111; text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.content { flex: 1 1 auto; min-width: 0; background: #fff; border: 1px solid #e2e2e0; border-radius: 6px; padding: 26px 30px; }
+.content h1 { font-size: 25px; line-height: 1.4; margin-top: 0; }
+.content h2 { font-size: 21px; margin-top: 34px; border-bottom: 1px solid #e5e5e2; padding-bottom: 4px; }
+.content h3 { font-size: 18px; margin-top: 26px; }
+.content table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 15.5px; display: block; overflow-x: auto; }
+.content th, .content td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; vertical-align: top; }
+.content th { background: #f0f0ee; }
+.content blockquote { margin: 14px 0; padding: 8px 16px; border-left: 3px solid #bbb; background: #fafafa; color: #222; }
+.content blockquote p { margin: 6px 0; }
+.content a { color: #111; }
+.content hr { border: none; border-top: 1px solid #ddd; margin: 24px 0; }
+.content code { font-family: "Times New Roman", monospace; background: #f0f0ee; padding: 0 4px; border-radius: 3px; }
+mark.search-hit { background: #ffe58a; color: #111; padding: 0 1px; }
+.footer { max-width: 1180px; margin: 0 auto; padding: 0 16px 26px; font-size: 13.5px; color: #666; }
+@media (max-width: 860px) {
+  .layout { flex-direction: column; }
+  .toc-wrap { position: static; flex: none; width: 100%; max-height: none; }
+  .content { padding: 18px 16px; width: 100%; }
+  body { font-size: 16px; }
+}
