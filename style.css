@@ -59,3 +59,8 @@ mark.search-hit { background: #ffe58a; color: #111; padding: 0 1px; }
   .content { padding: 18px 16px; width: 100%; }
   body { font-size: 16px; }
 }
+
+.mainnav .nav-label { color: #777; font-size: 13px; padding: 2px 2px; }
+.kp-links { margin: 14px 0; padding: 8px 16px; border-left: 3px solid #bbb; background: #fafafa; font-size: 15.5px; }
+.qanchor { display: block; height: 0; }
+h2[id], h3[id], a.qanchor { scroll-margin-top: 175px; }
