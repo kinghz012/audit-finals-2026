@@ -3,8 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>逐题深挖：总决赛样卷审计经理线自有 44 题（七项分析）｜总决赛备赛</title>
+<title>样卷复刻：审计经理线（第1–28、41–51、158–162题）｜总决赛备赛</title>
 <link rel="stylesheet" href="style.css">
+<style>
+details.answer { margin: 12px 0; border: 1px solid var(--accent-border); border-radius: 6px; background: #f4f8fb; padding: 10px 16px 4px; }
+details.answer summary { cursor: pointer; font-weight: bold; color: var(--accent-dark); margin-bottom: 6px; }
+.flowbox { background: #fff; border: 1px solid #e3eaf2; border-radius: 6px; padding: 8px 14px; margin: 10px 0; }
+.qcard table { font-size: 15px; }
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -26,7 +32,7 @@
       <a href="checklist.html">二次核查清单</a>
     </nav>
     <div class="searchbar">
-      <input id="searchInput" type="search" placeholder="在本页搜索关键词，如：存货 / 待样卷复核" aria-label="在本页搜索">
+      <input id="searchInput" type="search" placeholder="在本页搜索关键词，如：重要性 / 试算平衡 / 函证" aria-label="在本页搜索">
       <button id="searchBtn" type="button">搜索</button>
       <button id="searchClear" type="button">清除</button>
       <span id="searchCount" class="search-count"></span>
@@ -39,697 +45,709 @@
       <summary>本页目录</summary>
       <div class="toc"><div class="toc">
 <ul>
-<li><a href="#14">第一部分 风险导向财报审计工作操作流程（第 1–4 题）</a><ul>
-<li><a href="#m1-1-1">M1 第 1 题 流程图（1）</a></li>
-<li><a href="#m2-2-2">M2 第 2 题 流程图（2）</a></li>
-<li><a href="#m3-3-3">M3 第 3 题 流程图（3）</a></li>
-<li><a href="#m4-4-4">M4 第 4 题 流程图（4）</a></li>
+<li><a href="#intro">本页说明与复核单操作</a></li>
+<li><a href="#part1">第一部分 流程图题（第1–4题）</a><ul>
+<li><a href="#q1">第1题 全流程财报审计总体业务流程</a></li>
+<li><a href="#q2">第2题 初步业务活动流程</a></li>
+<li><a href="#q3">第3题 风险评估和审计计划流程图</a></li>
+<li><a href="#q4">第4题 了解内控和控制测试流程</a></li>
+</ul></li>
+<li><a href="#part2">第二部分 初步业务活动（第5–10题）</a><ul>
+<li><a href="#q5">第5题 业务保持评价01</a></li>
+<li><a href="#q6">第6题 业务保持评价02</a></li>
+<li><a href="#q7">第7题 业务保持评价03</a></li>
+<li><a href="#q8">第8题 业务保持评价04</a></li>
+<li><a href="#q9">第9题 业务保持评价05</a></li>
+<li><a href="#q10">第10题 AE 审计业务约定书</a></li>
+</ul></li>
+<li><a href="#part3">第三部分 了解被审计单位及其环境（第11–24题）</a><ul>
+<li><a href="#q11">第11题 了解组织结构等01</a></li>
+<li><a href="#q12">第12题 了解组织结构等02</a></li>
+<li><a href="#q13">第13题 了解组织结构等03</a></li>
+<li><a href="#q14">第14题 了解组织结构等04</a></li>
+<li><a href="#q15">第15题 了解组织结构等05</a></li>
+<li><a href="#q16">第16题 了解外部因素（01）</a></li>
+<li><a href="#q17">第17题 了解外部因素（02）</a></li>
+<li><a href="#q18">第18题 了解外部因素（03）</a></li>
+<li><a href="#q19">第19题 财务业绩衡量标准（1）</a></li>
+<li><a href="#q20">第20题 财务业绩衡量标准（2）</a></li>
+<li><a href="#q21">第21题 编制基础与会计政策（1）</a></li>
+<li><a href="#q22">第22题 编制基础与会计政策（2）</a></li>
+<li><a href="#q23">第23题 编制基础与会计政策（3）</a></li>
+<li><a href="#q24">第24题 编制基础与会计政策（4）</a></li>
+</ul></li>
+<li><a href="#part4">第四部分 整体层面内部控制与未审报表分析（第25–28题）</a><ul>
+<li><a href="#q25">第25题 了解整体层面内部控制（01）</a></li>
+<li><a href="#q26">第26题 了解整体层面内部控制（02）</a></li>
+<li><a href="#q27">第27题 了解整体层面内部控制（03）</a></li>
+<li><a href="#q28">第28题 财务指标及科目变动可视化分析</a></li>
+</ul></li>
+<li><a href="#part5">第五部分 风险评估结果汇总（第41–46题）</a><ul>
+<li><a href="#q41">第41题 风险评估结果汇总（一）</a></li>
+<li><a href="#q42">第42题 风险评估结果汇总（二）</a></li>
+<li><a href="#q43">第43题 风险评估结果汇总（三）</a></li>
+<li><a href="#q44">第44题 风险评估结果汇总（四）</a></li>
+<li><a href="#q45">第45题 风险评估结果汇总（五）</a></li>
+<li><a href="#q46">第46题 风险评估结果汇总（六）</a></li>
+</ul></li>
+<li><a href="#part6">第六部分 审计计划与重要性水平（第47–51题）</a><ul>
+<li><a href="#q47">第47题 重要性基准与比例</a></li>
+<li><a href="#q48">第48题 财务报表整体重要性</a></li>
+<li><a href="#q49">第49题 实际执行重要性比例</a></li>
+<li><a href="#q50">第50题 实际执行的重要性</a></li>
+<li><a href="#q51">第51题 明显微小错报临界值</a></li>
+</ul></li>
+<li><a href="#part7">第七部分 完成阶段（第158–162题）</a><ul>
+<li><a href="#q158">第158题 EB 期末试算平衡表</a></li>
+<li><a href="#q159">第159题 EC-1 审定资产负债表</a></li>
+<li><a href="#q160">第160题 EC-2 审定利润表</a></li>
+<li><a href="#q161">第161题 选择审计意见类型</a></li>
+<li><a href="#q162">第162题（平台锁定，未采集）</a></li>
+</ul></li>
 </ul>
-</li>
-<li><a href="#510">第二部分 初步业务活动（第 5–10 题）</a><ul>
-<li><a href="#m5-5">M5 第 5 题 初步业务活动（其一）</a></li>
-<li><a href="#m6-6">M6 第 6 题 初步业务活动（其二）</a></li>
-<li><a href="#m7-7">M7 第 7 题 初步业务活动（其三）</a></li>
-<li><a href="#m8-8">M8 第 8 题 初步业务活动（其四）</a></li>
-<li><a href="#m9-9">M9 第 9 题 初步业务活动（其五）</a></li>
-<li><a href="#m10-10">M10 第 10 题 初步业务活动（其六）</a></li>
-</ul>
-</li>
-<li><a href="#1124">第三部分 了解被审计单位及其环境（第 11–24 题）</a><ul>
-<li><a href="#m11-11">M11 第 11 题 了解被审计单位及其环境（其一）</a></li>
-<li><a href="#m12-12">M12 第 12 题 了解被审计单位及其环境（其二）</a></li>
-<li><a href="#m13-13">M13 第 13 题 了解被审计单位及其环境（其三）</a></li>
-<li><a href="#m14-14">M14 第 14 题 了解被审计单位及其环境（其四）</a></li>
-<li><a href="#m15-15">M15 第 15 题 了解被审计单位及其环境（其五）</a></li>
-<li><a href="#m16-16">M16 第 16 题 了解被审计单位及其环境（其六）</a></li>
-<li><a href="#m17-17">M17 第 17 题 了解被审计单位及其环境（其七）</a></li>
-<li><a href="#m18-18">M18 第 18 题 了解被审计单位及其环境（其八）</a></li>
-<li><a href="#m19-19">M19 第 19 题 了解被审计单位及其环境（其九）</a></li>
-<li><a href="#m20-20">M20 第 20 题 了解被审计单位及其环境（其十）</a></li>
-<li><a href="#m21-21">M21 第 21 题 了解被审计单位及其环境（其十一）</a></li>
-<li><a href="#m22-22">M22 第 22 题 了解被审计单位及其环境（其十二）</a></li>
-<li><a href="#m23-23">M23 第 23 题 了解被审计单位及其环境（其十三）</a></li>
-<li><a href="#m24-24">M24 第 24 题 了解被审计单位及其环境（其十四）</a></li>
-</ul>
-</li>
-<li><a href="#2527">第四部分 了解整体层面内部控制（第 25–27 题）</a><ul>
-<li><a href="#m25-25">M25 第 25 题 了解整体层面内部控制（其一）</a></li>
-<li><a href="#m26-26">M26 第 26 题 了解整体层面内部控制（其二）</a></li>
-<li><a href="#m27-27">M27 第 27 题 了解整体层面内部控制（其三）</a></li>
-</ul>
-</li>
-<li><a href="#28">第五部分 未审报表分析（第 28 题）</a><ul>
-<li><a href="#m28-28">M28 第 28 题 未审报表分析</a></li>
-</ul>
-</li>
-<li><a href="#4146">第六部分 风险评估结果汇总（第 41–46 题）</a><ul>
-<li><a href="#m29-41">M29 第 41 题 风险评估结果汇总（其一）</a></li>
-<li><a href="#m30-42">M30 第 42 题 风险评估结果汇总（其二）</a></li>
-<li><a href="#m31-43">M31 第 43 题 风险评估结果汇总（其三）</a></li>
-<li><a href="#m32-44">M32 第 44 题 风险评估结果汇总（其四）</a></li>
-<li><a href="#m33-45">M33 第 45 题 风险评估结果汇总（其五）</a></li>
-<li><a href="#m34-46">M34 第 46 题 风险评估结果汇总（其六）</a></li>
-</ul>
-</li>
-<li><a href="#4751">第七部分 审计计划（第 47–51 题）</a><ul>
-<li><a href="#m35-47">M35 第 47 题 审计计划（其一）</a></li>
-<li><a href="#m36-48">M36 第 48 题 审计计划（其二）</a></li>
-<li><a href="#m37-49">M37 第 49 题 审计计划（其三）</a></li>
-<li><a href="#m38-50">M38 第 50 题 审计计划（其四）</a></li>
-<li><a href="#m39-51">M39 第 51 题 审计计划（其五）</a></li>
-</ul>
-</li>
-<li><a href="#158162">第八部分 完成阶段收口（第 158–162 题）</a><ul>
-<li><a href="#m40-158-eb-800">M40 第 158 题 EB 期末试算平衡表（<span class="score">8.00 分</span>）</a></li>
-<li><a href="#m41-159-ec">M41 第 159 题 EC 审定报表（其一）</a></li>
-<li><a href="#m42-160-ec">M42 第 160 题 EC 审定报表（其二）</a></li>
-<li><a href="#m43-161-100">M43 第 161 题 选择审计意见类型（<span class="score">1.00 分</span>）</a></li>
-<li><a href="#m44-162-ed">M44 第 162 题 ED 审计报告编制（带锁）</a></li>
-</ul>
-</li>
-<li><a href="#_1">第九部分 经理岗全局打法</a><ul>
-<li><a href="#_2">一、串行前置链：全队的时间零点在经理手里</a></li>
-<li><a href="#146">二、146 题复核单：构成与时间分配</a></li>
-<li><a href="#161162">三、161→162 锁定链：全卷唯一的连锁归零点</a></li>
-<li><a href="#158-8">四、第 158 题 8 分的权重与打法</a></li>
-<li><a href="#44_1">五、经理自有 44 题的内部顺序建议</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
+      </div></div>
     </details>
   </aside>
-  <main id="content" class="content">
-<h1 id="44">逐题深挖：总决赛样卷审计经理线自有 44 题（七项分析）</h1>
-<blockquote>
-<p>底本：《平台实测-ckrs审计实务样卷-2026-11-15.md》（2026-11-15 四个账号只读实测；样卷案例企业：福州青风子伞业有限公司，审计期间 2025.01.01–2025.12.31）。本题名、分值、界面形态只取自该实测记录；旧 Word v7 为选拔赛风隅良品案例，仅作知识点与岗位逻辑参照，两案数字不得混用。</p>
-<p>证据标注：每题标题后标注证据等级——＝题名/分值/形态有实测记录；＝题号与所属分组有实测记录，但逐题题名、分值、小题构成未逐题打开核查，题面细节标「<mark class="warn">待样卷复核</mark>」。「知识点/教材映射/备考」三项属分析判断，与实测事实分开书写。</p>
-<p>映射口径（依《教材版本与映射口径.md》）：内控知识点→王清刚《内部控制与风险管理：理论、实践与案例》（北京大学出版社版）按<strong>章</strong>映射（仅章级目录，不标节）；审计原理与大数据知识点→唐雪松《审计学：原理与大数据审计案例》（中国人民大学出版社）按<strong>章/节</strong>映射；属《审计学原理与实务》范畴的只写知识点、不写章节。查无对应者标「<mark class="warn">待核实</mark>」。</p>
-<p>范围界定：审计经理在样卷中「我的任务」共 146 题＝自有 44 题（本题范围：1–28、41–51、158–162）＋专员底稿类 102 题（复核载体，不在本文逐题范围，复核打法见文末「经理岗全局打法」）。未纳入经理任务的 16 题（29、30、32、33、34、36、37、38、40、64、81、114、134、135、140、141）为纯选择/判断题，属专员自有。</p>
-</blockquote>
-<hr>
-<h2 id="14">第一部分 风险导向财报审计工作操作流程（第 1–4 题）</h2>
-<blockquote>
-<p>实测事实：本组为流程图画布形态——节点＋判定菱形＋连线，空白节点待填（具体填法只读未确认，<mark class="warn">待样卷复核</mark>）；第 1 题进入时已显示得分 3.00（满分），非实测操作所得，系样卷预置或此前作答，<strong>不得当作本组分值依据引用</strong>；第 2–4 题分值未记录，<mark class="warn">待样卷复核</mark>。</p>
-</blockquote>
-<div class="qcard"><a id="m-1" class="qanchor"></a>
-<h3 id="m1-1-1">M1 第 1 题 流程图（1）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考风险导向审计全流程的阶段骨架——承接、计划、风险评估、进一步程序、完成与报告的先后关系，是经理岗的「总图」。</li>
-<li><strong class="lbl">知识点</strong>：财务报表审计基本流程与审计风险模型的应用顺序；流程节点与判定菱形（判定点通常对应「是否接受/保持业务」「风险是否可接受」类二值决策）。</li>
-<li><strong class="lbl">要我们做什么</strong>：在画布空白节点中补全流程环节名称（及可能的判定条件），使整条链从业务承接到出具报告逻辑闭合。具体节点文案<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：画布上的空白节点（填法——拖放选词还是手输——只读未确认，<mark class="warn">待样卷复核</mark>）。</li>
-<li><strong class="lbl">出题形式与理由</strong>：流程图画布填制。流程顺序与分支逻辑用文字选项考容易被部分认识蒙对，画布逐节点填制能精确暴露错位点；且经理是全队流程的设计者，用「画流程」而非「选流程」与其岗位职能同构。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松《审计学：原理与大数据审计案例》第六章第四节「总体审计策略与具体审计计划」（流程主干）；第五章第三节「财务报表循环与审计目标」。</li>
-<li><strong class="lbl">如何备考</strong>：把财报审计五段链（承接与初步业务活动→计划与重要性→风险评估→风险应对→完成与报告）背成固定顺序，并标出两个经典判定点（业务可否承接、控制可否信赖）。易错点：把「控制测试」画成必经节点——它取决于是否信赖内控，不是无条件必经。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-11">第五章 认定、具体审计目标与财务报表循环（第二节、第三节）</a>；<a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-2" class="qanchor"></a>
-<h3 id="m2-2-2">M2 第 2 题 流程图（2）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：与 M1 同组，考流程中段（计划—风险评估—应对）的展开逻辑。</li>
-<li><strong class="lbl">知识点</strong>：总体审计策略与具体审计计划的衔接；风险评估结果向进一步审计程序总体方案（综合性方案/实质性方案）的传导。</li>
-<li><strong class="lbl">要我们做什么</strong>：补全画布空白节点，使计划与评估、应对三段衔接无断裂。具体节点文案<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：画布空白节点（填法<mark class="warn">待样卷复核</mark>）。</li>
-<li><strong class="lbl">出题形式与理由</strong>：流程图画布填制，理由同 M1；分多道题拆画一张总图，是为了按段给分、避免一题错全图皆错。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第四节「总体审计策略与具体审计计划」；第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：重点记「评估在前、应对在后」的因果序：先有重大错报风险评估结果，才有进一步程序的性质、时间、范围。易错点：把重要性确定画到风险评估之后——重要性在计划阶段即应初步确定。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-3" class="qanchor"></a>
-<h3 id="m3-3-3">M3 第 3 题 流程图（3）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：与 M1 同组，考流程后段（实质性程序—完成阶段）的展开逻辑。</li>
-<li><strong class="lbl">知识点</strong>：完成审计工作的构成：期后事项、未更正错报汇总评价、与治理层沟通、形成审计意见；审定报表与试算平衡表在流程中的收口位置。</li>
-<li><strong class="lbl">要我们做什么</strong>：补全画布空白节点，使实质性程序结果能顺流汇入完成与报告段。具体节点文案<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：画布空白节点（填法<mark class="warn">待样卷复核</mark>）。</li>
-<li><strong class="lbl">出题形式与理由</strong>：流程图画布填制，理由同 M1。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十四章第一节「完成审计工作概述」、第四节「审计报告意见的形成」。</li>
-<li><strong class="lbl">如何备考</strong>：记完成后段的固定次序：汇总调整→评价未更正错报→期后事项与治理层沟通→形成意见→出具报告。易错点：把「出具报告」画在「评价未更正错报」之前。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-20">第十四章 完成审计工作与审计报告（第一节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-4" class="qanchor"></a>
-<h3 id="m4-4-4">M4 第 4 题 流程图（4）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：与 M1 同组，考流程图的收尾段或判定分支。</li>
-<li><strong class="lbl">知识点</strong>：判定菱形的典型用途：意见类型分流（无保留/保留/否定/无法表示）、范围受限时的路径选择。</li>
-<li><strong class="lbl">要我们做什么</strong>：补全画布空白节点与判定分支，使不同结论有不同去向。具体节点文案<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：画布空白节点（含判定菱形，填法<mark class="warn">待样卷复核</mark>）。</li>
-<li><strong class="lbl">出题形式与理由</strong>：流程图画布填制，理由同 M1；判定菱形单设一题，是因为「分支判断」是流程题里最易错的形态。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第三章第二节「审计意见类型」；第十四章第四节「审计报告意见的形成」。</li>
-<li><strong class="lbl">如何备考</strong>：把四种意见的触发条件与流程图终点一一对应记牢（错报重大不广泛→保留；重大且广泛→否定；范围受限重大且广泛→无法表示）。易错点：保留与否定只差「广泛性」一个维度，画分支时先分「错报还是受限」、再分「是否广泛」。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-10">第三章 审计意见类型与审计报告要素（第二节、第三节、第五节）</a></p>
-</div><h2 id="510">第二部分 初步业务活动（第 5–10 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 5–10 共 6 题、组名「初步业务活动」有实测记录；逐题题名、分值、小题构成未逐题核查，以下各题按本组在审计流程中的标准构成做七项分析，具体题面<mark class="warn">待样卷复核</mark>。参照 v7 知识点 1 与第十部分经理线：初步业务活动回答「这单能不能接」——独立性、胜任能力、管理层诚信；考试说明载经理 13 项职责，本组与其中业务承接类职责对应（v7 记赛前分工截图中经理职责共 13 项）。</p>
-</blockquote>
-<div class="qcard"><a id="m-5" class="qanchor"></a>
-<h3 id="m5-5">M5 第 5 题 初步业务活动（其一）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考业务承接的前提判断——事务所自身是否满足承接条件（独立性、专业胜任能力、职业道德）。</li>
-<li><strong class="lbl">知识点</strong>：初步业务活动的三件套之一：确保事务所及项目组遵循相关职业道德要求（独立性评估、利益冲突排查）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面给定的事务所/项目组情境，逐项判断承接前提是否满足，或在底稿中勾选承接评价结论。具体作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（按样卷同类题形态，多为大题内嵌单选/多选/判断小题）。</li>
-<li><strong class="lbl">出题形式与理由</strong>：初步业务活动本质是「判断题集合」——每个前提都是合格/不合格的二值或多值判断，故平台以大题嵌小题形态呈现，与样卷「客观题不独立成区」的实测规律一致。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第一节「初步业务活动」；职业道德层面见同书第二章第一节「注册会计师职业道德规范」。</li>
-<li><strong class="lbl">如何备考</strong>：把承接三问背成口诀：人行不行（胜任能力）、心正不正（管理层诚信）、身净不净（独立性）。易错点：把「客户诚信问题」当成可以通过增加程序化解的风险——诚信存疑是承接否决项，不是加程序项。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-9">第二章 职业道德、质量管理与审计法规（第一节、第三节、第四节）</a>；<a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-6" class="qanchor"></a>
-<h3 id="m6-6">M6 第 6 题 初步业务活动（其二）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考对客户层面的了解与评价——客户经营性质、财务状况、管理层诚信与治理结构是否支持承接。</li>
-<li><strong class="lbl">知识点</strong>：评价管理层的诚信；了解客户及其环境在承接阶段的初步形态（与第 11–24 题的正式风险评估相区别：此处只作承接决策）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境判断客户风险信号（如诚信污点、频繁更换审计师、激进会计政策）并下承接/不承接或附加条件结论。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同 M5——情境判断类小题嵌在大题内，因为承接评价的考点全在「信号识别」，用情境+判断比纯概念题更能防背诵式答题。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第一节「初步业务活动」；第一章第三节「审计环境」。</li>
-<li><strong class="lbl">如何备考</strong>：记一份「承接红旗清单」：诚信污点、财务困境加粉饰动机、治理失效、收费异常低。易错点：把承接阶段的客户了解与审计阶段的风险评估混为一谈，前者结论是「接不接」，后者结论是「怎么查」。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-8">第一章 审计环境与大数据智能审计概述（第三节、第五节）</a>；<a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-7" class="qanchor"></a>
-<h3 id="m7-7">M7 第 7 题 初步业务活动（其三）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考审计业务约定书的核心条款与责任界定。v7 知识点 1 即以约定书为经理线第一知识点，第十五部分另有约定书要点清单，可互参（风隅良品口径，仅作范式参照）。</li>
-<li><strong class="lbl">知识点</strong>：约定书必备内容：审计目标与范围、管理层责任与注册会计师责任、财务报表编制基础、审计报告预期形式；约定书变更（审计业务变更为审阅/相关服务）的合理理由判断。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面判断条款表述正误、缺项，或完成约定书类底稿的关键空缺。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：约定书考的是「条款级」的精确表述对错，适合判断/单选小题逐条扫描；若做成填空长题，表述判分争议大。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第一节「初步业务活动」（约定书属初步业务活动的收口动作）。</li>
-<li><strong class="lbl">如何备考</strong>：责任划分是最高频考点：编报表是管理层的责任、出意见是注册会计师的责任，两句不能互换。易错点：约定书不是合同免责书——不能约定「不执行某必要程序」。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-8" class="qanchor"></a>
-<h3 id="m8-8">M8 第 8 题 初步业务活动（其四）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考期初余额与前任审计师沟通（初次审计情形）或连续审计的更新程序。</li>
-<li><strong class="lbl">知识点</strong>：初次接受委托的特别考虑：与前任注册会计师沟通（需征得被审计单位同意）、期初余额的证据获取、会计政策一致性。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境判断沟通程序的合规性（如前任回复受限如何处理）或期初余额程序的充分性。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同 M5，情境判断嵌小题。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第一节「初步业务活动」。</li>
-<li><strong class="lbl">如何备考</strong>：记沟通的礼仪链：先征客户同意→再发函前任→评价回复。易错点：未经客户同意直接联系前任属程序违规，无论出发点多正当。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-9" class="qanchor"></a>
-<h3 id="m9-9">M9 第 9 题 初步业务活动（其五）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考项目组组建与资源调配——人员指派、专家利用、时间预算的初步安排。</li>
-<li><strong class="lbl">知识点</strong>：总体审计策略中的资源要素在承接阶段的落点：项目合伙人/经理指派、是否需要利用专家工作、项目质量复核安排。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面给定的业务复杂程度判断资源配置是否恰当，或在计划类底稿中完成指派项。作答形态<mark class="warn">待样卷复核</mark>（若为底稿填制，则按格给分）。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：资源判断属「配置合理性」评价，形态随题面而定；本组若含底稿填制形态，亦与平台「经理任务纳入含底稿的操作类题」的实测规律相符。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第四节「总体审计策略与具体审计计划」；第二章第三节「审计质量管理准则」。</li>
-<li><strong class="lbl">如何备考</strong>：记住配置逻辑：风险与复杂度决定人员层级，不是按空闲派人。易错点：利用专家不转移注册会计师责任——专家工作仍需评价其胜任能力与工作恰当性。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-9">第二章 职业道德、质量管理与审计法规（第一节、第三节、第四节）</a>；<a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-10" class="qanchor"></a>
-<h3 id="m10-10">M10 第 10 题 初步业务活动（其六）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考本组的收口——承接决策的形成与记录，或业务保持（连续审计的年度再评价）。</li>
-<li><strong class="lbl">知识点</strong>：业务承接/保持评价结论的形成：综合独立性、胜任能力、客户诚信三方面证据下结论并归档；连续审计中客户情况重大变化时重新评价。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面汇总信号下最终结论（承接/有条件承接/不承接）。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第一节「初步业务活动」。</li>
-<li><strong class="lbl">如何备考</strong>：本组六题当一条链复习：道德→客户→约定书→期初/前任→资源→结论。易错点：连续审计不是自动续约，客户诚信或经营出现重大负面变化必须重走评价。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><h2 id="1124">第三部分 了解被审计单位及其环境（第 11–24 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 11–24 共 14 题、组名「了解被审计单位及其环境」有实测记录，是经理自有题中题量最大的一组；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按风险评估程序的标准维度（外部因素、单位性质、会计政策、目标战略与经营风险、财务业绩衡量、内部控制预告）组织分析——各题与维度的对应为分析推定，须以样卷原题为准。</p><p>参照 v7 知识点 3（了解被审计单位及其环境）与第十部分经理线第⑤项：评估结论要具体到「哪个循环、哪个认定、风险高低」。</p></blockquote>
-<div class="qcard"><a id="m-11" class="qanchor"></a>
-<h3 id="m11-11">M11 第 11 题 了解被审计单位及其环境（其一）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考风险评估程序的启动——了解的范围与程序方法本身（询问、分析程序、观察和检查）。</li>
-<li><strong class="lbl">知识点</strong>：了解的五大方面框架（外部因素；单位性质；会计政策的选择与运用；目标、战略及相关经营风险；财务业绩的衡量与评价）＋内部控制（在第 25–27 题单列）；项目组风险讨论（舞弊风险头脑风暴）是必经动作。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面判断了解程序的完整性/恰当性，或完成了解类底稿的对应栏目。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：了解类题目多为「情境＋判断」或「底稿栏目填制」；本组被纳入经理任务，说明其形态以操作类（底稿/汇总）为主、纯辨别为辅——与实测「经理纳入标准＝含底稿/流程/计划的操作类任务」一致。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第七章第二节「风险评估程序、控制测试和实质性程序」；王清刚第三章「风险评估」（单位层面风险识别）。</li>
-<li><strong class="lbl">如何备考</strong>：五大方面背成清单默写，并给每个方面准备两个「青风子式」追问（伞具制造：原材料化纤布价格、出口与电商渠道、季节性）。易错点：了解程序本身不提供控制运行有效的证据，不能替代控制测试。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-2">第三章 风险评估</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-12" class="qanchor"></a>
-<h3 id="m12-12">M12 第 12 题 了解被审计单位及其环境（其二）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考外部因素维度——行业状况、法律监管环境对本单位错报风险的传导。</li>
-<li><strong class="lbl">知识点</strong>：行业周期性与竞争、原材料与能源供应、技术变革；监管新规（如收入准则、环保要求）对报表的影响路径。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面给定的行业/监管情境，判断风险落点（哪个科目、哪个认定）。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第一章第三节「审计环境」；第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：练「外部变化→报表科目」的传导链，每条链落到认定为止。易错点：只写「行业风险高」而不落科目，这类空泛结论在底稿题里不得分。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-8">第一章 审计环境与大数据智能审计概述（第三节、第五节）</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-13" class="qanchor"></a>
-<h3 id="m13-13">M13 第 13 题 了解被审计单位及其环境（其三）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考单位性质维度——组织结构、所有权、经营活动与筹资/投资安排。</li>
-<li><strong class="lbl">知识点</strong>：关联方与关联交易的识别入口；复杂交易（特殊目的实体、非经常性大额交易）的风险信号；经营模式（本案为制造＋销售，含电商渠道的可能性须以样卷资料为准）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面组织/交易情境识别风险点并判断其报表影响。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：关联方识别先行：组织结构图上先圈关联方，再看交易。易错点：把「有关联方」直接等同「有舞弊」——关联方本身中性，风险在未披露与非公允定价。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-14" class="qanchor"></a>
-<h3 id="m14-14">M14 第 14 题 了解被审计单位及其环境（其四）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考会计政策维度——政策选择与变更的恰当性、政策运用的一致性。</li>
-<li><strong class="lbl">知识点</strong>：重大会计政策清单（收入确认、存货计价、折旧方法、减值计提）；政策变更的动机审查（临近业绩门槛时的变更尤须警惕）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面判断政策选择/变更是否恰当及其对可比性与错报风险的影响。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第七章第二节「风险评估程序、控制测试和实质性程序」；第五章第二节「认定与具体审计目标」。</li>
-<li><strong class="lbl">如何备考</strong>：政策题先问三句：准则允许否、前后一致否、变更动机何在。易错点：政策变更合规披露即无风险——变更的「时点选择」本身就是风险信号。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-11">第五章 认定、具体审计目标与财务报表循环（第二节、第三节）</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-15" class="qanchor"></a>
-<h3 id="m15-15">M15 第 15 题 了解被审计单位及其环境（其五）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考目标、战略与经营风险维度——战略激进程度与经营风险向重大错报风险的转化。</li>
-<li><strong class="lbl">知识点</strong>：经营风险≠重大错报风险：只有可能引发财务后果（影响科目与认定）的经营风险才进入审计视野；业绩压力与舞弊动机三角的衔接。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面战略情境筛选「与财务报表相关」的经营风险并落点。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第七章第二节「风险评估程序、控制测试和实质性程序」；王清刚第三章「风险评估」。</li>
-<li><strong class="lbl">如何备考</strong>：用「是否影响某个认定」作过滤器逐项筛经营风险。易错点：把全部经营风险抄进风险清单——不得分的典型写法。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-2">第三章 风险评估</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-16" class="qanchor"></a>
-<h3 id="m16-16">M16 第 16 题 了解被审计单位及其环境（其六）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考财务业绩衡量与评价维度——单位内外部业绩指标与异常波动的初步识别。</li>
-<li><strong class="lbl">知识点</strong>：管理层业绩衡量压力（考核、融资契约）与粉饰动机的关系；预算与实际差异的追问路径；本维度与第 28 题未审报表分析程序相衔接。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面业绩数据/指标情境判断异常点与后续程序方向。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第七章第三节「分析程序」；第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：记毛利率、周转率、费用率三组指标的异常方向含义。易错点：业绩「太好」同样是信号——与行业背离的增长优先怀疑发生认定。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-17" class="qanchor"></a>
-<h3 id="m17-17">M17 第 17 题 了解被审计单位及其环境（其七）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考舞弊风险因素的识别（项目组讨论的落点）。</li>
-<li><strong class="lbl">知识点</strong>：舞弊三角：动机/压力、机会、态度/借口；管理层凌驾于控制之上的风险恒定推定为特别风险；收入确认舞弊风险的反驳式推定（假定收入存在舞弊风险，不认可须有依据）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境归类舞弊因素并判断是否构成特别风险。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第七章第二节「风险评估程序、控制测试和实质性程序」；第六章第三节「审计风险」。</li>
-<li><strong class="lbl">如何备考</strong>：三角三栏各备本案化例子。易错点：管理层凌驾风险不可通过「管理层看起来诚信」排除，这是准则的强制推定。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-18" class="qanchor"></a>
-<h3 id="m18-18">M18 第 18 题 了解被审计单位及其环境（其八）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考特别风险与重大非常规交易的识别。</li>
-<li><strong class="lbl">知识点</strong>：特别风险的判定标准（舞弊风险、复杂交易、非常规交易、高度判断事项）；特别风险必须了解相关控制并实施实质性程序，不得仅靠控制测试。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面交易情境判断是否构成特别风险并选择应对路径。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第三节「审计风险」；第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：特别风险清单默写：凌驾、收入舞弊、非常规重大交易、复杂估计。易错点：对特别风险只做控制测试不做实质性程序——程序配置违规。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-19" class="qanchor"></a>
-<h3 id="m19-19">M19 第 19 题 了解被审计单位及其环境（其九）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考信息系统与信息技术环境的了解（一般控制的入口）。</li>
-<li><strong class="lbl">知识点</strong>：IT 环境对审计的影响：系统生成数据的可靠性前提、信息技术一般控制（访问、变更、运维）；平台样卷本身即以财务系统账套数据为源，数据源头校验属经理前置职责（见全局打法）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面系统情境判断数据可靠性风险与所需验证动作。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第一章第五节「大数据智能审计概述」；第七章第四节「大数据审计程序」；王清刚第五章「信息与沟通」。</li>
-<li><strong class="lbl">如何备考</strong>：记「用系统数据先验系统」原则：未验证一般控制前，系统报表只能作线索。易错点：把账套导出数直接当审定基础，跳过借贷平衡与报表勾稽校验。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-4">第五章 信息与沟通（章名<mark class="warn">待核实</mark>，按深挖稿引用口径）</a>；<a href="knowledge.html#kp-b-8">第一章 审计环境与大数据智能审计概述（第三节、第五节）</a></p>
-</div><div class="qcard"><a id="m-20" class="qanchor"></a>
-<h3 id="m20-20">M20 第 20 题 了解被审计单位及其环境（其十）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考内部控制预了解——在正式评价（25–27 题）之前，对控制环境与控制活动的摸底。</li>
-<li><strong class="lbl">知识点</strong>：五要素的初步印象形成；控制环境薄弱信号（治理失效、一人多岗、凌驾痕迹）对报表层面风险的放大作用。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境形成控制环境初步判断并说明对后续程序的影响。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：王清刚第二章「内部环境」；唐雪松第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：控制环境看三样：治理层是否真监督、管理层风格、组织分工是否成型。易错点：控制环境差≠每个循环控制都差，仍需逐循环评价。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-1">第二章 内部环境（章名<mark class="warn">待核实</mark>，按深挖稿引用口径）</a></p>
-</div><div class="qcard"><a id="m-21" class="qanchor"></a>
-<h3 id="m21-21">M21 第 21 题 了解被审计单位及其环境（其十一）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考持续经营基础的初步关注点。</li>
-<li><strong class="lbl">知识点</strong>：持续经营疑虑的财务/经营/其他信号（持续亏损、营运资金为负、借款违约、失去关键客户）；了解阶段只作识别与标记，结论留待完成阶段（第十四章）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境识别持续经营信号并判断需否追加程序。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十四章第一节「完成审计工作概述」（持续经营评价的收口位置）；第七章第二节「风险评估程序、控制测试和实质性程序」（识别位置）。</li>
-<li><strong class="lbl">如何备考</strong>：信号三栏（财务/经营/其他）各记三项。易错点：在了解阶段就下持续经营结论——此时证据不足，只能标记风险。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a>；<a href="knowledge.html#kp-b-20">第十四章 完成审计工作与审计报告（第一节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-22" class="qanchor"></a>
-<h3 id="m22-22">M22 第 22 题 了解被审计单位及其环境（其十二）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考法律法规与合规风险的了解（违法行为的审计考虑入口）。</li>
-<li><strong class="lbl">知识点</strong>：两类法律法规的区分：对报表金额有直接影响的（如税法）与仅间接影响的（如环保、劳动）；违反法律法规的迹象识别与升级报告路径。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境判断违规事项的报表影响与处理路径。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第二章第四节「审计发展相关法规」；第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：直接影响类要查到金额，间接影响类要查披露与预计负债。易错点：把税务合规问题只当税务题——它同时是 FG 组底稿与报表认定的交叉点。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-9">第二章 职业道德、质量管理与审计法规（第一节、第三节、第四节）</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-23" class="qanchor"></a>
-<h3 id="m23-23">M23 第 23 题 了解被审计单位及其环境（其十三）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考报表层面与认定层面风险的区分与初步分级。</li>
-<li><strong class="lbl">知识点</strong>：报表层面风险（广泛影响、与控制环境相关）对应总体应对措施；认定层面风险对应进一步程序；两层风险的传导关系。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面风险描述判断其层面归属与应对类型。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第三节「审计风险」；第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：判别口诀：说不清落在哪个科目、却让整张报表都可疑的，是报表层面。易错点：把控制环境缺陷只写成某个循环的风险，漏掉总体应对措施。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-24" class="qanchor"></a>
-<h3 id="m24-24">M24 第 24 题 了解被审计单位及其环境（其十四）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考本组收口——了解结果的记录与向风险评估汇总（41–46 题）的移交。</li>
-<li><strong class="lbl">知识点</strong>：风险评估底稿的记录要求：了解的内容、识别的风险、项目组讨论结论须可复核地留痕；评估不是终点，结论必须能直接喂给审计计划（47–51 题）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面完成了解结果的汇总性栏目或判断记录完整性。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则；汇总类栏目以底稿填制形态出现的可能性高，与经理任务纳入规律一致。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第八章第二节「审计工作底稿」；第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：每条风险写成「来源维度→科目→认定→高低」四截式，与 v7 经理线要求一致。易错点：只记了解过程、不记风险结论——汇总组（41–46）将无米下锅。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a>；<a href="knowledge.html#kp-b-14">第八章 审计证据与审计工作底稿（第一节、第二节）</a></p>
-</div><h2 id="2527">第四部分 了解整体层面内部控制（第 25–27 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 25–27 共 3 题、组名「了解整体层面内部控制」有实测记录；逐题题名、分值<mark class="warn">待样卷复核</mark>。对照定位：</p><p>三循环的「了解内控」组（29–32、33–36、37–40）中，经理任务只纳入穿行测试题（31/35/39，属 102 题复核单），纯选择小题（评价内控设计类）不纳入经理单——本组 25–27 既在经理自有 44 题内，按实测纳入规律推定其形态以底稿/评价类操作题为主。</p><p>参照样卷同类形态（专员 3 第 33 题实测）：「评价内部控制设计」类题为大题内嵌单选＋多选＋依赖前题结果的「是/否」判断三小题结构（<span class="score">3.00 分</span>）——该形态为循环层面的实测，本组整体层面题目是否同构，<mark class="warn">待样卷复核</mark>。</p></blockquote>
-<div class="qcard"><a id="m-25" class="qanchor"></a>
-<h3 id="m25-25">M25 第 25 题 了解整体层面内部控制（其一）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考整体层面（实体层面）控制的评价框架——控制环境要素的健全性。</li>
-<li><strong class="lbl">知识点</strong>：控制环境的构成：治理结构与监督、组织架构与授权、人力资源政策、对诚信与道德价值的倡导；整体层面控制缺陷会广泛抬升报表层面风险。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境/底稿要求评价控制环境的设计（及可能的执行迹象），下缺陷有无的判断。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（若同构于循环层面评价题，则为单选＋多选＋「是/否」判断三小题）。</li>
-<li><strong class="lbl">出题形式与理由</strong>：控制设计评价的结论天然二值化（设计有效/有缺陷），且缺陷藏在情境细节中——与专员 1 线 T4（对账单设计合理性判断）的命题逻辑一致：用判断题逼考生读完情境再下结论。</li>
-<li><strong class="lbl">对应书与章节</strong>：王清刚第二章「内部环境」；第九章「内部监督和内部控制评价」。</li>
-<li><strong class="lbl">如何备考</strong>：评价控制环境固定查三维：谁监督（治理层实质动作）、如何授权（分工与权限）、氛围如何（管理层风格）。易错点：只看制度文本存在与否，不看执行人独立性与频率——选拔赛 T4 的缺陷恰在执行人。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-1">第二章 内部环境（章名<mark class="warn">待核实</mark>，按深挖稿引用口径）</a>；<a href="knowledge.html#kp-b-7">第九章 内部监督和内部控制评价</a></p>
-</div><div class="qcard"><a id="m-26" class="qanchor"></a>
-<h3 id="m26-26">M26 第 26 题 了解整体层面内部控制（其二）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考风险评估、信息与沟通、内部监督三要素在整体层面的运行形态。</li>
-<li><strong class="lbl">知识点</strong>：单位自身的风险评估过程（管理层如何识别应对风险）；信息系统的相关性与沟通路径；监控活动（持续监控与单独评价、内审职能）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面判断三要素中某一项的设计/运行缺陷及其影响范围。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同 M25。</li>
-<li><strong class="lbl">对应书与章节</strong>：王清刚第三章「风险评估」、第五章「信息与沟通」、第九章「内部监督和内部控制评价」。</li>
-<li><strong class="lbl">如何备考</strong>：三要素各记一个「有其名无其实」的典型缺陷：有风险清单从不更新、有系统但报表靠手工拼、有内审岗却从不查账。易错点：把单位的风险评估过程与注册会计师的风险评估混为一谈——前者是被了解对象，后者是我们的程序。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-2">第三章 风险评估</a>；<a href="knowledge.html#kp-b-4">第五章 信息与沟通（章名<mark class="warn">待核实</mark>，按深挖稿引用口径）</a>；<a href="knowledge.html#kp-b-7">第九章 内部监督和内部控制评价</a></p>
-</div><div class="qcard"><a id="m-27" class="qanchor"></a>
-<h3 id="m27-27">M27 第 27 题 了解整体层面内部控制（其三）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考整体层面控制评价结论向风险评估的传导——缺陷是否导致报表层面风险上调、总体应对如何升级。</li>
-<li><strong class="lbl">知识点</strong>：控制缺陷的严重程度评价（缺陷组合、补偿性控制）；整体层面缺陷→不可预见性程序增加、期末而非期中执行、扩大样本等总体应对措施。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面缺陷情境下严重程度结论，并选择/填写总体应对的调整。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则；结论与应对的「配对」考法与 T1（控制—认定配对）同属配对型命题逻辑。</li>
-<li><strong class="lbl">对应书与章节</strong>：王清刚第九章「内部监督和内部控制评价」；唐雪松第七章第二节「风险评估程序、控制测试和实质性程序」（总体应对措施）。</li>
-<li><strong class="lbl">如何备考</strong>：总体应对四件套默写：更资深人员、职业怀疑强化、期末执行、增加不可预见性。易错点：发现整体层面缺陷后只在对应循环加程序，漏掉报表层面的总体应对。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-7">第九章 内部监督和内部控制评价</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><h2 id="28">第五部分 未审报表分析（第 28 题）</h2>
-<blockquote>
-<p>实测事实：第 28 题为单题成组，组名即题名方向「未审报表分析」；分值与底稿栏目构成未记录，<mark class="warn">待样卷复核</mark>。</p>
-</blockquote>
-<div class="qcard"><a id="m-28" class="qanchor"></a>
-<h3 id="m28-28">M28 第 28 题 未审报表分析</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考风险评估阶段的分析程序——对未审财务报表做结构、趋势、比率的整体扫描，从数字异常倒推风险落点，为 41–46 题风险评估汇总提供输入。</li>
-<li><strong class="lbl">知识点</strong>：分析程序在风险评估中的定位（必做程序之一）；常用分析：结构百分比、同比变动、关键比率（毛利率、周转率、偿债能力）；异常波动的解释验证义务（不能只听管理层解释而不查证）。</li>
-<li><strong class="lbl">要我们做什么</strong>：在底稿中完成未审报表的分析栏目：计算/核对关键指标变动，标记异常项目，并给出风险指向（科目＋认定）。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（按底稿形态推定为指标计算格＋异常说明/风险指向栏目）。</li>
-<li><strong class="lbl">出题形式与理由</strong>：底稿填制形态。分析程序的成果就是一张「算出异常、写下指向」的分析表，用选择题无法呈现计算与指向的链条；本表单题成组、夹在内控了解与风险评估汇总之间，正是流程上的枢纽位置。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第七章第三节「分析程序」；第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：练三组速算：毛利率变动、应收/存货周转天数、费用率；每个异常写成「变动幅度→可能错报→对应认定」三截。易错点：只算变动不写指向；或把分析程序当实质性证据——风险评估阶段的分析只定方向，不定结论。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><h2 id="4146">第六部分 风险评估结果汇总（第 41–46 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 41–46 共 6 题、组名「风险评估结果汇总」有实测记录；逐题题名、分值<mark class="warn">待样卷复核</mark>。本组是 11–27 题了解与评价结果的收口：把风险落到「循环×认定×高低」的汇总表，并连通总体应对与进一步程序方向。参照 v7 知识点 3、第十部分经理线第⑥项与第十五部分「风险评估结论的写法」。</p>
-</blockquote>
-<div class="qcard"><a id="m-29" class="qanchor"></a>
-<h3 id="m29-41">M29 第 41 题 风险评估结果汇总（其一）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考报表层面重大错报风险的汇总结论形成。</li>
-<li><strong class="lbl">知识点</strong>：报表层面风险的来源归集（控制环境缺陷、业绩压力、行业困境）；报表层面风险高低决定总体应对强度。</li>
-<li><strong class="lbl">要我们做什么</strong>：在汇总底稿中归集前段识别的报表层面风险并下高低结论（或判断题面结论是否恰当）。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：汇总类底稿填制为主；汇总题考的是「归集与定级」的判断，不是新知识，故以填制＋结论下拉/判断形态呈现，与审定表结论下拉的标准化逻辑相同。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第三节「审计风险」；王清刚第三章「风险评估」。</li>
-<li><strong class="lbl">如何备考</strong>：报表层面风险每条须能回指来源（哪道了解题、哪个缺陷）。易错点：把认定层面的单科目风险误升报表层面，虚增总体应对成本。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-2">第三章 风险评估</a>；<a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-30" class="qanchor"></a>
-<h3 id="m30-42">M30 第 42 题 风险评估结果汇总（其二）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考认定层面风险按循环的汇总——销售与收款、采购与付款等循环的风险定位。</li>
-<li><strong class="lbl">知识点</strong>：循环×认定的风险矩阵思维，与专员 1 线 T6 控制矩阵同构（控制—风险—认定三向对应），此处汇总的是评估结果而非控制。</li>
-<li><strong class="lbl">要我们做什么</strong>：在汇总表中为各循环主要认定填列风险高低及依据。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（推定为矩阵式勾选/下拉）。</li>
-<li><strong class="lbl">出题形式与理由</strong>：矩阵填制形态：风险汇总的实务载体就是矩阵表，按格给分才能定位哪一格判断错。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第五章第二节「认定与具体审计目标」、第三节「财务报表循环与审计目标」；王清刚第三章「风险评估」。</li>
-<li><strong class="lbl">如何备考</strong>：按循环背「首要认定」：销售怕发生、采购怕完整性、存货怕计价、资金怕存在与权利。易错点：每个认定都填「高」——汇总题恰恰考区分度，全高等于没评估。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-2">第三章 风险评估</a>；<a href="knowledge.html#kp-b-11">第五章 认定、具体审计目标与财务报表循环（第二节、第三节）</a></p>
-</div><div class="qcard"><a id="m-31" class="qanchor"></a>
-<h3 id="m31-43">M31 第 43 题 风险评估结果汇总（其三）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考特别风险的单独标识与汇总。</li>
-<li><strong class="lbl">知识点</strong>：特别风险清单的落表：管理层凌驾、收入舞弊推定、重大非常规交易、复杂会计估计；特别风险在汇总中须单列并强制配置实质性程序。</li>
-<li><strong class="lbl">要我们做什么</strong>：在汇总底稿中标识特别风险项并注明应对方向。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第三节「审计风险」；第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：特别风险与一般高风险分开记：前者是「性质」判定（准则点名类别），后者是「程度」判定。易错点：把金额大直接等同特别风险——金额大但常规的交易不是特别风险。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-32" class="qanchor"></a>
-<h3 id="m32-44">M32 第 44 题 风险评估结果汇总（其四）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考舞弊风险评估结果的汇总与讨论留痕。</li>
-<li><strong class="lbl">知识点</strong>：项目组舞弊讨论的结论记录；舞弊风险因素（三角）向认定层面的落点，主要是收入发生、存货高估、费用资本化等经典方向。</li>
-<li><strong class="lbl">要我们做什么</strong>：按汇总底稿要求归集舞弊风险并落点到科目与认定。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第七章第二节「风险评估程序、控制测试和实质性程序」；王清刚第三章「风险评估」。</li>
-<li><strong class="lbl">如何备考</strong>：舞弊落点默写三条主线：虚增收入（发生）、虚减成本费用（完整性反向）、资产高估（计价）。易错点：舞弊风险只写报表层面，不落认定——专员无法据此设计程序。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-2">第三章 风险评估</a>；<a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-33" class="qanchor"></a>
-<h3 id="m33-45">M33 第 45 题 风险评估结果汇总（其五）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考总体应对措施的确定。参照 v7 知识点 5（总体应对措施与不可预见性）。</li>
-<li><strong class="lbl">知识点</strong>：总体应对措施菜单：强调职业怀疑、指派更有经验人员、强化督导、提高不可预见性、总体修改进一步程序（期末执行、扩大范围）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按汇总结论选择/填列本项目的总体应对措施组合。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则；措施菜单类内容适合下拉/多选标准化判分，与 T2（职责分离多选）的命题逻辑一致。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：措施与风险一一对应着记：控制环境差→换人加密督导；凌驾风险→加不可预见性。易错点：把认定层面的具体程序（如函证比例）写进总体应对——层级错位。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-34" class="qanchor"></a>
-<h3 id="m34-46">M34 第 46 题 风险评估结果汇总（其六）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考本组收口——评估结论向审计计划（47–51 题）的传导与进一步程序总体方案（综合性/实质性方案）的选择。</li>
-<li><strong class="lbl">知识点</strong>：是否信赖控制的决策逻辑：控制预期有效且拟信赖→控制测试＋实质性程序（综合性方案）；控制无效或不拟信赖→实质性方案；该决策按循环分别作出。</li>
-<li><strong class="lbl">要我们做什么</strong>：按汇总结果为各循环选定进一步程序总体方案并注明理由。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第七章第二节「风险评估程序、控制测试和实质性程序」。</li>
-<li><strong class="lbl">如何备考</strong>：决策口诀：信赖才测控，测控过才减实质。易错点：对已识别控制缺陷的循环仍选综合性方案——缺陷未整改前控制不可信赖。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-13">第七章 风险评估程序、分析程序与大数据审计程序（第二节、第三节、第四节）</a></p>
-</div><h2 id="4751">第七部分 审计计划（第 47–51 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 47–51 共 5 题、组名「审计计划」有实测记录；逐题题名、分值<mark class="warn">待样卷复核</mark>。参照 v7 知识点 1（审计业务约定书与审计计划）、知识点 2（重要性、审计风险模型）与第十部分经理线第④项：总体审计策略与具体审计计划定方向与分工，选拔赛的分工表即其形态之一。</p>
-</blockquote>
-<div class="qcard"><a id="m-35" class="qanchor"></a>
-<h3 id="m35-47">M35 第 47 题 审计计划（其一）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考总体审计策略的编制要点——范围、时间安排、方向三要素。</li>
-<li><strong class="lbl">知识点</strong>：总体审计策略的内容：审计范围（报表、准则、报告要求）、时间安排（各阶段里程碑、报告日）、审计方向（重要性初步判断、重点领域预判）；策略与具体计划的层级关系（策略定调、计划落地）。</li>
-<li><strong class="lbl">要我们做什么</strong>：在计划类底稿中完成总体策略栏目，或判断题面策略表述的恰当性。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（计划类底稿多为栏目填制＋结论判断）。</li>
-<li><strong class="lbl">出题形式与理由</strong>：计划编制是经理的文书型核心技能，底稿填制才能考「写得出计划」而非「认得出计划」；与实测「经理任务纳入含计划的操作类题」的规律吻合。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第四节「总体审计策略与具体审计计划」。</li>
-<li><strong class="lbl">如何备考</strong>：策略三要素与计划三要素（性质、时间、范围）分开背。易错点：把具体程序清单写进总体策略——层级错位，与 M33 同型错误。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-36" class="qanchor"></a>
-<h3 id="m36-48">M36 第 48 题 审计计划（其二）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考财务报表整体重要性的确定。参照 v7 知识点 2（重要性、审计风险模型与「大额标准」）。</li>
-<li><strong class="lbl">知识点</strong>：重要性基准的选择（税前利润、总收入、总资产、净资产）与百分比的确定逻辑：基准须与报表使用者关注点匹配，经营波动大时慎用利润基准；重要性与审计风险反向关系。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面给定的财务数据选择基准、计算整体重要性水平（或判断题面计算是否恰当）。作答形态<mark class="warn">待样卷复核</mark>；若含计算格，按格给分。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（推定含基准选择与金额计算）。</li>
-<li><strong class="lbl">出题形式与理由</strong>：重要性是「判断＋计算」的复合点：基准选择考判断、金额落点考计算，填制形态可同时承载两者；做成纯选择题则测不到计算准确性。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第二节「重要性」。</li>
-<li><strong class="lbl">如何备考</strong>：基准选择口诀：利润稳用利润、利润飘用收入/资产；百分比区间按基准记（收入 0.5%–1%、资产 1%、税前利润 5% 为常用参考，须以题面给定口径为准）。易错点：用净利润（含税后口径）作基准与题面给定的税前利润口径混用。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-37" class="qanchor"></a>
-<h3 id="m37-49">M37 第 49 题 审计计划（其三）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考实际执行的重要性与特定类别交易/余额的重要性设定。</li>
-<li><strong class="lbl">知识点</strong>：实际执行的重要性为整体重要性的 50%–75%（考虑错报汇总风险与以往错报史）；特定重要性：对特定交易类别、披露（如关联方、管理层薪酬）设定更低水平；明显微小错报临界值。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面参数计算/判断实际执行的重要性水平及其设定理由。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同 M36，判断＋计算复合形态。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第二节「重要性」。</li>
-<li><strong class="lbl">如何备考</strong>：50%–75% 区间的取向记牢：风险高、错报史多→取低端。易错点：把实际执行的重要性当成「单个错报的可容忍上限」——它服务于汇总未更正错报的评价，不是单项放行线。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-38" class="qanchor"></a>
-<h3 id="m38-50">M38 第 50 题 审计计划（其四）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考具体审计计划的编制——进一步审计程序的性质、时间、范围按循环/认定的排布与人员分工。参照 v7 第十部分：选拔赛四岗位分工表即具体计划的人员维度形态。</li>
-<li><strong class="lbl">知识点</strong>：具体计划的内容构成：风险评估程序计划、进一步程序计划（控制测试与实质性程序的性质/时间/范围）、沟通与督导安排；计划随评估结果滚动修订（计划不是一次成文）。</li>
-<li><strong class="lbl">要我们做什么</strong>：在计划底稿中为各循环排定程序与分工，或判断题面计划与评估结论是否脱节。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同 M35，文书填制形态。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第四节「总体审计策略与具体审计计划」。</li>
-<li><strong class="lbl">如何备考</strong>：计划与评估结论逐条对位自查：每条高风险必有对应程序、每个循环必有责任人。易错点：计划写了控制测试，但对应循环在汇总组已判定控制缺陷——计划与评估脱节是汇总题最爱埋的雷。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a></p>
-</div><div class="qcard"><a id="m-39" class="qanchor"></a>
-<h3 id="m39-51">M39 第 51 题 审计计划（其五）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考审计风险模型在计划中的量化应用，或计划阶段的沟通安排（与管理层/治理层沟通计划、利用内审与专家）。</li>
-<li><strong class="lbl">知识点</strong>：审计风险＝重大错报风险×检查风险的倒推：可接受检查风险越低，实质性程序范围越大；沟通计划与利用他人工作的计划安排。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面参数完成风险倒推判断或沟通/利用安排的恰当性判断。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同组通则。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第六章第三节「审计风险」；第十四章第三节「与治理层的沟通」（沟通的收口位置）。</li>
-<li><strong class="lbl">如何备考</strong>：倒推链默写：评估的重大错报风险定格→可接受检查风险反推→样本量与程序范围随之定。易错点：把检查风险当成可以「评估」的对象——检查风险由我们的工作决定，只能设定目标水平。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-12">第六章 初步业务活动、重要性、审计风险与总体策略（第一至四节）</a>；<a href="knowledge.html#kp-b-20">第十四章 完成审计工作与审计报告（第一节、第三节、第四节）</a></p>
-</div><h2 id="158162">第八部分 完成阶段收口（第 158–162 题）</h2>
-<blockquote>
-<p>实测事实（经理账号）：第 158 题 EB 期末试算平衡表 <span class="score">8.00 分</span>；第 161 题选择审计意见类型 <span class="score">1.00 分</span>，四个单选框在经理端均可用（专员端全部禁用）；第 162 题 ED 审计报告编制带锁，须先正确完成第 161 题才解锁，经理也不能绕过；第 159–160 题 EC 审定报表为分组有据、逐题题名与分值<mark class="warn">待样卷复核</mark>。</p>
-</blockquote>
-<div class="qcard"><a id="m-40" class="qanchor"></a>
-<h3 id="m40-158-eb-800">M40 第 158 题 EB 期末试算平衡表（<span class="score">8.00 分</span>）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考完成阶段的汇总功——把全卷各科目审定结果与全部调整（账项调整、重分类调整）过入一张试算平衡表，验证审定后报表借贷平衡、勾稽闭合。它是经理自有题中分值最高的一道（<span class="score">8.00 分</span>，实测为全卷单题最高之一）。</li>
-<li><strong class="lbl">知识点</strong>：试算平衡表结构（实测列）：报表项目｜行次｜期末未审数｜账项调整（借方/贷方）｜重分类调整（借方/贷方）｜期末审定数｜期初审定数｜备注；表头有「校验：」「试算平衡」字样；账项调整与重分类调整的区分（前者改金额、后者只改列报项目不改总额方向）；未审数来源＝账套数据经账表映射生成的未审报表（与经理前置四步直接相连）。</li>
-<li><p class="segp"><strong class="lbl">要我们做什么</strong>：实测界面：表头被审计单位福州青风子伞业有限公司、编制夏旭旭、日期 2026/01/23、复核栏空、索引号 EB、页次 1、会计期间 2025.01.01–2025.12.31；按钮为「自动生成底稿/保存数据/标记本题/上一笔/下一笔」——<strong>无「提交下一岗位」</strong>（经理为链条终端，与专员视角下本题多一个提交按钮不同，此为实测差异）。</p><p class="segp">操作上须汇总各科目审定表的调整分录过入对应行，点「自动生成底稿」带出可生成部分后逐行核对平衡与勾稽。</p></li>
-<li><strong class="lbl">需要填什么</strong>：各报表项目的账项调整借/贷、重分类调整借/贷（无调整则按表式留「-」或空，以平台口径为准）；期末审定数由未审数加减调整推导；最终须使资产＝负债＋所有者权益、利润表项目与审定数勾稽。具体行数与预填状态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：SpreadJS 底稿填制，按格给分。试算平衡表是全卷数据的唯一总汇入口，其考点是勾稽链完整性而非单点计算，只有整表填制才能暴露「某科调整漏过入」这类汇总型错误；8 分的高权重与其枢纽地位匹配（参照专员 1 线 ZA2-2 函证汇总表 10 分的定价逻辑：枢纽题高分）。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十四章第一节「完成审计工作概述」；底稿规范见同书第八章第二节「审计工作底稿」；调整分录的汇总口径另属《审计学原理与实务》范畴知识点：未更正错报的汇总与评价（只标知识点，不标章节）。</li>
-<li><strong class="lbl">如何备考</strong>：练一条固定收口顺序：先确认每张科目审定表的调整都已在「调整分录」模块登记→再开 EB 表逐行对位→最后验三组等式（资产总计＝负债与权益总计、本期利润勾稽、期初审定数与上期口径衔接）。易错点：账项调整与重分类调整两组列混填（与 ZA-1 同型错误，但在 8 分题上代价最高）；只点「自动生成底稿」不复核——自动生成只带汇总数，调整方向仍须人工验。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-14">第八章 审计证据与审计工作底稿（第一节、第二节）</a>；<a href="knowledge.html#kp-b-20">第十四章 完成审计工作与审计报告（第一节、第三节、第四节）</a>；<a href="knowledge.html#kp-b-35">调整分录汇总与财务报表列报披露</a></p>
-</div><div class="qcard"><a id="m-41" class="qanchor"></a>
-<h3 id="m41-159-ec">M41 第 159 题 EC 审定报表（其一）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考审定财务报表的编制——由试算平衡表（158 题）结果生成审定资产负债表/利润表并检查列报。</li>
-<li><strong class="lbl">知识点</strong>：审定报表与未审报表的差异即全部审计调整的报表化呈现；列报检查：流动/非流动划分、抵销规则（不得随意净额列报）、比较数据（期初审定数）的衔接。</li>
-<li><strong class="lbl">要我们做什么</strong>：按底稿要求由 EB 表结果完成审定报表栏目，核对各行与试算平衡表审定数一致。作答形态<mark class="warn">待样卷复核</mark>（推定含「自动生成底稿」类按钮，与审定表模板族同构）。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：底稿填制形态：审定报表是试算平衡的报表化输出，两题连号（158→159/160）构成「先平衡、后成表」的收口链，形态与审定表模板族一致。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十四章第一节「完成审计工作概述」；列报知识点另属《审计学原理与实务》范畴：财务报表列报与披露检查（只标知识点）。</li>
-<li><strong class="lbl">如何备考</strong>：成表后必查三件事：总额与 EB 表审定数逐行相等、重分类调整只动行项目不动总额、期初列与上期审定口径一致。易错点：把重分类调整误当账项调整重复过入，审定数二次变动。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-20">第十四章 完成审计工作与审计报告（第一节、第三节、第四节）</a>；<a href="knowledge.html#kp-b-35">调整分录汇总与财务报表列报披露</a></p>
-</div><div class="qcard"><a id="m-42" class="qanchor"></a>
-<h3 id="m42-160-ec">M42 第 160 题 EC 审定报表（其二）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考审定报表的第二张表（利润表或现金流量表方向）或附注/列报复核。</li>
-<li><strong class="lbl">知识点</strong>：利润表审定数的勾稽（营业收入至净利润的逐级推导与各费用科目审定表 SA–SP 的对位）；报表间勾稽：净利润与未分配利润变动（QC/QD 组审定结果）的衔接。</li>
-<li><strong class="lbl">要我们做什么</strong>：完成第二张审定报表栏目并与 EB 表、相关科目审定表交叉核对。作答形态<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：同 M41。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十四章第一节「完成审计工作概述」；第八章第二节「审计工作底稿」。</li>
-<li><strong class="lbl">如何备考</strong>：利润表勾稽链单独练：收入（SA）－成本（SB）－税金及附加（SC）－期间费用（SD/SE）－减值（SK）－所得税（SP）→净利润→未分配利润（QD）。易错点：净利润与 QD 审定表对不上时先查所得税费用（SP）与盈余公积（QC）两处中转。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-14">第八章 审计证据与审计工作底稿（第一节、第二节）</a>；<a href="knowledge.html#kp-b-20">第十四章 完成审计工作与审计报告（第一节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-43" class="qanchor"></a>
-<h3 id="m43-161-100">M43 第 161 题 选择审计意见类型（<span class="score">1.00 分</span>）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考全卷的结论收口判断——基于未更正错报汇总与范围受限情况，在四种审计意见中作出唯一正确选择。它同时是第 162 题的解锁钥匙（见 M44）。</li>
-<li><p class="segp"><strong class="lbl">知识点</strong>：意见分流的两维判断：先分「错报」还是「范围受限」，再分「重大但不广泛」还是「重大且广泛」——错报：不广泛→保留意见，广泛→否定意见；受限：不广泛→保留意见，广泛→无法表示意见；均不重大→无保留意见。</p><p class="segp">非无保留意见的形成还须与底稿结论（各科审定结论、未决事项处置）咬合，参照 v7 补遗八、补遗十五（审计报告收口逻辑与措辞咬合，风隅良品口径，仅作方法参照）。</p></li>
-<li><p class="segp"><strong class="lbl">要我们做什么</strong>：实测界面：4 个单选框（A 无保留意见/B 保留意见/C 否定意见/D 无法表示意见），经理端均可选中（专员 2 视角下全部禁用——本题是经理专属决策题）；按钮为保存数据/标记本题/上一笔/下一笔，无「提交下一岗位」；右上角仅「查看答案」按钮（未点击）。</p><p class="segp">作答前应先完成 158–160 的汇总评价再回头选，本题只有 1 分但选错将连带锁死 162 题。</p></li>
-<li><strong class="lbl">需要填什么</strong>：单选一个字母。</li>
-<li><strong class="lbl">出题形式与理由</strong>：单选题自动判分。意见类型是全卷唯一的「总判断」，结论本身是四选一的离散值，用单选最经济；把它设为独立小题而非并入 162 题，是为了让「判断」与「编制」分开计分，且以锁机制强制先后（见 M44）。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第三章第二节「审计意见类型」；第十四章第四节「审计报告意见的形成」。</li>
-<li><strong class="lbl">如何备考</strong>：两维分流图默写到反射级：错报/受限 × 广泛/不广泛 → 四格对号。易错点：保留意见两个来源（错报不广泛、受限不广泛）容易只记其一；另注意本题分值仅 1 分，不要在证据未齐时抢答——它考的是全卷汇总后的判断，不是开卷早答题。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-10">第三章 审计意见类型与审计报告要素（第二节、第三节、第五节）</a>；<a href="knowledge.html#kp-b-20">第十四章 完成审计工作与审计报告（第一节、第三节、第四节）</a></p>
-</div><div class="qcard"><a id="m-44" class="qanchor"></a>
-<h3 id="m44-162-ed">M44 第 162 题 ED 审计报告编制（带锁）</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考审计报告的实际编制——按 161 题选定的意见类型，完成报告要素与措辞，使报告与底稿结论三处咬合（意见类型、关键数据、报告日期）。参照 v7 补遗三十（审计报告措辞的三处咬合）与补遗十五。</li>
-<li><strong class="lbl">知识点</strong>：审计报告基本要素：标题、收件人、审计意见段、管理层责任段、注册会计师责任段、（非无保留时的）形成意见基础段、注册会计师签名盖章、报告日期；关键审计事项段的适用性；报告日期不得早于管理层签署报表与获取充分证据之日。</li>
-<li><strong class="lbl">要我们做什么</strong>：实测事实：本题在任务列表带锁标；打开后主区显示大锁图标与文字「本任务已被锁定，必须完成第 161 笔任务后才能解锁」，顶部提示「锁定题前一题答错，不能进行本题」——即解锁条件是 <strong>161 题答对</strong>，不只是答完；经理账号同样受此约束。解锁后的编制界面（要素填空/下拉/段落选择的具体构成）因只读未作答，未能观察，<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（推定为报告要素的填制/选择组合，按要素给分）；本题分值未记录，<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式与理由</strong>：底稿（文书）编制形态＋前置锁机制。锁的命题意图有二：强制「先判断、后编制」的专业顺序，防止报告措辞反推意见；使 161 的 1 分判断产生杠杆效应——判断错，编制题整题归零，这是全卷唯一的连锁归零结构，备赛必须单独演练。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第三章第三节「审计报告的基本要素」、第五节「关键审计事项」；第十四章第四节「审计报告意见的形成」。</li>
-<li><strong class="lbl">如何备考</strong>：把报告要素清单背成固定序，并预演四种意见下「意见段＋基础段」的措辞差异（保留意见须量化/说明影响、否定意见措辞最重、无法表示须说明受限范围）。易错点：报告日期填早于证据完成日；形成意见基础段遗漏错报金额；161 与 162 意见不一致（系统锁只防未答对，不防编制时改口——以 161 选定为准）。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-10">第三章 审计意见类型与审计报告要素（第二节、第三节、第五节）</a>；<a href="knowledge.html#kp-b-20">第十四章 完成审计工作与审计报告（第一节、第三节、第四节）</a></p>
-</div><h2 id="_1">第九部分 经理岗全局打法</h2>
-<h3 id="_2">一、串行前置链：全队的时间零点在经理手里</h3>
-<p>实测坐实的串行结构：<strong>账套数据四步（数据采集→检查校验→账表映射→报表生成）严格顺序执行，且数据采集仅经理可做</strong>（专员点击提示「当前角色不支持进行数据采集」；后三步被前置提示依次锁住）；<strong>审计材料「资料获取」同样仅经理可执行</strong>（经理端「获取全部资料」按钮可用，专员端禁用）；未执行资料获取前，连经理自己打开财务报表也是「暂无数据」。考试说明同口径：经理须先完成账套数据与资料获取，专员再按顺序做各自任务。</p>
-<p>打法要点：</p>
-<p>1. <strong>开赛第一动作不是做题，是跑链</strong>：经理先完成数据采集（数据源三级树，顶层五系列：用友、新中大、浪潮通软、金蝶、航天信息——实测仅展开用友系，其余系列下级未展开，正式赛前应在练习中确认本案数据源路径），再依次过检查校验、账表映射、报表生成，最后执行资料获取。链未跑完，专员的财务资料不加载，全队空转。</p>
-<p>2. <strong>校验环节当数据源头质检</strong>：检查校验步是全队数据的唯一质检口（v7 经理线第①项同口径：借贷平衡、期末数与报表数核对必须在此完成）。校验报错不要跳过——源头错一格，下游 118 道专员题与第 158 题全错。</p>
-<p>3. <strong>跑链与做题并行分工</strong>：经理跑链期间，专员可先做不依赖财务数据的题（如各循环了解内控的选择类小题），经理跑完链后广播全队「数据已就绪」，专员转入底稿题。</p>
-<p>4. <strong>链的后段界面待补测</strong>：检查校验的校验项列表、账表映射的映射表形态、报表生成的报表清单，在只读实测中因未执行采集而不可见——正式练习时经理应完整跑一遍并截记四步界面，这是当前唯一的界面盲区。</p>
-<h3 id="146">二、146 题复核单：构成与时间分配</h3>
-<p>经理「我的任务」146 题＝自有 44 题＋专员底稿类 102 题。复核单的构成规律（实测）：<strong>含底稿/流程/计划的操作类专员题全部在单内；纯选择/判断题 16 题不在单内</strong>（29、30、32、33、34、36、37、38、40、64、81、114、134、135、140、141）——即经理复核的只是「有底稿可复核」的部分，选择题对错不在经理复核视野内。</p>
-<p>复核形态（实测）：无独立复核菜单；经理在自己任务列表中打开专员底稿，呈现同一张 SpreadJS 底稿但为只读（仅标记本题/上一笔/下一笔，无保存与提交按钮），复核留痕的载体是底稿表头的「复核/复核日期」栏。专员提交后经理端的操作形态未在只读范围内观察到（需实际提交，待正式练习补测）——备赛时不要假设有「退回」按钮，按「表头复核栏＋口头/场内沟通纠错」准备预案。</p>
-<p>时间分配（180 分钟，第二环节团队赛；参照 v7 第十部分复核纪律，结合本样卷结构调整）：</p>
-<p>- <strong>0–20 分钟</strong>：经理独跑前置链（四步＋资料获取），专员并行做内控了解类小题；经理随后进入自有题 5–28。</p>
-<p>- <strong>20–110 分钟</strong>：经理主攻自有题 11–51（了解、汇总、计划是连贯文书链，一气呵成）；专员底稿滚动提交，经理自第 40 分钟起<strong>滚动复核</strong>已提交的底稿（先勾稽、后结论、再未决项），不攒到最后。</p>
-<p>- <strong>110–150 分钟</strong>：专员收尾各自科目审定表；经理完成 158 试算平衡表（须等主要科目审定数齐备，过早打开只能空转）。</p>
-<p>- <strong>150–170 分钟</strong>：经理做 159–160 审定报表→161 选意见→162 编报告；复核扫尾（未决项清点、表头复核栏补齐）。</p>
-<p>- <strong>最后 10 分钟</strong>：只做提交完整性检查，不再改数——v7 纪律同口径：同分时提交先后影响排名，任何打磨让位于先提交（按总决赛规程，同分先比第一环节成绩、再比提交时间，见备赛手册口径，引用须以正式规程为准）。</p>
-<h3 id="161162">三、161→162 锁定链：全卷唯一的连锁归零点</h3>
-<p>实测机制：162 题带锁，解锁条件是 <strong>161 题答对</strong>（顶部提示明示「锁定题前一题答错，不能进行本题」），且对经理同样生效、无角色豁免。含义有三：</p>
-<p>1. <strong>161 的 1 分是杠杆分</strong>：答错损失的不止 1 分，而是 162 题整题（分值<mark class="warn">待样卷复核</mark>）无从作答。总收益权重远超其面值。</p>
-<p>2. <strong>作答时点要后置</strong>：161 考的是全卷汇总判断，必须等 158 的未更正错报汇总与各科审定结论齐备后再选；开赛早答等于用残缺证据下总判断。经理自有题的推进顺序应把 161/162 固定放在最后，158–160 之前不碰。</p>
-<p>3. <strong>演练要求</strong>：练习时至少完整走一遍「错报汇总→两维分流→选意见→编报告」的链条，并预演四种意见的报告措辞差异，避免正式赛在解锁后卡在编制环节耗时。</p>
-<h3 id="158-8">四、第 158 题 8 分的权重与打法</h3>
-<p>158 题 EB 试算平衡表 <span class="score">8.00 分</span>，为经理自有题最高分、全卷单题最高之一。它与经理前置链首尾呼应：链头（账表映射/报表生成）产出未审数，链尾（158）把全部审定结果与调整过入成表——<strong>经理岗的两端都是汇总岗</strong>。打法要点：</p>
-<p>1. <strong>前置动作</strong>：打开 158 之前，先在「调整分录」模块确认四位队员的调整分录全部登记齐备；漏登记一笔，158 对应行就少一笔调整，且错误会顺流污染 159–160 与 161 的判断基础。</p>
-<p>2. <strong>自动生成≠免检</strong>：「自动生成底稿」只汇总已登记数据，调整的借贷方向、账项/重分类归类仍须逐行人工验；归类错误是本題最可能的成片失分点。</p>
-<p>3. <strong>平衡校验当场做</strong>：利用表头「校验/试算平衡」字样对应的校验功能（具体触发方式<mark class="warn">待样卷复核</mark>），不等、不平先回查调整分录再改表。</p>
-<p>4. <strong>时间护栏</strong>：158 建议预留 20 分钟以上且不晚于第 150 分钟开启；若个别科目审定未齐，先过入已齐部分，未齐行留标记，最后 10 分钟统一收口，避免整表被一科拖住。</p>
-<h3 id="44_1">五、经理自有 44 题的内部顺序建议</h3>
-<p>按依赖关系而非题号顺序推进：前置链→5–10（承接与约定）→11–24（了解）→25–27（整体内控）→28（未审报表分析）→41–46（汇总）→47–51（计划）→（滚动复核专员底稿）→158→159–160→161→162。</p><p>其中 28 题的分析结论是 41–46 的直接输入，中间不要插入无关题；41–51 是连贯文书链（评估结论→计划），与 v7 经理线「评估要写出可执行结论」的标准一致：汇总题里每条风险写明「循环＋认定＋高低＋拟实施程序方向」，专员才能据此调样本，计划题才有着落。</p><hr>
-<blockquote>
-<p><mark class="warn">待样卷复核</mark>清单（汇总）：①第 2–4 题分值与节点文案、流程图填法；②第 5–27、41–51 题逐题题名、分值与小题构成；③第 28 题分值与底稿栏目；④第 159–160 题逐题题名、分值与两题分工；⑤第 162 题分值与解锁后编制界面构成；⑥账套数据后三步（检查校验/账表映射/报表生成）界面构成；⑦专员提交后经理端复核的操作形态。</p><p>以上均需在样卷练习模式实际作答/提交后补测，本文未作任何推测性填补。</p></blockquote>
+  <main class="content" id="content">
+<h1>审计经理线 · 样卷原题复刻（第 1–28、41–51、158–162 题）</h1>
+
+<section class="qcard" id="intro">
+<h3>本页说明</h3>
+<p>本页复刻审计实务样卷中审计经理自有题的原题、平台答案与作答要点。案例公司为<strong>福州青风子伞业有限公司</strong>，审计期间为 2025 年 1 月 1 日至 2025 年 12 月 31 日，承接方为大兴会计师事务所（特殊普通合伙）。已采集的经理自有题共 43 题：第 1–28 题（61.00 分）、第 41–51 题（19.00 分）、第 158–161 题（15.00 分），合计 95.00 分；第 162 题因平台锁定未采集，单列于本页末尾。第 29–40、52–157 题归属三位专员，见专员 1、专员 2、专员 3 线页面。</p>
+<p><span class="lbl">复核单的界面与操作方法：</span>经理视角下另有 102 份专员底稿复核单，内容与专员原题的底稿完全重复，本页不逐份复刻。经理「我的任务」共 146 项＝44 道自有题＋102 份复核单。平台没有独立的复核菜单：经理在左侧任务列表中点开对应的专员题，呈现的是同一张底稿（只读，仅有标记本题、上一笔、下一笔，无保存数据与提交按钮），复核留痕的载体是底稿表头的「复核／复核日期」栏。有 16 个题号不在经理任务列表内：第 29、30、32、33、34、36、37、38、40、64、81、114、134、135、140、141 题，均为无底稿可复核的纯选择、判断类小题。</p>
+<p><span class="lbl">全局操作速览：</span>顶栏「…」更多菜单共 6 项——账套数据（数据采集、检查校验、账表映射、报表生成、账表查询，按此顺序串行解锁，跳步只弹提示）、审计材料（资料获取、资料查看；资料共 60 份：工商 2、行政 4、人事 1、财务 30、税务 8、往来 2、合同 13）、调整分录（编制调整分录、调整分录汇总）、数智技术（财务指标看板、科目分析、银行存款全面对比）、数字化函证（看板中心、项目管理、发函管理、函证查询）、底稿联查（左侧树列全部底稿索引，点节点看关联底稿）。右下角工具箱有基础计算器与金融计算器。每题页有标记本题、上一笔、下一笔与「查看答案／回到任务」；底稿题有「保存数据」，文书题另有「发送签章」。题目页本身没有联查入口，查关联底稿一律走顶栏「…」→底稿联查。</p>
+</section>
+
+<h2 id="part1">第一部分 流程图题（第 1–4 题）</h2>
+
+<section class="qcard" id="q1">
+<h3>第1题 全流程财报审计总体业务流程（<span class="score">3.00 分</span>）</h3>
+<p><span class="lbl">原题：</span>请完成审计全流程中各节点流程图的绘制。画布节点（按平台通用列表顺序）：</p>
+<div class="flowbox"><p class="segp">初步业务活动 → 审计计划 → 执行风险评估程序 → 识别和评价错报风险 → 应对重大错报风险及选择审计程序 → 控制测试（必要时）→ 实质性程序 → 评价审计证据 → 审计报告。画布布局为蛇形：上行自左向右排前四个节点，再折返至下行。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>流程图题点「查看答案」后没有文字答案区，答案即画布上的正确流程图本身：节点与连线同上——上行为初步业务活动→审计计划→执行风险评估程序→识别和评价错报风险，折返下行为应对重大错报风险及选择审计程序→控制测试（必要时），再向下至实质性程序→评价审计证据→审计报告。</p>
+</details>
+<p><span class="lbl">解析：</span>本题考风险导向审计的全流程骨架：先承接与计划，再评估风险、应对风险，最后评价证据并出报告。易错点是把「控制测试」当成必经节点——它只在拟信赖控制时才做，节点名本身就带「（必要时）」；另一个易错点是把「识别和评价错报风险」与「执行风险评估程序」的顺序颠倒。</p>
+<p><span class="lbl">操作流程：</span>在左侧任务列表点开本题，在画布上从节点列表拖放节点并连线；本题无背景单据、无资料获取文件、无查询路径，完成后用标记本题、下一笔进入下一题。</p>
+</section>
+
+<section class="qcard" id="q2">
+<h3>第2题 初步业务活动流程（<span class="score">3.00 分</span>）</h3>
+<p><span class="lbl">原题：</span>在接到客户的业务委托意向后，项目首先应当开展初步业务活动，以获得相关信息来判断是否能够承接该业务，具体的初步业务活动流程如下。画布节点：</p>
+<div class="flowbox"><p class="segp">业务环境的初步了解、保持或承接评价（菱形判断框）、可接受风险、签署业务约定书、不可接受风险、拒绝或解除、授权项目合伙人、项目组团队组建、签署独立性声明及保密协议。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>答案即画布流程图：业务环境的初步了解 ↓ 保持或承接评价（判断框）；「可接受风险」分支 ↓ 签署业务约定书 ↓ 授权项目合伙人 → 项目组团队组建 → 签署独立性声明及保密协议；「不可接受风险」分支 ↓ 拒绝或解除。</p>
+</details>
+<p><span class="lbl">解析：</span>初步业务活动的落点是「能不能接」：先了解业务环境，再做承接评价，评价通过才签约定书、授权合伙人、组建团队并签独立性与保密文件；评价不通过直接拒绝或解除。易错点是把「签署业务约定书」画在评价之前，或漏掉判断框的拒绝分支。</p>
+<p><span class="lbl">操作流程：</span>画布拖放作答，无外部资料；本流程的结论与第 5–9 题业务保持评价、第 10 题约定书填制直接衔接。</p>
+</section>
+
+<section class="qcard" id="q3">
+<h3>第3题 风险评估和审计计划流程图（<span class="score">3.00 分</span>）</h3>
+<p><span class="lbl">原题：</span>在完成项目组建后，应当对项目进行风险评估，并根据风险评估结果制定审计计划，主要流程如下。任务画布初始为空白橙色框（待填节点）。</p>
+<details class="answer"><summary>显示答案</summary>
+<p>答案画布节点自上而下为：审计业务约定书 → 风险评估 → 总体审计策略 → 具体审计计划。</p>
+</details>
+<p><span class="lbl">解析：</span>顺序不能乱：约定书是计划工作的前提；先风险评估、后定策略与计划，计划必须建立在评估结果之上。易错点是把「总体审计策略」与「具体审计计划」对调——策略定方向（范围、时间、方向），具体计划才落到程序的性质、时间和范围。</p>
+<p><span class="lbl">操作流程：</span>画布空白框内填入节点并自上而下连线；无外部资料。本题结论与第 47–51 题审计计划组直接衔接。</p>
+</section>
+
+<section class="qcard" id="q4">
+<h3>第4题 了解内控和控制测试流程（<span class="score">3.00 分</span>）</h3>
+<p><span class="lbl">原题：</span></p>
+<div class="stem"><p class="segp">通过对被审计单位整体层面和业务流程层面内部控制的了解，得出内部控制的初步评价，并将所了解的控制与特定认定相联系，以评估认定层次的重大错报风险。如果通过了解内控预期控制有效或仅实施实质性程序不能提供充分适当的审计证据时，应实施控制测试以确认控制是否有效运行；如果了解内控后预期控制无效，应直接实施实质性程序并完成底稿编制。流程图如下。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>答案画布节点与连线：确定业务循环工作范围 ↓ 从业务流程层面了解内部控制 ↓ 是否信赖内控（菱形判断框）；分支「是」→ 控制测试，分支「否」→ 实质性程序。</p>
+</details>
+<p><span class="lbl">解析：</span>关键判断点是「是否信赖内控」：预期控制有效（或仅靠实质性程序不够）才做控制测试；预期无效就直接走实质性程序，不必在控制测试上耗时间。易错点是把控制测试画成了解内控后的固定下一步，漏掉判断框。</p>
+<p><span class="lbl">操作流程：</span>画布作答；判断逻辑与第 25–27 题整体层面内控评价、三位专员的循环内控题共用同一套口径。</p>
+</section>
+
+<h2 id="part2">第二部分 初步业务活动（第 5–10 题）</h2>
+
+<section class="qcard" id="q5">
+<h3>第5题 业务保持评价01（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">在考虑是否继续保持福州青风子伞业有限公司（以下简称「青风子公司」）年报审计业务时，需与青风子公司管理层进行了解和讨论，以确定（　）。</p></div>
+<div class="opt">A、青风子公司管理层能否向审计项目组人员提供必要的工作条件</div>
+<div class="opt">B、青风子公司在编制财务报表时采用的财务报告编制基础是否可接受</div>
+<div class="opt">C、青风子公司管理层是否愿意接受非无保留意见的审计报告</div>
+<div class="opt">D、青风子公司管理层是否认可并理解其对财务报表承担的责任</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABD</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>保持评价与管理层沟通的三件事：工作条件能否保障、编制基础是否可接受、管理层是否认可自身对报表的责任。C 不选——管理层是否愿意接受非无保留意见不是承接与保持的前提条件，意见类型由审计证据决定，不能拿管理层态度当门槛。易错点正是误选 C。</p>
+<p><span class="lbl">操作流程：</span>询问对象为青风子公司管理层；本题无背景单据、无资料获取文件、无查询路径，直接在题目页勾选作答。</p>
+</section>
+
+<section class="qcard" id="q6">
+<h3>第6题 业务保持评价02（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">在考虑继续保持审计业务时，需要从哪些方面了解和评价青风子公司。</p></div>
+<div class="opt">A、行业状况，以评价行业风险</div>
+<div class="opt">B、诚信，以评价其诚信风险</div>
+<div class="opt">C、经营情况，以评价其经营风险</div>
+<div class="opt">D、财务状况，以评价其财务风险</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABCD</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>保持评价的四个观察面：行业、诚信、经营、财务，分别对应行业风险、诚信风险、经营风险、财务风险，四项全选。记忆法：外（行业）—人（诚信）—事（经营）—数（财务）。</p>
+<p><span class="lbl">操作流程：</span>题目页直接勾选；评价维度与第 7 题（诚信细项）、第 8 题（上期事项）逐层展开。</p>
+</section>
+
+<section class="qcard" id="q7">
+<h3>第7题 业务保持评价03（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">了解和评价青风子公司的诚信时，需要纳入考虑的因素有（　）。</p></div>
+<div class="opt">A、青风子公司的股东或关键管理人员是否发生重大变动</div>
+<div class="opt">B、是否有迹象表明青风子公司的管理层不够诚信</div>
+<div class="opt">C、青风子公司（管理层）是否有过舞弊或违法行为，或已受到这方面的指控</div>
+<div class="opt">D、青风子公司过去审计时是否曾就审计范围向项目组成员施加限制</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABCD</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>诚信评价看四类信号：关键人员重大变动、管理层不诚信迹象、舞弊违法记录或指控、历史上对审计范围施加限制。四项都是诚信风险的直接证据，全选。易错点是漏选 A——关键管理人员频繁变动本身就是诚信与治理不稳定的信号。</p>
+<p><span class="lbl">操作流程：</span>题目页直接勾选；无外部资料，对应第 6 题诚信维度的细化。</p>
+</section>
+
+<section class="qcard" id="q8">
+<h3>第8题 业务保持评价04（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">对上期审计的事项考虑也是评价保持青风子公司审计业务一个因素，应考虑的事项可能有（　）。</p></div>
+<div class="opt">A、青风子公司管理层对注册会计师提出的管理建议、意见未予以有效跟进</div>
+<div class="opt">B、上年度的审计调整分录是否为重大调整</div>
+<div class="opt">C、青风子公司是否存在未决诉讼</div>
+<div class="opt">D、上期为青风子公司提供审计服务时是否遭遇不正当压力</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABD</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>「上期审计事项」限定的是与上期审计过程直接相关的三件事：管理建议未跟进、上年调整是否重大、上期是否遭遇不正当压力。C 不选——未决诉讼属于了解被审计单位及其环境时考虑的法律事项，不属于「上期审计事项」这一题眼。易错点是把 C 当成泛泛的风险因素顺手勾上。</p>
+<p><span class="lbl">操作流程：</span>题目页直接勾选；判断时先圈题干限定词「上期审计的事项」，再逐项对位。</p>
+</section>
+
+<section class="qcard" id="q9">
+<h3>第9题 业务保持评价05（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">在考虑继续保持青风子公司年报审计业务时，需要考虑拟安排执行审计的项目组的专业胜任能力，以下属于需要考虑的事项有（　）。</p></div>
+<div class="opt">A、项目组成员是否具备注册会计师执业资格</div>
+<div class="opt">B、项目组成员中的多数是否参与过足够的审计业务，以获得执行类似性质和复杂程度的审计项目实务经验</div>
+<div class="opt">C、项目组是否具有与执行本次审计业务相关的技术知识，包括信息技术知识</div>
+<div class="opt">D、项目组成员是否掌握审计准则的规定</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>BCD</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>专业胜任能力看的是团队整体：实务经验是否足够、技术知识（含信息技术）是否齐备、是否掌握审计准则。A 不选——项目组成员并不要求人人具备注册会计师执业资格，签字与复核岗位才有资格要求，把 A 当门槛是把团队能力误读成个人资格。</p>
+<p><span class="lbl">操作流程：</span>题目页直接勾选；本题结论与第 2 题流程图末端的「项目组团队组建」呼应。</p>
+</section>
+
+<section class="qcard" id="q10">
+<h3>第10题 AE 审计业务约定书（<span class="score">4.00 分</span>）</h3>
+<p><span class="lbl">原题（文书题）：</span></p>
+<div class="stem"><p class="segp">项目承接后，拟由大兴会计师事务所（特殊普通合伙）与福州青风子伞业有限公司签订审计业务约定书，请根据审计业务约定书约定事项填制完成审计业务约定书。页面左侧「单据列表」1 项「AE 审计业务约定书」，右侧为可填文书，含 37 个填空框（编号 a1–a37）及只读的甲乙双方盖章、授权代表签章栏与签署日期栏，底部按钮为「保存数据」「发送签章」。</p>
+<p class="segp">文书正文（节录，□为填空框）：甲方：福州青风子伞业有限公司（委托方）；乙方：大兴会计师事务所（特殊普通合伙）（受托方）。一、审计业务内容：1. 甲方委托乙方对甲方 □ 年度财务报表进行审计，乙方将根据中国注册会计师审计准则的要求执行审计工作。2. 甲方委托乙方按照 □ 财务报表编制基础编制财务报表。4. 审计报告的出具时间为 □ 年 □ 月 □ 日前。四、审计费用及支付方式：1. 本次审计费用为 □ 元人民币；2. 甲方应在签订本约定书后 □ 日内支付首期费用 □ 元人民币……六、争议解决：协商不成的，任何一方均有权向 □ 人民法院提起诉讼。七、其他：2. 本约定书一式 □ 份，甲、乙双方各执 □ 份。（注：正文多处为平台文书模板的重复句式，平台原文如此。）</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>「AE 审计业务约定书-正确答案」侧栏标准填值（按填空框编号）：</p>
+<table>
+<tr><th>编号</th><th>标准值</th><th>编号</th><th>标准值</th><th>编号</th><th>标准值</th></tr>
+<tr><td>a1</td><td>福州青风子伞业有限公司</td><td>a2</td><td>大兴会计师事务所（特殊普通合伙）</td><td>a3</td><td>2025</td></tr>
+<tr><td>a4</td><td>企业会计准则</td><td>a5</td><td>2025</td><td>a6</td><td>2</td></tr>
+<tr><td>a7</td><td>审计报告出具当日</td><td>a8</td><td>2025</td><td>a9</td><td>企业会计准则</td></tr>
+<tr><td>a10</td><td>企业会计准则</td><td>a11</td><td>2026</td><td>a12</td><td>01</td></tr>
+<tr><td>a13</td><td>02</td><td>a14</td><td>企业会计准则</td><td>a15</td><td>2026</td></tr>
+<tr><td>a16</td><td>02</td><td>a17</td><td>02</td><td>a18</td><td>500000</td></tr>
+<tr><td>a19</td><td>7</td><td>a20</td><td>20</td><td>a21</td><td>5000</td></tr>
+<tr><td>a22</td><td>3</td><td>a23</td><td>6</td><td>a24</td><td>12</td></tr>
+<tr><td>a25</td><td>当地</td><td>a36</td><td>乙方各级别工作人员在本次工作中所耗费的时间</td><td>a37</td><td>31</td></tr>
+</table>
+<p>签署日期甲乙双方均为 2026-01-01；文书末尾盖章栏显示两枚印章：福州青风子伞业有限公司、大兴会计师事务所。</p>
+</details>
+<p><span class="lbl">解析：</span>核心填值成组记：审计年度 2025、编制基础处处填「企业会计准则」、审计费用 500000 元、报告出具时间 2026 年 01 月 02 日前、争议管辖「当地」人民法院、份数一式 2 份。易错点：a36 是文字型填空（费用计算依据），容易漏填；各「日」数（7、3、6、12、31）互不相同，只能按答案侧栏逐框对位，不能凭语感猜。</p>
+<p><span class="lbl">操作流程：</span>左侧单据列表点「AE 审计业务约定书」打开文书，逐框填入后点「保存数据」；文书题另有「发送签章」按钮（采集时未点）。本题无外部资料获取文件，文书本身即任务内嵌单据。</p>
+</section>
+
+<h2 id="part3">第三部分 了解被审计单位及其环境（第 11–24 题）</h2>
+
+<section class="qcard" id="q11">
+<h3>第11题 了解组织结构、所有权和治理结构、业务模式01（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">为了解青风子公司及其环境，审计经理可以考虑实施的风险评估程序有（　）。</p></div>
+<div class="opt">A、向高管人员询问青风子公司的所有权结构、治理结构、组织结构、近期要投资、筹资情况</div>
+<div class="opt">B、向采购、销售部等负责人询问主要客户、供货商及合同、销售或采购方式、付款条件、主要竞争者、定价政策、经营策略等相关市场信息</div>
+<div class="opt">C、查阅青风子公司的组织结构图、治理结构图、公司章程，主要销售、采购、投资、债务合同等</div>
+<div class="opt">D、实地察看青风子公司的主要生产经营场所</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABCD</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>风险评估程序的四种基本手法——询问、查阅、观察（实地察看）在此题全部出现并全部适用：问高管、问业务部门、查图表章程与合同、看生产经营场所。凡题干把四种手法摆齐且对象对位，多为全选。</p>
+<p><span class="lbl">操作流程：</span>查阅资料经顶栏「…」→审计材料→资料获取：行政资料「公司组织结构及部门职责」、合同资料各合同；询问对象为高管人员与采购、销售部负责人。</p>
+</section>
+
+<section class="qcard" id="q12">
+<h3>第12题 了解组织结构、所有权和治理结构、业务模式02（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（判断）：</span></p>
+<div class="stem"><p class="segp">通过查阅获取的青风子公司的组织结构图及其部门情况介绍，审计经理认为被审计单位存在由于复杂的组织结构而可能导致的重大错报风险。（　）A、正确　B、错误</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>B（错误）</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>青风子公司的组织结构并不复杂：仅设执行董事 1 名并兼总经理，无董事会、审计委员会（见第 14 题题干事实）。本题把「结构简单」说成「结构复杂导致风险」，与底稿事实正好相反，故判错误。判断题先回底稿核对事实，再对题面结论。</p>
+<p><span class="lbl">操作流程：</span>背景资料为组织结构图及其部门情况介绍，经顶栏「…」→审计材料→资料获取→行政资料「公司组织结构及部门职责」查阅后作答。</p>
+</section>
+
+<section class="qcard" id="q13">
+<h3>第13题 了解组织结构、所有权和治理结构、业务模式03（<span class="score">2.00 分</span>，复合题，2 小题各 1.00 分）</h3>
+<p><span class="lbl">原题：</span></p>
+<div class="stem"><p class="segp">大题干：通过查阅青风子公司所提供的审计资料（如工商、财务资料），以了解其所有权结构的相关信息，并完成以下 2 个问题。</p>
+<p class="segp">小题 001：以下哪家是青风子公司关联方单位。</p></div>
+<div class="opt">A、北京青风子股份有限公司</div>
+<div class="opt">B、浙江青风子伞业有限公司</div>
+<div class="opt">C、福建省兴达雨伞有限公司</div>
+<div class="opt">D、上海青风子伞业有限公司</div>
+<div class="stem"><p class="segp">小题 002：是否发现青风子公司的母公司占用其资金的情况？（　）A、是　B、否</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>小题 001 正确答案：<strong>A</strong>（北京青风子股份有限公司）。小题 002 正确答案：<strong>B</strong>（否，未发现母公司占用资金）。</p>
+</details>
+<p><span class="lbl">解析：</span>四个选项都是「青风子」字号或本地同行，区分点在股权关系而非字号相似：北京青风子股份有限公司是控股母公司一系的关联方；浙江、上海两家只是同字号，福建省兴达雨伞是本地同行企业。资金占用一项，结合财务资料核查未发现母公司占用，故选「否」。易错点是按字号想当然勾选浙江或上海。</p>
+<p><span class="lbl">操作流程：</span>复合题先在大题页看两个小题清单，逐小题进入作答后「返回大题」切换。查阅路径：顶栏「…」→审计材料→资料获取→工商资料「营业执照副本（福州青风子伞业有限公司）」与财务资料（财务报表、财务报表附注（未审）等）核对股权与往来信息。</p>
+</section>
+
+<section class="qcard" id="q14">
+<h3>第14题 了解组织结构、所有权和治理结构、业务模式04（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（判断）：</span></p>
+<div class="stem"><p class="segp">青风子公司治理结构较简单，公司仅设执行董事 1 名，并兼公司总经理职务，未设立董事会、审计委员会等机构，日常主要由公司总经理「尤悦明」负责公司日常经营管理和决策。审计经理认为，青风子公司执行董事（兼总经理）亲自参与公司日常经营管理和监督，监督效果可能比其他大中型企业更为直接有效，弥补了公司职责分离有限的局限性，另外，由于内部控制系统较为简单，更有可能造成管理人员凌驾于控制之上。A、正确　B、错误</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>A（正确）</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>题面是双面表述且两面都成立：一人亲力亲为使监督更直接，部分弥补职责分离不足；同时正因为控制系统简单、管理者集权，凌驾于控制之上的风险更高。判断题遇到「一利一弊」式陈述，只要两面都与准则口径相符，整体判正确；只盯着一面容易误判。</p>
+<p><span class="lbl">操作流程：</span>题干自带事实，无外部资料；本题结论是第 43、44 题「管理层凌驾」认定的事实来源。</p>
+</section>
+
+<section class="qcard" id="q15">
+<h3>第15题 了解组织结构、所有权和治理结构、业务模式05（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（单选）：</span></p>
+<div class="stem"><p class="segp">以下是审计经理在了解青风子公司业务模式的过程中获取并记录在底稿中的部分信息：青风子公司为传统的生活日用品生产和销售企业，生产和销售的伞类产品品种较单一，主要产品有晴雨伞、儿童伞、工艺伞和太阳伞；主要业务为从原材料供应商处采购制伞原材料并进行加工，半成品和产成品由营销部门对外推广销售，主要销售客户有制伞企业、传统贸易业和电子商务等企业。</p>
+<p class="segp">（1）经营活动：生产工厂、仓储和办公区位于福建省福州市鼓楼区，行业细分为生活日用品，主营雨伞的加工制造和销售，销售是主要收入来源；市场分布于华南区域，以商贸企业或电子商务企业客户为主，当期客户占比最稳定，主要是自公司成立起来的老客户，信誉和资质较高，销售部门也在积极开发新客户。（2）投资活动：当前没有对外的权益性投资业务，审计期间主要涉及交易性金融资产投资和非流动资产投资；非流动资产投资主要为厂房购置——审计期间向外部单位购入一栋厂房，计划用于提高仓储能力及生产线扩能。（3）筹资活动：审计期间运营无较大的资金筹备需求，盈利能保证充足的运营资金；目前还存在一笔长期借款，尚未到期偿还，暂无还贷压力，管理层考虑利用近几年积累的留存收益偿还该笔借款。</p>
+<p class="segp">根据上述信息，并结合前面第 1–4 题题干材料进行判断，从青风子公司的组织结构、所有权和治理结构、业务模式来看，哪个方面更有可能存在重大错报风险？</p></div>
+<div class="opt">A、组织结构</div>
+<div class="opt">B、所有权结构</div>
+<div class="opt">C、治理结构</div>
+<div class="opt">D、业务模式</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>C（治理结构）</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>题干大段业务模式信息是铺垫，真正的风险点回到第 14 题的治理事实：执行董事兼总经理一人集权、无董事会与审计委员会、职责分离有限且凌驾风险高。组织结构简单、所有权结构清晰、业务模式传统单一，三者都不构成主要风险源。做这类长题干题，先找与前面题目互相印证的事实句。</p>
+<p><span class="lbl">操作流程：</span>题干自带底稿信息，无外部资料获取文件、无查询路径；作答时回看第 12、14 题结论再下判断。</p>
+</section>
+
+<section class="qcard" id="q16">
+<h3>第16题 了解行业形势、法律环境、监管环境及其他外部因素（01）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">为了解青风子公司有关的行业形势、法律环境、监管环境及其他外部因素，审计经理可以考虑实施的风险评估程序有（　）。</p></div>
+<div class="opt">A、查阅以前年度审计工作底稿，了解被审计企业的行业形势、法律环境、监管环境及其他外部因素的相关信息，根据本年变化，更新后用于本年度工作底稿</div>
+<div class="opt">B、向主管销售的负责人询问了解被审计企业的主要产品、行业发展及市场状况等信息</div>
+<div class="opt">C、分析青风子公司所处的外界环境及对公司发展的影响</div>
+<div class="opt">D、询问公司法务部负责人或法务顾问，了解青风子公司当前的涉诉情况</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABCD</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>外部因素了解的四条路径全对：查上年底稿并更新、问销售负责人市场情况、做环境分析、问法务涉诉情况。注意 A 的关键在「根据本年变化更新」——直接照抄上年底稿不更新才是错误做法，题面写了更新，故可选。</p>
+<p><span class="lbl">操作流程：</span>查阅以前年度审计工作底稿；询问对象为主管销售的负责人、公司法务部负责人或法务顾问。</p>
+</section>
+
+<section class="qcard" id="q17">
+<h3>第17题 了解行业形势、法律环境、监管环境及其他外部因素（02）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（单选）：</span></p>
+<div class="stem"><p class="segp">以下是审计经理了解到的关于青风子公司在审计期间的行业形势（详见题目背景资料），请判断下列哪方面更可能影响对其重大错报风险的评估（　）。</p></div>
+<div class="opt">A、行业的市场与竞争</div>
+<div class="opt">B、生产经营的季节性和周期性</div>
+<div class="opt">C、与产品生产相关的生产技术</div>
+<div class="opt">D、能源供应成本</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>A（行业的市场与竞争）</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>按题目背景资料给出的行业形势，影响风险评估的首要方面是市场与竞争——伞具是成熟传统行业、竞争充分，企业面临的业绩压力主要来自市场端。季节性、生产技术、能源成本在背景资料中都不是突出因素。单选题的依据在背景资料里，先读资料再选项。</p>
+<p><span class="lbl">操作流程：</span>先打开题目背景资料（行业形势部分）通读，再回题目页作答；无账套查询路径。</p>
+</section>
+
+<section class="qcard" id="q18">
+<h3>第18题 了解行业形势、法律环境、监管环境及其他外部因素（03）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">请判断以下哪些法律法规可能会对青风子公司的经营产生影响（　）。</p></div>
+<div class="opt">A、商标和专利法</div>
+<div class="opt">B、劳动法</div>
+<div class="opt">C、消费者保护法</div>
+<div class="opt">D、环境法</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABCD</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>四部法律与一家生产销售型企业全部相关：产品品牌与专利对应商标和专利法、用工对应劳动法、面向终端销售对应消费者保护法、生产排放对应环境法。青风子公司审计期间还涉及专利权转让合同（合同资料 QZ-240122、QZ-240123），A 更有实据。</p>
+<p><span class="lbl">操作流程：</span>题目页直接勾选；可对照顶栏「…」→审计材料→资料获取→合同资料中的专利权转让合同印证。</p>
+</section>
+
+<section class="qcard" id="q19">
+<h3>第19题 了解被审计单位财务业绩的衡量标准（1）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（填空）：</span></p>
+<div class="stem"><p class="segp">审计人员询问青风子公司人事、财务经理，了解公司业绩考核指标有关情况，得知其控股母公司对福州青风子伞业有限公司的业绩考核指标主要是营业收入增长率，2025 年要求其当年的营业收入增长率指标为 15%，请根据被审计单位提供报表资料计算，审计期间的实际营业收入增长率为 ____。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>15.10%</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>勾稽计算：未审利润表营业收入 2025 年 66,571,866.00 元、上年 57,835,950.19 元，增长率＝（66,571,866.00－57,835,950.19）÷57,835,950.19≈15.10%。这个数字是全卷的一条暗线：实际增长率刚好压过 15% 的考核线，构成管理层业绩压力，直接支撑第 20 题的压力判断与营业收入「发生」认定的高风险结论。易错点是用审定收入 62,716,866.00 元计算——本题时点在了解阶段，用未审报表数。</p>
+<p><span class="lbl">操作流程：</span>询问对象为人事、财务经理；数据经顶栏「…」→审计材料→资料获取→财务资料「利润表（未审）」读取两年营业收入后计算填入，可用右下角工具箱计算器验算。</p>
+</section>
+
+<section class="qcard" id="q20">
+<h3>第20题 了解被审计单位财务业绩的衡量标准（2）（<span class="score">2.00 分</span>，复合题，2 小题各 1.00 分）</h3>
+<p><span class="lbl">原题：</span></p>
+<div class="stem"><p class="segp">大题干：通过询问和查阅青风子公司的任命文件、集团绩效考核资料了解到以下信息：青风子公司的执行董事（兼总经理）尤悦明是由集团任命，任期 3 年，依据其在青风子公司的经营管理业绩情况进行绩效考核，考核结果与总经理的绩效奖金相关，同时也影响公司股票期权的取得及今后在集团内部工作调任。2025 年青风子公司营业收入实际增长率为 15.10%，完成了控股母公司对其的考核指标，审计期间的毛利率较上年有较大上升，并结合上述了解到的环境、行业形势、法律环境、监管环境及其他外部因素情况，进行以下判断。</p>
+<p class="segp">小题 001：青风子公司管理层是否面临实现某些关键财务业绩指标的压力（　）。A、是　B、否</p>
+<p class="segp">小题 002：基于第（1）小题的判断结果，2025 年青风子公司有可能发生哪些情形。（　）</p></div>
+<div class="opt">A、管理层希望达到或超过企业的业绩考核指标，而采用过度激进的会计核算方法</div>
+<div class="opt">B、基于纳税的考虑，有意采取不适当的方法使盈利最小化</div>
+<div class="opt">C、如果公布欠佳的财务业绩，对管理层的业绩考核及奖励等奖产生不利影响</div>
+<div class="opt">D、企业后期的经营可能将面临较大的资金压力</div>
+<details class="answer"><summary>显示答案</summary>
+<p>小题 001 正确答案：<strong>A（是）</strong>。小题 002 正确答案：<strong>AC</strong>。（注：小题 002 选项 C 原文「奖励等奖」表述如此，平台原文照录。）</p>
+</details>
+<p><span class="lbl">解析：</span>压力链完整成立：考核指标（收入增长率 15%）与总经理奖金、股票期权、集团内调任三项个人利益直接挂钩，实际增长率 15.10% 仅仅压线、毛利率又异常上升——管理层面临业绩压力（小题 001 选「是」），由此可能采用过度激进的会计核算方法（A），且业绩欠佳会直接损害其考核与奖励（C）。B 的方向反了：有考核压力时管理层倾向做大利润而非做小；D 与题干事实无关（公司资金充足、无还贷压力）。本题结论是全卷舞弊风险的主线，后面第 42、45、46 题与专员线的收入虚增查证都源于此。</p>
+<p><span class="lbl">操作流程：</span>复合题逐小题作答；依据材料为任命文件与集团绩效考核资料（询问＋查阅），关键数字回看第 19 题的 15.10% 计算结果。</p>
+</section>
+
+<section class="qcard" id="q21">
+<h3>第21题 了解适用的财务报告编制基础、会计政策及变更会计政策的原因（1）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">为了了解青风子公司适用的财务报告编制基础、会计政策及变更会计政策的原因，审计经理可以考虑实施的风险评估程序有（　）。</p></div>
+<div class="opt">A、向财务经理询问青风子公司采用的主要会计政策、会计政策变更的情况</div>
+<div class="opt">B、向财务经理询问财务人员配备和构成情况</div>
+<div class="opt">C、查阅青风子公司会计工作手册、操作指引等财务资料</div>
+<div class="opt">D、检查青风子公司的财务部是否有独立的办公环境</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABC</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>围绕编制基础与会计政策的程序是：问政策与变更（A）、问财务人员配备构成（B，人员胜任情况影响政策执行质量）、查会计工作手册与操作指引（C）。D 不选——财务部有无独立办公环境与编制基础、会计政策无关，是典型的无关项。</p>
+<p><span class="lbl">操作流程：</span>询问对象为财务经理；查阅资料经顶栏「…」→审计材料→资料获取→财务资料（会计工作手册、操作指引等）。</p>
+</section>
+
+<section class="qcard" id="q22">
+<h3>第22题 了解适用的财务报告编制基础、会计政策及变更会计政策的原因（2）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（填空）：</span></p>
+<div class="stem"><p class="segp">阅读审计资料中的财务报表及附注，青风子公司采用的财务报告编制基础为 ____。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>企业会计准则</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>答案就在附注第二章「财务报表编制基础」的原文表述里，与第 10 题约定书中四处编制基础填空（a4、a9、a10、a14 均为「企业会计准则」）完全一致。填空题先定位附注对应章节，不要凭公司规模猜「小企业会计准则」。</p>
+<p><span class="lbl">操作流程：</span>顶栏「…」→审计材料→资料查看（或资料获取）→财务资料→「财务报表附注（未审）」，读第二章后回题目页填入。</p>
+</section>
+
+<section class="qcard" id="q23">
+<h3>第23题 了解适用的财务报告编制基础、会计政策及变更会计政策的原因（3）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（判断）：</span></p>
+<div class="stem"><p class="segp">查阅审计资料中的财务报表及附注，青风子公司在审计期间是否发生会计政策变更（　）。A、是　B、否</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>B（否）</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>附注第三章「重要会计政策及会计估计」未披露审计期间的政策变更事项，全卷各科目的调整也均属错报更正而非政策变更，故选「否」。注意与第 22 题共用同一份附注：先读三章政策部分，再连答两题。</p>
+<p><span class="lbl">操作流程：</span>查阅路径同第 22 题：审计材料→财务资料→「财务报表附注（未审）」第三章。</p>
+</section>
+
+<section class="qcard" id="q24">
+<h3>第24题 了解适用的财务报告编制基础、会计政策及变更会计政策的原因（4）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">查阅审计资料中的财务资料及其他相关资料，从会计政策的选择和运用方面看，青风子公司可能存在的重大错报风险主要体现在（　）。</p></div>
+<div class="opt">A、销售商品收入发生确认</div>
+<div class="opt">B、期末应收账款的存在及坏账准备的计提</div>
+<div class="opt">C、税费的确认核算</div>
+<div class="opt">D、存货跌价准备计提</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABC</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>事后全卷验证：收入确认（北京恒信虚增收入 3,686,000.00 元）、应收账款存在与坏账计提（坏账准备调减 216,709.00 元）、税费确认核算（销项税额与附加税连环调整）三处风险全部实际爆发，平台答案正是 ABC。D 不选——存货跌价在本卷只是常规审核（ZI-6 各项结论均为「否」），不属于政策选择运用层面的主要风险。备赛时按「收入—应收—税费」这条链记。</p>
+<p><span class="lbl">操作流程：</span>背景资料为财务资料及其他相关资料（审计材料→资料获取→财务资料）；结论与专员 1 线 ZD、FG、SA 三组题互为印证，可经顶栏「…」→底稿联查交叉查看。</p>
+</section>
+
+<h2 id="part4">第四部分 整体层面内部控制与未审报表分析（第 25–28 题）</h2>
+
+<section class="qcard" id="q25">
+<h3>第25题 了解整体层面内部控制（01）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">审计经理负责执行了解和评价青风子公司的整体层面内部控制工作，实施的工作内容包括（　）。</p></div>
+<div class="opt">A、了解青风子公司整体层面内部控制的设计，并记录所获得的了解</div>
+<div class="opt">B、针对青风子公司整体层面内部控制的控制目标，记录相关的控制活动</div>
+<div class="opt">C、执行询问、观察和检查程序，评价控制的执行情况</div>
+<div class="opt">D、记录青风子公司整体层面内部控制的设计和执行过程中存在的缺陷以及拟采取的应对措施</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABCD</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>整体层面内控工作的完整闭环：了解设计并记录（A）→按控制目标记录控制活动（B）→用询问、观察、检查评价执行（C）→记录缺陷与拟采取的应对措施（D）。四步缺一不可，全选。第 26、27 题就是这条链的实际填制。</p>
+<p><span class="lbl">操作流程：</span>题目页直接勾选；工作成果落到第 26 题三张要素底稿与第 27 题汇总表。</p>
+</section>
+
+<section class="qcard" id="q26">
+<h3>第26题 了解整体层面内部控制（02）（<span class="score">3.00 分</span>，复合底稿题，3 小题各 1.00 分）</h3>
+<p><span class="lbl">原题：</span></p>
+<div class="stem"><p class="segp">大题干：审计经理实施询问、观察及检查审计程序，从整体层面对青风子公司内部控制体系各要素（控制环境、风险评估、控制活动、信息系统与沟通及内部监督五个方面）进行了解和记录。请完成以下各小题。各小题底稿表结构相同：列为控制目标、被审计单位的控制、实施的风险评估程序、结论（黄色可填格）。</p>
+<p class="segp">小题 001（控制环境要素，治理层参与程度）：</p></div>
+<table>
+<tr><th>控制目标</th><th>被审计单位的控制</th><th>实施的风险评估程序</th></tr>
+<tr><td>在董事会内部建立监督机制</td><td>未建立董事会，仅设置 1 名执行董事（兼任总经理），也无审计委员会等类似监督职能机构，公司监事对董事执行时的监督活动很少。</td><td>（1）查阅被审计单位的组织架构文件及介绍；（2）向公司人事部经理、公司监事询问了解信息。</td></tr>
+<tr><td>管理层不能由一人或少数几人控制</td><td>总经理亲自参与经营活动，重要或重大决策事项由其负责决策。</td><td>（1）查阅被审计单位的组织架构文件及介绍；（2）询问人事部经理了解信息。</td></tr>
+</table>
+<div class="stem"><p class="segp">小题 002（内部监督要素）：控制目标「内部控制定期评价」；被审计单位的控制「无独立内部审计部门，财务部人员负责很少部分内部审计分职」；实施的风险评估程序「询问公司人事部、财务部经理」。</p>
+<p class="segp">小题 003（内部监督要素）：控制目标「定期询问员工遵循公司行为守则的情况、重申控制活动执行的有效性」；被审计单位的控制「（1）员工定期签署其切实遵守行为守则的规定；（2）员工在执行重要控制工作时，如调节指定账户金额之后签名，留下执行证据」；实施的风险评估程序「询问公司人事部经理；检查《员工手册》及相关规章制度执行的痕迹，确认得到执行」。（注：大题小题列表中第 2、3 小题标题文字相同，内容不同，平台原文如此。）</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>小题 001 两行结论均为：<strong>设计无效或缺乏必要控制</strong>。小题 002 结论：<strong>设计无效或缺乏必要控制</strong>。小题 003 结论：<strong>设计有效并得到执行</strong>。标准值在答案侧栏以绿色底单元格显示。</p>
+</details>
+<p><span class="lbl">解析：</span>结论下判只看两点：有没有控制、控制有没有在运行。001 两行（一人集权、无监督机构）与 002（无内审部门）都是「控制缺位」，结论统一为设计无效或缺乏必要控制；003 有签署守则、留痕签名的实际安排且经检查确认执行，结论为设计有效并得到执行。易错点是把 003 也顺手判无效——它恰恰是本组唯一正面的样本，用来考区分度。</p>
+<p><span class="lbl">操作流程：</span>复合底稿题逐小题打开 SpreadJS 表，在黄色「结论」格填入后点「保存数据」；页面另有「查看题析」。背景资料：组织架构文件及介绍（审计材料→资料获取→行政资料「公司组织结构及部门职责」）、《员工手册》及相关规章制度；询问对象为人事部经理、公司监事、财务部经理。</p>
+</section>
+
+<section class="qcard" id="q27">
+<h3>第27题 了解整体层面内部控制（03）（<span class="score">1.00 分</span>）</h3>
+<p><span class="lbl">原题（底稿题）：</span></p>
+<div class="stem"><p class="segp">下表节选自了解被审计单位整体层面内部控制汇总表，根据第 26 题题目资料及结论进行判断。表列：控制要素、识别的缺陷、是否属于重大缺陷、索引号、是否列入与管理层沟通事项、是否列入与治理层沟通事项（后两列为黄色「是否」下拉格）。</p></div>
+<table>
+<tr><th>控制要素</th><th>识别的缺陷</th><th>是否列入与管理层沟通事项</th><th>是否列入与治理层沟通事项</th></tr>
+<tr><td>控制环境</td><td>未设审计部等相关内部控制监督职能机构，会增加其他风险，如凌驾于控制之上的风险。</td><td>（待填）</td><td>（待填）</td></tr>
+</table>
+<details class="answer"><summary>显示答案</summary>
+<p>是否列入与管理层沟通事项：<strong>是</strong>；是否列入与治理层沟通事项：<strong>是</strong>。另据采集记录，答案表中「是否属于重大缺陷」一格平台本身即显示为「***」，「索引号」一格为「略」，平台原文如此。</p>
+</details>
+<p><span class="lbl">解析：</span>汇总表的逻辑是把第 26 题的单点结论上收：控制环境缺陷涉及凌驾风险，属于应当沟通的内部控制缺陷，对管理层与治理层两个层面都要列入沟通事项，两格都填「是」。易错点是只沟通管理层一层——治理结构本身就是缺陷来源时，只报管理层等于报给问题本身。</p>
+<p><span class="lbl">操作流程：</span>底稿题：在黄色下拉格选「是」后点「保存数据」；页面有「查看题析」。依据为第 26 题三张要素底稿的结论，无外部资料获取文件。</p>
+</section>
+
+<section class="qcard" id="q28">
+<h3>第28题 财务指标及科目变动可视化分析（<span class="score">1.00 分</span>）</h3>
+<p><span class="lbl">原题（判断）：</span></p>
+<div class="stem"><p class="segp">青风子公司的毛利率和主营业务收入是否存在异常（使用平台数智技术中的财务指标看板和科目分析辅助进行未审报表分析）。A、是　B、否</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>A（是，存在异常）</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>异常有实据：未审营业收入增长 15.10%，刚好压过母公司 15% 的考核线（第 19 题）；毛利率较上年有较大上升（专员 1 线 SA-4 同期比较口径：综合毛利率 32.65%，上年约 28.28%）。收入「压线达标＋毛利率跳升」的组合正是分析性程序要抓的异常形态，与第 20 题的业绩压力判断互相印证，故选「是」。本题结论是第 41–46 题汇总的直接输入。</p>
+<p><span class="lbl">操作流程：</span>本题点名使用数智技术工具，路径为顶栏「…」更多菜单 → 数智技术 → 财务指标看板、科目分析。前置条件必须先走完账套数据串行链的前段：顶栏「…」→ 账套数据 → 数据采集（选数据源后点「获取数据」，数据源分用友、新中大、浪潮通软、金蝶、航天信息五大系列）→ 检查校验 → 账表映射，之后数智技术才有数可看——采集实测中，未完成数据采集时点开财务指标看板是空白页，点科目分析直接弹提示「请先完成检查校验。」。看板上先看毛利率与主营业务收入的期间变动，再用科目分析下钻收入、成本科目构成，最后回题目页作答。</p>
+</section>
+
+<h2 id="part5">第五部分 风险评估结果汇总（第 41–46 题）</h2>
+<p>本组是第 11–28 题了解与评价结果的收口：把风险落到报表层面与认定层面，并给出总体应对与进一步程序方向。以下各题的选项要点与答案均按平台「查看答案」与「参考解析」采集记录复刻。</p>
+
+<section class="qcard" id="q41">
+<h3>第41题 风险评估结果汇总（一）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">针对评估出的报表层面重大错报风险，应当采取的总体应对措施有（　）。</p></div>
+<div class="opt">A、强调职业怀疑</div>
+<div class="opt">B、向高风险领域派更有经验人员</div>
+<div class="opt">C、提供更多督导</div>
+<div class="opt">D、增加不可预见性</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABCD</strong>。本题页面另有「参考解析」。</p>
+</details>
+<p><span class="lbl">解析：</span>总体应对措施的标准菜单就是这四项：态度上强调职业怀疑、人员上向高风险领域派更有经验者、过程上加密督导、程序上增加不可预见性。本项目的报表层面风险来源明确——控制环境缺陷（第 26 题）、一人集权与凌驾风险（第 14 题）、业绩压力（第 20 题）——四项措施恰好逐一对位，全选。易错点是把认定层面的具体程序（如提高函证比例）混进总体应对，层级错位。</p>
+<p><span class="lbl">操作流程：</span>题目页直接勾选；作答前先回看第 25–28 题的结论，汇总题每条措施都要能指回前段的评估来源。</p>
+</section>
+
+<section class="qcard" id="q42">
+<h3>第42题 风险评估结果汇总（二）（<span class="score">1.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">本题围绕特别风险的识别展开。平台「参考解析」列明特别风险的六类来源因素：主观性；估计高度不确定性或模型复杂；数据收集处理复杂；复杂计算；会计政策理解不同；业务变化涉及会计处理变化。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABCD</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>特别风险是「性质」判定而非「程度」判定：凡涉及高度主观判断、复杂模型与计算、数据处理复杂、会计政策理解分歧或业务变化引发处理变化的事项，都要单独标识为特别风险并配置实质性程序。本项目中管理层凌驾（第 43、44 题）与收入舞弊推定就是落在本组的特别风险。易错点是把「金额大」直接等同于特别风险——金额大但交易常规的事项不属于特别风险。</p>
+<p><span class="lbl">操作流程：</span>题目页勾选作答；页面「参考解析」按钮可对照六类因素自查，本题结论与第 43、44 题连答。</p>
+</section>
+
+<section class="qcard" id="q43">
+<h3>第43题 风险评估结果汇总（三）（<span class="score">1.00 分</span>）</h3>
+<p><span class="lbl">原题（单选）：</span></p>
+<div class="stem"><p class="segp">管理层凌驾于控制之上的风险影响的范围是（　），正确选项为 D：所有报表项目。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>D（所有报表项目）</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>凌驾风险的特殊性在于它不落在某个科目或某条认定上：管理层可以绕开任何控制、在任何报表项目上做手脚，所以其影响范围是全部报表项目，只能用报表层面的总体应对（第 41 题四项措施）加不可预见性程序来回应。事实基础就是第 14 题的一人集权治理结构。</p>
+<p><span class="lbl">操作流程：</span>题目页单选作答；与第 44 题是同一知识点的连环题，先答本题再答判断。</p>
+</section>
+
+<section class="qcard" id="q44">
+<h3>第44题 风险评估结果汇总（四）（<span class="score">1.00 分</span>）</h3>
+<p><span class="lbl">原题（判断）：</span></p>
+<div class="stem"><p class="segp">管理层凌驾于控制之上的风险应当作为特别风险处理。（　）A、正确　B、错误</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>A（正确）</strong>。</p>
+</details>
+<p><span class="lbl">解析：</span>准则口径：管理层凌驾是每项审计都要假定存在的舞弊风险因素，并直接作为特别风险应对——不论被审计单位规模大小、以前年度是否出过问题。本项目治理结构简单、一人决策（第 14 题），更没有理由降格处理。与第 42 题六类因素、第 43 题影响范围构成完整的特别风险三连。</p>
+<p><span class="lbl">操作流程：</span>题目页判断作答；结论落到汇总后，直接决定第 46 题进一步程序的配置强度。</p>
+</section>
+
+<section class="qcard" id="q45">
+<h3>第45题 风险评估结果汇总（五）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">在风险评估结果汇总中，营业收入与应收账款被识别为高风险的认定是（　），正确组合为 AC。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>AC</strong>（营业收入：发生；应收账款：存在）。</p>
+</details>
+<p><span class="lbl">解析：</span>认定方向由业绩压力的作弊方向决定：管理层要把收入做大，对应营业收入的「发生」认定（怕虚构交易）与应收账款的「存在」认定（怕挂账的应收根本不存在）。事后验证完全命中——北京恒信 4,165,180.00 元应收对应的收入全部虚增（专员 1 线第 71 题 ZD1-3）。易错点是选「完整性」：完整性防的是少记漏记，与做大利润的方向正好相反。</p>
+<p><span class="lbl">操作流程：</span>题目页勾选；认定结论经顶栏「…」→底稿联查可与专员 1 线 XSL-3、ZD 组底稿交叉核对。</p>
+</section>
+
+<section class="qcard" id="q46">
+<h3>第46题 风险评估结果汇总（六）（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（多选）：</span></p>
+<div class="stem"><p class="segp">承接汇总结论，为本项目确定进一步审计程序的总体方案与具体方向（　）。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>ABCD</strong>。其中 C 对应专员 1 线第 134 题的账上收入与业务订单大数据比对，D 对应第 136 题的收入截止测试。</p>
+</details>
+<p><span class="lbl">解析：</span>本题是汇总组的收口：评估结论必须传导成可执行程序——控制预期不可靠的循环走实质性方案，收入高风险落到两项硬程序上：用商业智能分析系统做收入与订单的全面核查比对（第 134 题，正是它比出北京恒信 76,000 把、3,686,000.00 元的差异），以及收入截止测试（第 136 题，比出发票与出库单 3,380 把的跨期差异）。易错点是汇总只写风险高低、不落程序方向，专员无从执行。</p>
+<p><span class="lbl">操作流程：</span>题目页勾选；本组结论直接喂给第六部分审计计划（第 47–51 题），两组连做，不要中间插入无关题目。</p>
+</section>
+
+<h2 id="part6">第六部分 审计计划与重要性水平（第 47–51 题）</h2>
+<p>本组五题是一条完整的计算链，全部单选、答案均为 A：第 47 题定基准与比例 → 第 48 题算整体重要性 → 第 49 题定实际执行比例 → 第 50 题算实际执行的重要性 → 第 51 题算明显微小错报临界值。</p>
+
+<section class="qcard" id="q47">
+<h3>第47题 重要性基准与比例（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（单选）：</span></p>
+<div class="stem"><p class="segp">为青风子公司 2025 年度审计确定财务报表整体重要性水平时，选取的基准与比例为（　）。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>A</strong>：以营业收入为基准，该基准的常用比例区间为 0.5%–2%，本项目取 1.00%。</p>
+</details>
+<p><span class="lbl">解析：</span>选基准先看稳定性与使用者关注点：本项目以营业收入 66,571,866.00 元为基准，收入基数大、口径直观；比例取区间中段 1.00%，与风险水平匹配。易错点是拿净利润或资产总额套别的比例区间——基准与比例必须成对记。</p>
+<p><span class="lbl">操作流程：</span>题目页单选；基准数取自未审利润表（审计材料→资料获取→财务资料「利润表（未审）」），与第 19 题用的是同一张表。</p>
+</section>
+
+<section class="qcard" id="q48">
+<h3>第48题 财务报表整体重要性（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（单选）：</span></p>
+<div class="stem"><p class="segp">按第 47 题确定的基准与比例，青风子公司财务报表整体的重要性水平为（　）。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>A</strong>：665,718.66 元。</p>
+</details>
+<p><span class="lbl">解析：</span>勾稽：66,571,866.00 × 1.00% ＝ 665,718.66，一步乘法。注意基数用未审营业收入——计划阶段还没有审定数；若误用审定收入 62,716,866.00 元会算出 627,168.66，是最常见的错法。</p>
+<p><span class="lbl">操作流程：</span>题目页单选；可用右下角工具箱计算器验算后作答，结果记牢，第 50、51 题连续使用。</p>
+</section>
+
+<section class="qcard" id="q49">
+<h3>第49题 实际执行重要性比例（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（单选）：</span></p>
+<div class="stem"><p class="segp">确定实际执行的重要性占财务报表整体重要性的比例时，本项目选取的比例为（　）。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>A</strong>：75%。</p>
+</details>
+<p><span class="lbl">解析：</span>实际执行的重要性通常取整体重要性的 50%–75%：取高低看错报汇总风险与历史错报情况。本项目为连续审计、以前期间审计调整较少，汇总未发现错报超限的风险低，故取区间高端 75%。易错点是无条件背「50%」——比例是判断题，先看题面给的审计历史与风险条件。</p>
+<p><span class="lbl">操作流程：</span>题目页单选；判断依据来自承接与了解阶段的结论（第 5–9 题保持评价、第 8 题上期调整事项）。</p>
+</section>
+
+<section class="qcard" id="q50">
+<h3>第50题 实际执行的重要性（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（单选）：</span></p>
+<div class="stem"><p class="segp">按第 48、49 题的结果，青风子公司实际执行的重要性为（　）。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>A</strong>：499,289.00 元。</p>
+</details>
+<p><span class="lbl">解析：</span>勾稽：665,718.66 × 75% ＝ 499,288.995，四舍五入为 499,289.00。这个数是全队执行层面的工作门槛：各科目细节测试与抽样都按它定范围。易错点是拿它当「单个错报的可容忍上限」——它服务于汇总未更正错报的评价，不是单项放行线。</p>
+<p><span class="lbl">操作流程：</span>题目页单选；工具箱计算器验算 665,718.66 × 0.75 后作答。</p>
+</section>
+
+<section class="qcard" id="q51">
+<h3>第51题 明显微小错报临界值（<span class="score">2.00 分</span>）</h3>
+<p><span class="lbl">原题（单选）：</span></p>
+<div class="stem"><p class="segp">青风子公司明显微小错报的临界值为（　）。</p></div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>A</strong>：33,285.93 元。</p>
+</details>
+<p><span class="lbl">解析：</span>勾稽：665,718.66 × 5% ＝ 33,285.933，取 33,285.93。完整重要性链收口于此：66,571,866.00（营业收入）→ ×1.00% → 665,718.66（整体重要性）→ ×75% → 499,289.00（实际执行的重要性）→ ×5%（对整体重要性）→ 33,285.93（明显微小错报临界值）。低于临界值的错报无需累积评价，但要注意：临界值的 5% 是对整体重要性计算，不是对实际执行的重要性计算，这是本组最容易错位的一步。</p>
+<p><span class="lbl">操作流程：</span>题目页单选；五题连做时把前四题的三个结果写在草稿边上逐题代入，避免串数。</p>
+</section>
+
+<h2 id="part7">第七部分 完成阶段（第 158–162 题）</h2>
+
+<section class="qcard" id="q158">
+<h3>第158题 EB 期末试算平衡表（<span class="score">8.00 分</span>）</h3>
+<p><span class="lbl">原题（底稿题）：</span></p>
+<div class="stem"><p class="segp">EB 期末试算平衡表，索引号 EB，会计期间 2025.01.01–2025.12.31。表结构列：报表项目、行次、期末未审数、账项调整（借方／贷方）、重分类调整（借方／贷方）、期末审定数、期初审定数、备注；表头有「校验」「试算平衡」字样。页面按钮：「自动生成底稿」「保存数据」、标记本题、上一笔、下一笔（经理为链条终端，本题无「提交下一岗位」按钮）。下表复刻关键行审定数：</p></div>
+<table>
+<tr><th>报表项目</th><th>期末审定数（元）</th><th>勾稽来源</th></tr>
+<tr><td>货币资金</td><td>3,132,165.22</td><td>ZA-1 审定表（专员 1 线第 55 题）</td></tr>
+<tr><td>应收账款（账面价值）</td><td>2,946,312.68</td><td>ZD-1 审定表（专员 1 线第 67 题）</td></tr>
+<tr><td>流动资产合计</td><td>15,515,175.58</td><td>本表汇总</td></tr>
+<tr><td>资产总计</td><td>56,095,350.97</td><td>与负债和所有者权益总计审定数相等</td></tr>
+<tr><td>应交税费</td><td>549,646.66</td><td>FG-1 审定表（专员 1 线第 118 题），与 EC-1 一致</td></tr>
+<tr><td>提取盈余公积</td><td>998,185.97</td><td>见下方平台数据说明</td></tr>
+<tr><td>未分配利润</td><td>15,840,710.98</td><td>QD 审定结果（专员 2 线第 128、129 题）</td></tr>
+<tr><td>营业收入</td><td>62,716,866.00</td><td>SA-1 审定表（专员 1 线第 130 题）</td></tr>
+<tr><td>利润总额</td><td>13,032,931.51</td><td>与 SP 组审定利润总额一致（专员 2 线第 155 题）</td></tr>
+<tr><td>所得税费用</td><td>3,051,071.73</td><td>SP 审定表（专员 2 线第 155 题）</td></tr>
+<tr><td>净利润</td><td>9,981,859.78</td><td>＝利润总额 13,032,931.51－所得税费用 3,051,071.73</td></tr>
+<tr><td>负债和所有者权益总计</td><td>56,095,350.97</td><td>与资产总计审定数相等，试算平衡成立</td></tr>
+</table>
+<details class="answer"><summary>显示答案</summary>
+<p>平台答案要点：资产总计审定数＝负债和所有者权益总计审定数＝<strong>56,095,350.97</strong>；审定利润总额 13,032,931.51、审定所得税费用 3,051,071.73、审定净利润 9,981,859.78。各科目审定数由对应审定表过入，账项调整与重分类调整分列填列。</p>
+<p>平台数据说明（原文如此，照录点明）：EB 表中「提取盈余公积」审定数为 998,185.97，与专员 2 线第 129 题 QD 表中「其中提取法定盈余公积审定数 1,500,731.13」不一致，两处平台数据口径不同，作答以各题本表为准，不要跨表改数。</p>
+</details>
+<p><span class="lbl">解析：</span>EB 是全卷数据的总汇入口，考点是勾稽链完整性：每张科目审定表的调整都要过入对应行，漏一笔，平衡就破或者审定数与审定表对不上。验收三组等式：资产总计＝负债和所有者权益总计（56,095,350.97）；净利润＝利润总额－所得税费用；各行审定数与科目审定表逐一相等。易错点：账项调整与重分类调整两组列混填（前者改金额、后者只改列报）；只点「自动生成底稿」不复核——自动生成只带汇总数，调整方向仍须人工验。应交税费审定数以 549,646.66 为准。</p>
+<p><span class="lbl">操作流程：</span>打开本题前，先经顶栏「…」→调整分录→调整分录汇总，确认四位队员的调整分录全部登记齐备；再开 EB 表点「自动生成底稿」带出可生成部分，逐行与各科目审定表核对（跨岗核对走顶栏「…」→底稿联查），用表头「校验／试算平衡」验平衡，最后点「保存数据」。</p>
+</section>
+
+<section class="qcard" id="q159">
+<h3>第159题 EC-1 审定资产负债表（<span class="score">3.00 分</span>）</h3>
+<p><span class="lbl">原题（底稿题）：</span></p>
+<div class="stem"><p class="segp">EC-1 审定资产负债表，索引号 EC-1。由 EB 试算平衡表审定数生成审定资产负债表，含期末审定数与年初余额两列。下表复刻关键行：</p></div>
+<table>
+<tr><th>项目</th><th>期末审定数（元）</th><th>年初余额（元）</th></tr>
+<tr><td>资产总计</td><td>56,095,350.97</td><td>45,788,656.04</td></tr>
+<tr><td>应交税费</td><td>549,646.66</td><td>—</td></tr>
+<tr><td>负债和所有者权益总计</td><td>56,095,350.97</td><td>45,788,656.04</td></tr>
+</table>
+<details class="answer"><summary>显示答案</summary>
+<p>平台答案要点：资产总计期末审定数 56,095,350.97、年初余额 45,788,656.04；应交税费审定数 549,646.66；全表与 EB 表审定数逐行一致。EC-1 的年初余额同时补齐了未审资产负债表的年初数口径（与未审表年初余额一致）。</p>
+<p>平台行次错误（原文如此，照录点明）：EC-1 中<mark class="warn">流动负债合计的行次标为「42」</mark>（按报表格式应为 48）、<mark class="warn">所有者权益合计的行次标为「64」</mark>（应为 71）、<mark class="warn">负债和所有者权益总计的行次标为「65」</mark>（应为 72）。行次是平台模板的固定错误，不影响金额作答，不要按行次找行，按项目名称对位。</p>
+</details>
+<p><span class="lbl">解析：</span>审定报表是试算平衡的报表化输出：成表后必查三件事——总额与 EB 表审定数逐行相等、重分类调整只动行项目不动总额、年初列与未审表年初余额衔接。易错点是把重分类调整误当账项调整重复过入，造成审定数二次变动。</p>
+<p><span class="lbl">操作流程：</span>承接第 158 题：EB 表保存后打开 EC-1，核对各行审定数与 EB 表、年初列与未审资产负债表（审计材料→资料查看→财务资料→财务报表「资产负债表（未审）」），无误后「保存数据」。</p>
+</section>
+
+<section class="qcard" id="q160">
+<h3>第160题 EC-2 审定利润表（<span class="score">3.00 分</span>）</h3>
+<p><span class="lbl">原题（底稿题）：</span></p>
+<div class="stem"><p class="segp">EC-2 审定利润表，索引号 EC-2。由各损益科目审定表与 EB 表结果生成审定利润表。下表复刻关键行本期审定数：</p></div>
+<table>
+<tr><th>项目</th><th>本期审定数（元）</th></tr>
+<tr><td>营业收入</td><td>62,716,866.00</td></tr>
+<tr><td>信用减值损失</td><td>+18,725.00</td></tr>
+<tr><td>营业利润</td><td>13,004,442.39</td></tr>
+<tr><td>利润总额</td><td>13,032,931.51</td></tr>
+<tr><td>所得税费用</td><td>3,051,071.73</td></tr>
+<tr><td>净利润</td><td>9,981,859.78</td></tr>
+</table>
+<details class="answer"><summary>显示答案</summary>
+<p>平台答案要点：营业收入 62,716,866.00、营业利润 13,004,442.39、利润总额 13,032,931.51、所得税费用 3,051,071.73、净利润 9,981,859.78，与 EB 表及 SA、SP 等科目审定表勾稽一致。</p>
+<p>平台符号口径说明（原文如此，照录点明）：EC-2 中信用减值损失本期列为 <mark class="warn">+18,725.00</mark>（利润表收益口径，坏账准备转回形成收益），与专员 1 线 SK-1 审定表中的 <mark class="warn">-18,725.00</mark> 符号正好相反、绝对值一致。两处都是平台原数，跨表核对时看绝对值，不要改符号。</p>
+</details>
+<p><span class="lbl">解析：</span>利润表勾稽链：收入（SA）－成本（SB）－税金及附加（SC）－期间费用（SD、SE）－减值（SK）－所得税（SP）→净利润→与 QD 未分配利润审定结果衔接（审定净利润 9,981,859.78 同时是所得税费用计算与利润分配的起点）。净利润与 QD 对不上时，先查 SP 所得税费用与 QC 盈余公积两处中转。</p>
+<p><span class="lbl">操作流程：</span>承接第 159 题：打开 EC-2 逐行核对损益科目审定表（跨岗核对走顶栏「…」→底稿联查），验净利润与 EB 表一致后「保存数据」，随即进入第 161 题。</p>
+</section>
+
+<section class="qcard" id="q161">
+<h3>第161题 选择审计意见类型（<span class="score">1.00 分</span>）</h3>
+<p><span class="lbl">原题（单选）：</span></p>
+<div class="stem"><p class="segp">在完成试算平衡与审定报表、汇总评价全部审计调整的基础上，为青风子公司 2025 年度财务报表选择审计意见类型。页面为 4 个单选框，经理端均可选中。</p></div>
+<div class="opt">A、无保留意见</div>
+<div class="opt">B、保留意见</div>
+<div class="opt">C、否定意见</div>
+<div class="opt">D、无法表示意见</div>
+<details class="answer"><summary>显示答案</summary>
+<p>正确答案：<strong>A（无保留意见）</strong>，前提是管理层接受全部审计调整。</p>
+</details>
+<p><span class="lbl">解析：</span>意见分流先分性质、再分广泛性：错报重大但不广泛→保留意见，重大且广泛→否定意见；范围受限重大但不广泛→保留意见，重大且广泛→无法表示意见；调整全部被接受、不存在未更正的重大错报与范围受限→无保留意见。本卷的虚增收入、税费等错报都已形成调整分录并被接受（见 EB 表审定结果），故落到 A。本题只有 1 分，但它是第 162 题的解锁钥匙：选错，下一题整题无从作答，所以必须等第 158–160 题汇总齐备后最后再答。</p>
+<p><span class="lbl">操作流程：</span>作答顺序固定在全卷最后：先完成第 158 题 EB、第 159–160 题 EC 并确认未决事项清零，再打开本题单选 A 并「保存数据」，随即解锁第 162 题。</p>
+</section>
+
+<section class="qcard" id="q162">
+<h3>第162题（平台锁定，未采集）</h3>
+<p>本题在样卷平台上处于锁定状态：平台规则是必须先完成并答对第 161 题，本题才解锁（打开时主区显示大锁图标与文字「本任务已被锁定，必须完成第 161 笔任务后才能解锁」，顶部提示「锁定题前一题答错，不能进行本题」）。本站采集全程采用只读方式，未在平台上作答第 161 题，因此第 162 题的题名、分值、原题与平台答案均未采集到，本页不作任何补写。</p>
+<p><span class="lbl">已知的作答要点：</span>按平台任务结构与第 161 题的衔接关系，第 162 题位于全卷末尾、承接审计意见的形成环节；正式作答时先确保第 161 题按 A（无保留意见，前提为接受全部审计调整）答对解锁，再进入本题，作答内容须与第 161 题选定的意见类型、第 158–160 题的审定数据三处一致。</p>
+</section>
+
   </main>
 </div>
-<footer class="footer">本站内容由备赛原始文档原文转换，证据标注（<mark class="warn">待样卷复核</mark>等）均按原文保留。</footer>
+<footer class="footer">本页为样卷复刻学习材料：原题、平台答案与数值采集自审计实务样卷（案例公司福州青风子伞业有限公司，2025 年度）。正式赛卷案例未知，本页数值与结论不可套用。</footer>
 <script src="search.js"></script>
 </body>
 </html>

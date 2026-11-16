@@ -3,8 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>逐题深挖：总决赛样卷审计专员2线 38 题（七项分析）｜总决赛备赛</title>
+<title>专员2线：样卷原题复刻与平台答案（38 题）｜总决赛备赛</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  details.answer { margin: 14px 0; border: 1px solid var(--accent-border); border-radius: 6px; background: #f2f7f2; }
+  details.answer > summary { cursor: pointer; font-weight: bold; color: var(--accent-dark); padding: 8px 14px; }
+  details.answer > .ans-body { padding: 2px 16px 10px; }
+  td.blank, th.blank { background: #fff3b0; }
+  .ops { background: #f7fafc; border: 1px solid #e3eaf2; border-left: 3px solid var(--accent); border-radius: 6px; padding: 9px 14px; margin: 10px 0; }
+  .ops p { margin: 6px 0; }
+  table.wp td.num, table.wp th.num { text-align: right; white-space: nowrap; }
+  .qcard h3 { scroll-margin-top: 185px; }
+  .subq { font-weight: bold; color: var(--accent-dark); margin: 14px 0 4px; }
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -26,7 +37,7 @@
       <a href="checklist.html">二次核查清单</a>
     </nav>
     <div class="searchbar">
-      <input id="searchInput" type="search" placeholder="在本页搜索关键词，如：存货 / 待样卷复核" aria-label="在本页搜索">
+      <input id="searchInput" type="search" placeholder="在本页搜索关键词，如：应付账款 / 函证" aria-label="在本页搜索">
       <button id="searchBtn" type="button">搜索</button>
       <button id="searchClear" type="button">清除</button>
       <span id="searchCount" class="search-count"></span>
@@ -39,647 +50,1030 @@
       <summary>本页目录</summary>
       <div class="toc"><div class="toc">
 <ul>
-<li><a href="#2932">第一部分 了解采购与付款循环内部控制（第 29–32 题）</a><ul>
-<li><a href="#s2-1-29">S2-1 第 29 题 了解采购与付款循环内控（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-2-30">S2-2 第 30 题 了解采购与付款循环内控（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-3-31">S2-3 第 31 题 了解采购与付款循环内控（其三·穿行测试）【题号分组实测；穿行测试形态有实测依据，题面<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-4-32">S2-4 第 32 题 了解采购与付款循环内控（其四）【<mark class="warn">待样卷复核</mark>】</a></li>
+<li><a href="#g1">一、采购与付款循环内控了解与评价（第 29–32 题）</a><ul>
+<li><a href="#q29">第 29 题 评价内部控制设计（1）</a></li>
+<li><a href="#q30">第 30 题 评价内部控制设计（2）</a></li>
+<li><a href="#q31">第 31 题 穿行测试（CGL-3）</a></li>
+<li><a href="#q32">第 32 题 控制执行情况评价（CGL-4）</a></li>
+</ul></li>
+<li><a href="#g2">二、采购与付款循环控制测试（第 52 题）</a><ul>
+<li><a href="#q52">第 52 题 控制测试过程（CGC-3）</a></li>
+</ul></li>
+<li><a href="#g3">三、ZH 其他应收款（第 74–76 题）</a><ul>
+<li><a href="#q74">第 74 题 ZH-1 审定表</a></li>
+<li><a href="#q75">第 75 题 ZH-2 明细表</a></li>
+<li><a href="#q76">第 76 题 ZH2-1 账龄分析表</a></li>
+</ul></li>
+<li><a href="#g4">四、ZO 固定资产（第 92–97 题）</a><ul>
+<li><a href="#q92">第 92 题 ZO-1 审定表</a></li>
+<li><a href="#q93">第 93 题 ZO-2 增减变动表</a></li>
+<li><a href="#q94">第 94 题 ZO-3 监盘表</a></li>
+<li><a href="#q95">第 95 题 ZO-4 折旧复核表</a></li>
+<li><a href="#q96">第 96 题 ZO-5 新增查验表</a></li>
+<li><a href="#q97">第 97 题 ZO-6 报废查验表</a></li>
+</ul></li>
+<li><a href="#g5">五、ZU 无形资产（第 98–100 题）</a><ul>
+<li><a href="#q98">第 98 题 ZU-1 审定表</a></li>
+<li><a href="#q99">第 99 题 ZU-2 明细表</a></li>
+<li><a href="#q100">第 100 题 ZU-3 摊销复核表</a></li>
+</ul></li>
+<li><a href="#g6">六、ZP 在建工程（第 101–103 题）</a><ul>
+<li><a href="#q101">第 101 题 ZP-1 审定表</a></li>
+<li><a href="#q102">第 102 题 ZP-2 明细表</a></li>
+<li><a href="#q103">第 103 题 ZP-3 厂房购置查验表</a></li>
+</ul></li>
+<li><a href="#g7">七、ZY 递延所得税资产（第 104–106 题）</a><ul>
+<li><a href="#q104">第 104 题 ZY-1 审定表</a></li>
+<li><a href="#q105">第 105 题 ZY-2 明细表</a></li>
+<li><a href="#q106">第 106 题 ZY-3 明细内容汇总表</a></li>
+</ul></li>
+<li><a href="#g8">八、FD 应付账款（第 107–111 题）</a><ul>
+<li><a href="#q107">第 107 题 FD-1 审定表</a></li>
+<li><a href="#q108">第 108 题 FD-2 明细表</a></li>
+<li><a href="#q109">第 109 题 FD-3 函证结果汇总表</a></li>
+<li><a href="#q110">第 110 题 FD-4 替代程序</a></li>
+<li><a href="#q111">第 111 题 FD-5 函证结果调节表</a></li>
+</ul></li>
+<li><a href="#g9">九、FQ 递延所得税负债（第 123–125 题）</a><ul>
+<li><a href="#q123">第 123 题 FQ-1 审定表</a></li>
+<li><a href="#q124">第 124 题 FQ-2 明细表</a></li>
+<li><a href="#q125">第 125 题 FQ-3 明细内容汇总表</a></li>
+</ul></li>
+<li><a href="#g10">十、QC 盈余公积（第 126–127 题）</a><ul>
+<li><a href="#q126">第 126 题 QC-1 审定表</a></li>
+<li><a href="#q127">第 127 题 QC-2 计提复核表</a></li>
+</ul></li>
+<li><a href="#g11">十一、QD 未分配利润（第 128–129 题）</a><ul>
+<li><a href="#q128">第 128 题 QD-1 未分配利润审定表</a></li>
+<li><a href="#q129">第 129 题 QD-2 利润分配明细表</a></li>
+</ul></li>
+<li><a href="#g12">十二、SP 所得税费用（第 155–157 题）</a><ul>
+<li><a href="#q155">第 155 题 SP-1 审定表</a></li>
+<li><a href="#q156">第 156 题 SP-2 明细表</a></li>
+<li><a href="#q157">第 157 题 SP-3 项目调整计算表</a></li>
+</ul></li>
 </ul>
-</li>
-<li><a href="#52">第二部分 采购与付款循环控制测试（第 52 题）</a><ul>
-<li><a href="#s2-5-52-400">S2-5 第 52 题 采购控制测试【分值与模板实测：<span class="score">4.00 分</span>；具体控制点与样本<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#zh-7476">第三部分 ZH 其他应收款（第 74–76 题）</a><ul>
-<li><a href="#s2-6-74-zh">S2-6 第 74 题 ZH 其他应收款（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-7-75-zh">S2-7 第 75 题 ZH 其他应收款（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-8-76-zh">S2-8 第 76 题 ZH 其他应收款（其三）【<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#zo-9297">第四部分 ZO 固定资产（第 92–97 题）</a><ul>
-<li><a href="#s2-9-92-zo">S2-9 第 92 题 ZO 固定资产（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-10-93-zo">S2-10 第 93 题 ZO 固定资产（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-11-94-zo">S2-11 第 94 题 ZO 固定资产（其三）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-12-95-zo">S2-12 第 95 题 ZO 固定资产（其四）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-13-96-zo">S2-13 第 96 题 ZO 固定资产（其五）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-14-97-zo">S2-14 第 97 题 ZO 固定资产（其六）【<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#zu-98100">第五部分 ZU 无形资产（第 98–100 题）</a><ul>
-<li><a href="#s2-15-98-zu">S2-15 第 98 题 ZU 无形资产（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-16-99-zu">S2-16 第 99 题 ZU 无形资产（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-17-100-zu">S2-17 第 100 题 ZU 无形资产（其三）【<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#zp-101103">第六部分 ZP 在建工程（第 101–103 题）</a><ul>
-<li><a href="#s2-18-101-zp">S2-18 第 101 题 ZP 在建工程（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-19-102-zp">S2-19 第 102 题 ZP 在建工程（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-20-103-zp">S2-20 第 103 题 ZP 在建工程（其三）【<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#zy-104106">第七部分 ZY 递延所得税资产（第 104–106 题）</a><ul>
-<li><a href="#s2-21-104-zy">S2-21 第 104 题 ZY 递延所得税资产（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-22-105-zy">S2-22 第 105 题 ZY 递延所得税资产（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-23-106-zy">S2-23 第 106 题 ZY 递延所得税资产（其三）【<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#fd-107111">第八部分 FD 应付账款（第 107–111 题）</a><ul>
-<li><a href="#s2-24-107-fd">S2-24 第 107 题 FD 应付账款（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-25-108-fd">S2-25 第 108 题 FD 应付账款（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-26-109-fd">S2-26 第 109 题 FD 应付账款（其三）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-27-110-fd">S2-27 第 110 题 FD 应付账款（其四）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-28-111-fd">S2-28 第 111 题 FD 应付账款（其五）【<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#fq-123125">第九部分 FQ 递延所得税负债（第 123–125 题）</a><ul>
-<li><a href="#s2-29-123-fq">S2-29 第 123 题 FQ 递延所得税负债（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-30-124-fq">S2-30 第 124 题 FQ 递延所得税负债（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-31-125-fq">S2-31 第 125 题 FQ 递延所得税负债（其三）【<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#qc-126127">第十部分 QC 盈余公积（第 126–127 题）</a><ul>
-<li><a href="#s2-32-126-qc">S2-32 第 126 题 QC 盈余公积（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-33-127-qc">S2-33 第 127 题 QC 盈余公积（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#qd-128129">第十一部分 QD 未分配利润（第 128–129 题）</a><ul>
-<li><a href="#s2-34-128-qd">S2-34 第 128 题 QD 未分配利润（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-35-129-qd">S2-35 第 129 题 QD 未分配利润（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#sp-155157">第十二部分 SP 所得税费用（第 155–157 题）</a><ul>
-<li><a href="#s2-36-155-sp">S2-36 第 155 题 SP 所得税费用（其一）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-37-156-sp">S2-37 第 156 题 SP 所得税费用（其二）【<mark class="warn">待样卷复核</mark>】</a></li>
-<li><a href="#s2-38-157-sp">S2-38 第 157 题 SP 所得税费用（其三）【<mark class="warn">待样卷复核</mark>】</a></li>
-</ul>
-</li>
-<li><a href="#2">附一 专员2岗全局打法</a></li>
-<li><a href="#_1">附二 跨岗衔接</a></li>
-<li><a href="#_2">附三 <mark class="warn">待样卷复核</mark>清单</a></li>
-</ul>
-</div>
-</div>
+</div></div>
     </details>
   </aside>
-  <main id="content" class="content">
-<h1 id="2-38">逐题深挖：总决赛样卷审计专员2线 38 题（七项分析）</h1>
-<blockquote>
-<p>底本：《平台实测-ckrs审计实务样卷-2026-11-15.md》（2026-11-15 四个账号只读实测；样卷案例企业：福州青风子伞业有限公司，审计期间 2025.01.01–2025.12.31）。专员2「我的任务」共 38 题、12 组，题号与分组均为实测记录，与专员1的 41 题零重叠。</p>
-<p>证据标注：每题标题后标注证据等级——题号与所属分组有实测记录，但逐题题名、分值、小题构成未逐题打开核查，一律标「<mark class="warn">待样卷复核</mark>」。仅两处分值有实测依据：第52题采购控制测试 <span class="score">4.00 分</span>（控制测试类模板实测，三循环同模）；文末跨岗部分提及的第158题试算平衡表 <span class="score">8.00 分</span>（实测）。除此之外，本文不写任何题面数字、金额或分值。</p>
-<p>展开方式说明：各题的「考什么／要我们做什么／需要填什么」按该科目或环节的标准审计维度展开，这是按组标准维度展开、非题面实录；正式练习时须以样卷原题逐项校正。「知识点／教材映射／备考」三项属分析判断，与实测事实分开书写。</p>
-<p>模板事实（实测，可引）：审定表类——表头＋报表数／总账数／明细账数行层级＋审计说明＋审计结论下拉＋绿色「自动生成底稿」按钮、无黄色格；控制测试类——两段式测试内容＋凭证编号列＋黄色「是否」下拉格、无自动生成按钮。专员2的科目底稿属哪一模板族，以各题标题下注明为准，未逐题打开者仍标<mark class="warn">待样卷复核</mark>。</p>
-<p>映射口径（依《教材版本与映射口径.md》）：内控知识点→王清刚《内部控制与风险管理：理论、实践与案例》（北京大学出版社版）按章映射（仅章级目录，不标节）；审计原理与大数据知识点→唐雪松《审计学：原理与大数据审计案例》（中国人民大学出版社）按章／节映射；属《审计学原理与实务》范畴的只写知识点、不写章节。查无对应者标「<mark class="warn">待核实</mark>」。</p>
-<p>范围界定：本文编号 S2-1 至 S2-38，逐题对应样卷题号 29–32、52、74–76、92–97、98–100、101–103、104–106、107–111、123–125、126–127、128–129、155–157，顺序按题号，一题不漏。</p>
-</blockquote>
-<hr>
-<h2 id="2932">第一部分 了解采购与付款循环内部控制（第 29–32 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 29–32 共 4 题、组名「了解采购与付款循环内控」有实测记录；其中第31题为穿行测试题有实测依据（经理任务纳入标准显示三循环了解内控组经理只含穿行测试题 31／35／39，第29、30、32题为纯选择／判断题、未纳入经理任务）。逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按采购循环了解内控的标准维度分题：总体与职责分离、请购订购、穿行测试、付款记录与监督。</p>
-</blockquote>
-<div class="qcard"><a id="s2-1" class="qanchor"></a>
-<h3 id="s2-1-29">S2-1 第 29 题 了解采购与付款循环内控（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考采购与付款循环的总体控制框架——控制环境、职责分离与授权审批体系是否健全，这是了解内控的起点题。</li>
-<li><strong class="lbl">知识点</strong>：采购循环的主要单据与流程节点（请购、订购、验收、入账、付款）；不相容职务分离（请购与审批、采购与验收、验收与付款、付款与记账相互分离）；授权审批的层级与限额。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面给定的单位采购制度或情境，判断控制设计是否存在职责混同、越权审批等缺陷。作答形态<mark class="warn">待样卷复核</mark>（本題为纯选择／判断类有实测依据）。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（按实测形态，为大题内嵌的单选／多选／判断小题）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：了解内控本质是「识别设计缺陷」，缺陷点是离散的判断点，故用选择／判断小题逐点扫描；放在专员2线第一组，是因为后面第52题控制测试、应付账款与固定资产的实质性程序都要回溯到这里的风险判断。</li>
-<li><strong class="lbl">对应书与章节</strong>：王清刚第七章「购销及投筹资业务内部控制」（采购与付款部分）；第四章「控制活动」（职责分离与授权审批）；唐雪松第十一章第一节「采购与付款循环审计概述」。</li>
-<li><strong class="lbl">如何备考</strong>：把采购循环画成一条单据链，逐个节点标注「谁做、谁批、谁记账」，再把五组不相容职务背熟。易错点：验收与保管在存货线属不相容，在采购线里验收与采购、验收与付款才是本循环的分离重点，不要串线。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-3">第四章 控制活动</a>；<a href="knowledge.html#kp-b-6">第七章 购销及投筹资业务内部控制</a>；<a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-2" class="qanchor"></a>
-<h3 id="s2-2-30">S2-2 第 30 题 了解采购与付款循环内控（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考请购与订购环节的控制设计——请购依据、供应商选择、合同订立与价格控制。</li>
-<li><strong class="lbl">知识点</strong>：请购单的连续编号与库存量触发机制；询价比价与供应商准入；采购合同要素（品名、数量、价格、交期、质量与付款条件）；订单连续编号与未执行订单的跟踪。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境判断请购／订购控制的缺失点（如无请购直接采购、单一供应商无比价、合同要素缺失）及其风险后果。作答形态<mark class="warn">待样卷复核</mark>（纯选择／判断类）。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：同 S2-1，情境判断嵌小题；请购订购是采购循环舞弊（吃回扣、虚构采购）的第一道闸，单独设题扫描这一段的控制点。</li>
-<li><strong class="lbl">对应书与章节</strong>：王清刚第七章「购销及投筹资业务内部控制」；第四章「控制活动」；唐雪松第十一章第二节「采购交易的内部控制与控制测试」（控制点部分）。</li>
-<li><strong class="lbl">如何备考</strong>：记请购订购段的控制清单：有请购才订购、有比价才签约、订单编号连续、变更须再审批。易错点：把「价格公允」当成订购环节能单独保证的事——价格控制靠询价记录与合同评审共同支撑，单点不成立。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-3">第四章 控制活动</a>；<a href="knowledge.html#kp-b-6">第七章 购销及投筹资业务内部控制</a>；<a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-3" class="qanchor"></a>
-<h3 id="s2-3-31">S2-3 第 31 题 了解采购与付款循环内控（其三·穿行测试）【题号分组实测；穿行测试形态有实测依据，题面<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考穿行测试的执行逻辑——选取一笔（或少量）采购交易，沿单据流全程追踪，验证控制设计是否得到执行、流程描述是否属实。</li>
-<li><strong class="lbl">知识点</strong>：穿行测试的目的与样本量特征（通常每类交易选少量样本走完全程）；穿行路径：请购单→订货单／合同→验收单／入库单→采购发票→记账凭证→付款凭证；穿行结果与控制风险初步评价的衔接。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面要求沿一笔采购业务核对各环节单据与控制痕迹（签字、编号连续性、金额一致性），或完成穿行测试类底稿的对应栏目。具体样本与单据<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（本題被纳入经理复核任务，按实测纳入标准属含底稿／流程的操作类任务，填制形态以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：穿行测试是「做一遍流程」而非「背控制点」，必须用操作类形态呈现；三循环各设一道穿行题（31／35／39）且都被纳入经理复核单，说明这是命题方认定的关键技能点。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第二节「采购交易的内部控制与控制测试」；王清刚第四章「控制活动」、第九章「内部监督和内部控制评价」（穿行与评价的衔接）。</li>
-<li><strong class="lbl">如何备考</strong>：练一条完整的穿行链默写：每一步看什么单据、验什么痕迹、异常往哪里追。易错点：穿行测试只能证明设计与初步执行情况，不能替代控制测试的样本量结论，更不能替代实质性程序。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-7">第九章 内部监督和内部控制评价</a>；<a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-4" class="qanchor"></a>
-<h3 id="s2-4-32">S2-4 第 32 题 了解采购与付款循环内控（其四）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考验收、入账与付款环节的控制设计，以及对内控缺陷的评价与沟通收口。</li>
-<li><strong class="lbl">知识点</strong>：验收的独立性与验收单连续编号；「三单核对」（订货单、验收单、采购发票一致才入账付款）；付款审批与付款凭证附件完整性；应付账款明细账与总账、与供应商对账单的定期核对；内控缺陷的分类（设计缺陷／运行缺陷、一般缺陷／重要缺陷／重大缺陷的判断框架）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境判断验收付款段的控制缺陷，或对已识别缺陷的严重程度与后续审计应对下结论。作答形态<mark class="warn">待样卷复核</mark>（纯选择／判断类）。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：同组通则；把缺陷评价放在本组末题，是让了解内控形成闭环——识别控制点之后必须会评价缺陷并决定信赖程度，直接决定第52题控制测试与后续实质性程序的范围。</li>
-<li><strong class="lbl">对应书与章节</strong>：王清刚第七章「购销及投筹资业务内部控制」；第九章「内部监督和内部控制评价」（缺陷评价部分）；第三章「风险评估」（缺陷向重大错报风险的传导）；唐雪松第十一章第二节「采购交易的内部控制与控制测试」。</li>
-<li><strong class="lbl">如何备考</strong>：「三单核对」四个字是本段的题眼，见到付款无验收单、发票与订单金额不符的情境先往这里套。易错点：缺陷评价只看单个控制点不够，要看缺陷组合与补偿性控制是否存在。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-2">第三章 风险评估</a>；<a href="knowledge.html#kp-b-6">第七章 购销及投筹资业务内部控制</a>；<a href="knowledge.html#kp-b-7">第九章 内部监督和内部控制评价</a>；<a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><h2 id="52">第二部分 采购与付款循环控制测试（第 52 题）</h2>
-<blockquote>
-<p>实测事实：本组仅第52题 1 题，控制测试类模板，样卷分值 <span class="score">4.00 分</span>有实测记录；模板形态为两段式测试内容＋凭证编号列＋黄色「是否」下拉格、无自动生成按钮，与生产（53）、销售（54）控制测试三循环同模。具体测试的控制点、样本构成<mark class="warn">待样卷复核</mark>。</p>
-</blockquote>
-<div class="qcard"><a id="s2-5" class="qanchor"></a>
-<h3 id="s2-5-52-400">S2-5 第 52 题 采购控制测试【分值与模板实测：<span class="score">4.00 分</span>；具体控制点与样本<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：考对采购与付款循环关键控制运行有效性的测试执行——按既定控制频率抽样、逐项核对控制痕迹、下控制测试结论。</li>
-<li><strong class="lbl">知识点</strong>：控制测试的程序构成（询问、观察、检查、重新执行，以检查单据控制痕迹为本题主体）；控制偏差的识别与评价（偏差是否系统性、是否影响信赖结论）；测试结论向实质性程序性质、时间、范围的传导。</li>
-<li><strong class="lbl">要我们做什么</strong>：在控制测试底稿中按两段式测试内容，对抽取的样本逐笔填列凭证编号并在黄色格下拉判断控制是否得到执行（如请购是否经审批、验收单与发票是否核对一致、付款是否经授权），最后形成测试结论。具体控制点条目<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：凭证编号列＋黄色「是否」下拉格＋测试结论（底稿形态有实测依据；样本笔数与控制点清单<mark class="warn">待样卷复核</mark>）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：控制测试类模板填制。控制测试的技能本质是「逐笔留痕判断」，只有逐格填制才能考出执行力；三循环同模 <span class="score">4.00 分</span>，练熟一个模板等于练熟三道题，是全卷性价比最高的模板之一。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第二节「采购交易的内部控制与控制测试」；王清刚第四章「控制活动」、第九章「内部监督和内部控制评价」。</li>
-<li><strong class="lbl">如何备考</strong>：把模板的两段结构先看懂再动手：一段测控制设计执行痕迹、一段测例外事项（以样卷实际段落为准）。易错点：遇到样本缺签字或缺附件，只标「否」不写偏差说明，结论段会失分；偏差出现时先判断是否孤立事件，再决定是否扩大样本或降低信赖。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-3">第四章 控制活动</a>；<a href="knowledge.html#kp-b-7">第九章 内部监督和内部控制评价</a>；<a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><h2 id="zh-7476">第三部分 ZH 其他应收款（第 74–76 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 74–76 共 3 题、底稿代号 ZH、组名「其他应收款」有实测记录；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按其他应收款审计的标准维度分题：审定表、明细与细节测试、坏账准备与可收回性。本组底稿按科目底稿的一般规律以审定表类模板为主，逐题模板归属<mark class="warn">待样卷复核</mark>。</p>
-</blockquote>
-<div class="qcard"><a id="s2-6" class="qanchor"></a>
-<h3 id="s2-6-74-zh">S2-6 第 74 题 ZH 其他应收款（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考其他应收款审定表的编制逻辑——报表数、总账数、明细账数三层勾稽与审计调整的汇总落点。</li>
-<li><strong class="lbl">知识点</strong>：审定表结构（未审数、审计调整、审定数）；其他应收款与应收账款、预付账款的边界（非购销活动形成的债权：备用金、押金保证金、代垫款、应收赔款等）；重分类调整的常见情形（明细账借方余额与贷方余额的报表列示）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按审定表类模板完成表头与三层数字的核对衔接，填写审计说明并在审计结论下拉中下结论。具体数字与调整事项<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（按审定表类模板：报表数／总账数／明细账数行、审计说明、审计结论下拉；可用绿色「自动生成底稿」按钮汇总下级底稿）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：审定表类底稿填制。审定表是每个科目的收口页，考的是勾稽关系而非单笔业务，故全科同模、靠数字链判分。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：其他应收款审定表与三层勾稽、债权类科目的重分类列示（唐雪松版无其他应收款专章，不硬套章节）。</li>
-<li><strong class="lbl">如何备考</strong>：先练审定表通用打法：三层数先对平、调整有出处、结论与调整方向一致。本组只有 3 题，审定表是必练的第一张。易错点：其他应收款明细出现贷方余额属于负债性质，不重分类会同时错报资产与负债。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-21">其他应收款审计</a></p>
-</div><div class="qcard"><a id="s2-7" class="qanchor"></a>
-<h3 id="s2-7-75-zh">S2-7 第 75 题 ZH 其他应收款（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考其他应收款的明细审查——款项性质、账龄、关联方与备用金等高风险构成的细节测试。</li>
-<li><strong class="lbl">知识点</strong>：按款项性质分类审查（备用金定额与报销冲销、押金保证金的合同依据、关联方资金往来的识别）；大额、长账龄、期末突增项目的重点检查；原始凭证（借款单、合同、收据）与记账的一致性核对；函证在其他应收款中的适用与局限。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面给定的明细构成选取重点项目实施检查／函证类程序，在明细类底稿中填列核对结果与异常说明。具体项目与金额<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（明细类底稿的核对标记、检查说明与异常记录栏，以样卷实际栏目为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：明细底稿填制＋程序判断嵌合。其他应收款历来是资金占用与体外循环的藏匿科目，命题重点不在算数而在「看出哪笔不正常」，故按构成逐项扫描。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：其他应收款细节测试、关联方资金往来识别、备用金审计。</li>
-<li><strong class="lbl">如何备考</strong>：记一张构成风险表：备用金看报销、押金看合同、关联方往来看公允与披露、长账龄看回收。易错点：股东或关联方长期挂账的其他应收款，风险在资金占用与披露，不只是坏账问题。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-21">其他应收款审计</a></p>
-</div><div class="qcard"><a id="s2-8" class="qanchor"></a>
-<h3 id="s2-8-76-zh">S2-8 第 76 题 ZH 其他应收款（其三）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考其他应收款坏账准备的计提复核与可收回性评价，以及期后收回检查。</li>
-<li><strong class="lbl">知识点</strong>：预期信用损失框架下坏账准备的计提方法与账龄分析；单项计提与组合计提的区分；债务人财务状况恶化、涉诉等减值迹象；期后实际收回情况对期末可收回性的验证；坏账核销的审批与账务处理。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面数据复核坏账准备计提是否充分、检查期后收回记录，并在底稿中记录复核结论与需调整事项。具体计提参数<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（复核计算栏、检查说明与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：复核类底稿填制。坏账准备是估计类科目，判分点在方法与证据链（账龄、期后、债务人状况）是否齐全，故以复核过程留痕的方式命题；本组与专员1的信用减值损失组（SK）遥相呼应，但科目归属不同、不得混用结论。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：坏账准备复核、预期信用损失、期后收回检查。</li>
-<li><strong class="lbl">如何备考</strong>：练「账龄表→计提表→期后回款」三表对照的复核顺序。易错点：只复核计提比例不看期后回款——期后全额收回的长账龄款项与期后分文未收的短账龄款项，风险排序完全不同。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-21">其他应收款审计</a></p>
-</div><h2 id="zo-9297">第四部分 ZO 固定资产（第 92–97 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 92–97 共 6 题、底稿代号 ZO、组名「固定资产」有实测记录，是专员2题量第二大的科目组；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按固定资产审计的标准维度分题：审定表、增减变动、折旧复核、处置检查、盘点与权属、减值与披露。</p>
-</blockquote>
-<div class="qcard"><a id="s2-9" class="qanchor"></a>
-<h3 id="s2-9-92-zo">S2-9 第 92 题 ZO 固定资产（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考固定资产审定表的编制——原值、累计折旧、减值准备、账面价值四条线的三层勾稽收口。</li>
-<li><strong class="lbl">知识点</strong>：审定表结构与固定资产报表列示（账面价值＝原值－累计折旧－减值准备）；总账、固定资产卡片账（明细）与报表数的核对路径；审计调整在审定表中的汇总方式。</li>
-<li><strong class="lbl">要我们做什么</strong>：按审定表类模板完成三层核对、填写审计说明并下审计结论。具体数字<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（审定表类模板栏目同 S2-6；可用「自动生成底稿」按钮汇总）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：审定表类底稿填制，理由同 S2-6；固定资产审定表比其他应收款多折旧与减值两条线，是检验勾稽基本功的典型题。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第四节「固定资产审计」（审定与列报部分）。</li>
-<li><strong class="lbl">如何备考</strong>：审定表先分线后合表：原值线、折旧线、减值线各自对平，最后算账面价值。易错点：调整只改账面价值一行、不动原值或折旧的来源行，勾稽链会断。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-10" class="qanchor"></a>
-<h3 id="s2-10-93-zo">S2-10 第 93 题 ZO 固定资产（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考本期新增固定资产的真实性与计价检查——外购、自建转入、投资者投入等不同来源的证据链。</li>
-<li><strong class="lbl">知识点</strong>：新增资产的入账价值构成（买价、相关税费、使资产达到预定可使用状态前的必要支出）；凭证检查（合同、发票、验收单、付款单）；在建工程转入的衔接（与本线 ZP 组互为上下游）；资本化与费用化的边界。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面抽取新增项目逐笔核对凭证与入账金额，在增减变动类底稿中记录检查结果。具体项目<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（变动明细底稿的核对标记与说明栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：变动明细底稿填制。新增检查考的是「一笔一笔对证据」，逐笔留痕的填制形态与程序本身同构。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第四节「固定资产审计」（取得与计价部分）。</li>
-<li><strong class="lbl">如何备考</strong>：按来源分三条证据链背：外购看发票验收、自建看转固单与决算、投入看评估与协议。易错点：把达到可使用状态后的借款费用、培训费等计入成本，是资本化边界的高频错点。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-11" class="qanchor"></a>
-<h3 id="s2-11-94-zo">S2-11 第 94 题 ZO 固定资产（其三）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考折旧计提的复核——折旧方法、年限、残值与折旧额计算的重新计算，以及折旧费用的分配去向。</li>
-<li><strong class="lbl">知识点</strong>：折旧政策的一致性与变更审查；重新计算程序（按卡片逐项或分类测算）；折旧费用在生产成本、管理费用、销售费用等科目间的分配勾稽（与专员3的成本费用组存在报表层勾稽，底稿各自独立）；新增当月不提、减少当月照提的计提时点规则（以准则与单位政策为准，题面待复核）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面数据重新计算或测算折旧额、与账面比较并记录差异处理。具体参数（方法、年限、残值）<mark class="warn">待样卷复核</mark>，不预设数字。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（复核计算底稿的测算栏、差异栏与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：复核计算类底稿填制。折旧是典型的「算得出对错」的程序，重新计算的结果可精确判分，故用计算底稿而非概念题。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第四节「固定资产审计」（折旧审计部分）。</li>
-<li><strong class="lbl">如何备考</strong>：练分类测算：先按类别汇总原值再套政策测算，比逐卡重算更快且不易漏项。易错点：已提足折旧仍在使用的资产不再计提、未使用资产照常计提，两条规则方向相反，常被成对设错。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-12" class="qanchor"></a>
-<h3 id="s2-12-95-zo">S2-12 第 95 题 ZO 固定资产（其四）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考本期减少固定资产（出售、报废、盘亏）的检查——处置审批、清理核算与处置损益的正确性。</li>
-<li><strong class="lbl">知识点</strong>：固定资产清理科目的核算链（转入清理→发生清理费用与残料收入→结转净损益）；处置审批文件与实物处置证据；未提足折旧资产处置的账面价值确定；盘亏资产的责任认定与审批。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面逐笔检查减少项目的凭证与清理核算，在变动类底稿中记录检查结论。具体项目<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：变动明细底稿填制，与 S2-10 新增检查成对出现——增减两向都查，才构成完整的变动审计。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第四节「固定资产审计」（处置部分）。</li>
-<li><strong class="lbl">如何备考</strong>：清理核算默写一条链，见到处置题先定位资产现在挂在哪个科目。易错点：处置收入直接冲减成本费用而不走清理科目，或报废资产未销卡片账造成账实不符。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-13" class="qanchor"></a>
-<h3 id="s2-13-96-zo">S2-13 第 96 题 ZO 固定资产（其五）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考固定资产的存在性与权利义务——实地检查（盘点）程序与产权证明文件的审查。</li>
-<li><strong class="lbl">知识点</strong>：监盘／抽盘的路径（以账查实验证存在、以实查账验证完整性）；房屋、车辆等资产的产权证书、行驶证等权属证据；已抵押、担保资产的识别；闲置与停用资产的现场状态观察。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面完成盘点类底稿的记录与核对，或判断权属证据的充分性并记录异常。具体盘点范围<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（盘点记录底稿的核对标记与差异说明栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：盘点记录类底稿填制。存在性认定的证据来自现场，底稿形态模拟盘点工作底稿的逐项核对，才能考出程序执行力。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第四节「固定资产审计」（存在与权利义务部分）。</li>
-<li><strong class="lbl">如何备考</strong>：盘点双向测试口诀：账到实查存在、实到账查完整。易错点：只做账到实一个方向，完整性认定就没有任何证据支撑。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-14" class="qanchor"></a>
-<h3 id="s2-14-97-zo">S2-14 第 97 题 ZO 固定资产（其六）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考固定资产减值迹象的识别与减值准备的复核，以及列报披露的收口。</li>
-<li><strong class="lbl">知识点</strong>：减值迹象清单（市价下跌、技术陈旧、损坏闲置、经营环境恶化）；可收回金额（公允价值减处置费用与未来现金流量现值孰高）的估计复核；固定资产减值一经确认不得转回；抵押、未办妥产权证等事项的披露检查。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面判断减值迹象是否成立、复核减值测算或检查披露完整性，并记录结论。具体资产与测算参数<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（复核说明与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：判断＋复核类底稿。减值是估计与判断密集区，命题以情境判断嵌底稿记录的方式考「迹象识别在前、金额测算在后」的顺序感；作为本组末题收口整组列报。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第四节「固定资产审计」（减值与列报部分）。</li>
-<li><strong class="lbl">如何备考</strong>：迹象清单背熟后，见到闲置、停产、损坏类描述先触发减值程序意识。易错点：把折旧政策变更当作减值替代手段——折旧解决分摊问题，减值解决价值下跌问题，两者不能互替。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><h2 id="zu-98100">第五部分 ZU 无形资产（第 98–100 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 98–100 共 3 题、底稿代号 ZU、组名「无形资产」有实测记录；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按无形资产审计的标准维度分题：审定表、取得与摊销、减值与研发资本化。</p>
-</blockquote>
-<div class="qcard"><a id="s2-15" class="qanchor"></a>
-<h3 id="s2-15-98-zu">S2-15 第 98 题 ZU 无形资产（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考无形资产审定表的编制——原值、累计摊销、减值准备与账面价值的勾稽收口，结构与固定资产审定表同构。</li>
-<li><strong class="lbl">知识点</strong>：无形资产的构成识别（专利、商标、土地使用权、软件、特许权等）；审定表三层勾稽；无形资产与固定资产（土地、房屋）、长期待摊费用的报表边界。</li>
-<li><strong class="lbl">要我们做什么</strong>：按审定表类模板完成三层核对、填写审计说明并下结论。具体数字<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（审定表类模板栏目同 S2-6）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：审定表类底稿填制，理由同 S2-6；与固定资产审定表同日练熟，可验证模板迁移能力，这正是命题方全科同模的用意。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：无形资产审定表与报表列示边界（唐雪松版无无形资产专章，不硬套章节）。</li>
-<li><strong class="lbl">如何备考</strong>：直接套用固定资产审定表的分线打法：原值线、摊销线、减值线分开对平。易错点：土地使用权与地上建筑物的划分错误会同时污染本组与固定资产组。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-22">无形资产审计</a></p>
-</div><div class="qcard"><a id="s2-16" class="qanchor"></a>
-<h3 id="s2-16-99-zu">S2-16 第 99 题 ZU 无形资产（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考无形资产取得的检查与摊销的复核——权属证据、入账价值与摊销年限、方法的合理性。</li>
-<li><strong class="lbl">知识点</strong>：外购无形资产的合同、权证与付款证据；使用寿命有限与不确定的分类判断；摊销的重新计算与摊销费用去向；使用寿命复核与变更的会计处理。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面检查取得凭证、复核摊销计算并记录差异。具体资产与摊销参数<mark class="warn">待样卷复核</mark>，不预设年限数字。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（检查与复核底稿的核对、测算与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：检查＋复核类底稿填制。摊销与折旧程序同构，命题借此考程序迁移；权属证据检查则考无形资产特有的「无实物、靠证书」证据特点。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：无形资产取得检查、摊销复核、使用寿命判断。</li>
-<li><strong class="lbl">如何备考</strong>：与折旧复核对照记忆：一个看卡片与证书，一个看卡片与实物。易错点：使用寿命不确定的无形资产不摊销但须每年减值测试，常被误写为照常摊销。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-22">无形资产审计</a></p>
-</div><div class="qcard"><a id="s2-17" class="qanchor"></a>
-<h3 id="s2-17-100-zu">S2-17 第 100 题 ZU 无形资产（其三）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考无形资产减值与研发支出资本化条件的判断收口。</li>
-<li><strong class="lbl">知识点</strong>：无形资产减值迹象与减值测试（使用寿命不确定者每年必测）；研究阶段支出费用化、开发阶段支出资本化的条件判断；资本化开始时点与转销处理；减值不得转回。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境判断减值或资本化处理是否恰当，并在底稿中记录判断依据与结论。具体情境<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（判断说明与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：判断类小题嵌底稿记录。研发资本化是利润操纵高发区，考点全在条件逐项比对，故以情境判断形态命题；作为本组末题，与固定资产减值题（S2-14）形成长资产减值的成对收口。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：无形资产减值测试、研发支出资本化条件。</li>
-<li><strong class="lbl">如何备考</strong>：开发支出资本化条件逐条背成清单，见到「有市场、有资源、技术可行」类描述逐条打钩。易错点：研究与开发阶段划分不清时全额资本化，是本题最常见的错误答案形态。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-22">无形资产审计</a></p>
-</div><h2 id="zp-101103">第六部分 ZP 在建工程（第 101–103 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 101–103 共 3 题、底稿代号 ZP、组名「在建工程」有实测记录；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按在建工程审计的标准维度分题：审定表、成本归集与利息资本化、转固与减值。本组与固定资产组（ZO）互为上下游：在建工程的出口就是固定资产的入口。</p>
-</blockquote>
-<div class="qcard"><a id="s2-18" class="qanchor"></a>
-<h3 id="s2-18-101-zp">S2-18 第 101 题 ZP 在建工程（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考在建工程审定表的编制——按工程项目列示的期初、本期增减、期末与转固金额的勾稽收口。</li>
-<li><strong class="lbl">知识点</strong>：审定表按项目维度展开的特点（区别于按科目总数的审定）；在建工程与固定资产、工程物资的边界；期末在建工程账面价值与减值准备的列示。</li>
-<li><strong class="lbl">要我们做什么</strong>：按审定表类模板完成项目级三层核对、填写审计说明并下结论。具体项目与数字<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（审定表类模板栏目同 S2-6）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：审定表类底稿填制，理由同 S2-6；在建工程审定表按项目展开，是检验「总分结构」勾稽能力的变式题。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：在建工程审定表与项目级勾稽（唐雪松版无在建工程专章，不硬套章节）。</li>
-<li><strong class="lbl">如何备考</strong>：先按项目逐个对平再汇总额，顺序不能反。易错点：已转固金额在在建工程与固定资产两边重复计算，是跨组勾稽的高频断点，审定阶段要与 S2-10 的新增检查对读。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-23">在建工程审计</a></p>
-</div><div class="qcard"><a id="s2-19" class="qanchor"></a>
-<h3 id="s2-19-102-zp">S2-19 第 102 题 ZP 在建工程（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考在建工程成本归集的检查与借款费用资本化的复核。</li>
-<li><strong class="lbl">知识点</strong>：工程成本的构成边界（建筑安装支出、设备价款、资本化借款费用、分摊的待摊支出）；与工程无关支出、日常维修支出不得计入；借款费用资本化的开始、暂停、停止三时点与资本化金额的测算框架；工程进度与预算、合同的对照检查。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面抽查成本归集凭证、复核资本化处理并记录异常。具体支出项目与资本化参数<mark class="warn">待样卷复核</mark>，不预设利率或金额。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（检查与复核底稿的核对、说明与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：检查＋复核类底稿填制。在建工程是费用资本化操纵利润的经典通道，命题重心在「哪些支出不该进来」，逐笔检查的形态与风险点同构。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：在建工程成本归集检查、借款费用资本化复核。</li>
-<li><strong class="lbl">如何备考</strong>：资本化三时点背成时间轴：开始（资产支出已发生、借款费用已发生、购建活动已开始三条件齐备）、暂停（非正常中断连续超过规定期间）、停止（达到预定可使用状态）。易错点：把试运行、日常修理支出塞进工程成本，与 S2-10 的资本化边界错点同源。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-23">在建工程审计</a></p>
-</div><div class="qcard"><a id="s2-20" class="qanchor"></a>
-<h3 id="s2-20-103-zp">S2-20 第 103 题 ZP 在建工程（其三）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考在建工程转固时点的判断、长期停建与减值，以及列报收口。</li>
-<li><strong class="lbl">知识点</strong>：达到预定可使用状态的判断标志（实体建造完成、与设计要求相符、试生产结果正常等）；暂估转固与决算后调整（暂估价转固照常计提折旧，决算后调整入账价值但不追溯调整已提折旧）；停建且预计未来期间不会重新开工等减值迹象；在建工程减值不得转回。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面情境判断转固时点或减值处理是否恰当，记录依据与结论。具体工程情境<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（判断说明与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：判断类小题嵌底稿记录。转固时点直接决定折旧起点与当期利润，是在建工程组公认的题眼，故单设末题收口，并与固定资产折旧题（S2-11）形成跨组呼应。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：在建工程转固判断、暂估入账、停建减值。</li>
-<li><strong class="lbl">如何备考</strong>：转固判断只认「达到预定可使用状态」这一实质标准，不认发票是否齐全、决算是否完成。易错点：已投入使用却迟迟不转固以少提折旧，是本题最典型的错误情境。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-23">在建工程审计</a></p>
-</div><h2 id="zy-104106">第七部分 ZY 递延所得税资产（第 104–106 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 104–106 共 3 题、底稿代号 ZY、组名「递延所得税资产」有实测记录；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按递延所得税资产审计的标准维度分题：审定表、暂时性差异与计算复核、可实现性评价。本组与递延所得税负债组（FQ）、所得税费用组（SP）构成所得税三角，勾稽关系见文末全局打法。</p>
-</blockquote>
-<div class="qcard"><a id="s2-21" class="qanchor"></a>
-<h3 id="s2-21-104-zy">S2-21 第 104 题 ZY 递延所得税资产（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考递延所得税资产审定表的编制——按差异来源项目列示的勾稽收口。</li>
-<li><strong class="lbl">知识点</strong>：审定表按暂时性差异来源展开（资产减值准备、内部交易未实现利润、可抵扣亏损、预提费用等，以单位实际来源为准，题面待复核）；账面价值与计税基础的比较框架；审定表与所得税费用底稿的勾稽入口。</li>
-<li><strong class="lbl">要我们做什么</strong>：按审定表类模板完成项目级核对、填写审计说明并下结论。具体来源项目与数字<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（审定表类模板栏目同 S2-6）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：审定表类底稿填制，理由同 S2-6；递延所得税审定表的难点不在加总而在来源项目是否齐全，故按来源列示命题。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：递延所得税资产审定表、暂时性差异来源识别（唐雪松版无递延所得税专章，不硬套章节）。</li>
-<li><strong class="lbl">如何备考</strong>：先列来源清单再对数字：来源漏一项，后面计算全对也白搭。易错点：把永久性差异（业务招待费超标、罚款等）误入暂时性差异来源，是本组的第一号错误。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-24">递延所得税资产审计</a></p>
-</div><div class="qcard"><a id="s2-22" class="qanchor"></a>
-<h3 id="s2-22-105-zy">S2-22 第 105 题 ZY 递延所得税资产（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考可抵扣暂时性差异的识别与递延所得税资产金额的重新计算。</li>
-<li><strong class="lbl">知识点</strong>：资产账面价值小于计税基础（或负债账面价值大于计税基础）形成可抵扣暂时性差异的判断规则；适用税率的选择（差异转回期间的预期税率，以题面资料为准）；特殊项目处理（可抵扣亏损的结转期限核对）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面逐项判断差异性质、重新计算递延所得税资产并与账面比较记录差异。具体差异项目、税率与金额<mark class="warn">待样卷复核</mark>，不预设数字。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（复核计算底稿的判断、测算与差异栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：复核计算类底稿填制。递延所得税的对错首先在方向判断（资产还是负债），其次才是乘法计算，故命题以「逐项判断＋重算」双层结构呈现。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：可抵扣暂时性差异识别、递延所得税重新计算。</li>
-<li><strong class="lbl">如何备考</strong>：方向口诀先背死：资产账面＜计税基础、负债账面＞计税基础→递延所得税资产；反之→负债（见 S2-30）。每道题先判方向再动笔算。易错点：用当期实际缴纳口径的税率硬套未来转回期间，税率选择须以转回期间预期为准。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-24">递延所得税资产审计</a></p>
-</div><div class="qcard"><a id="s2-23" class="qanchor"></a>
-<h3 id="s2-23-106-zy">S2-23 第 106 题 ZY 递延所得税资产（其三）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考递延所得税资产确认上限的评价——以未来期间很可能取得的应纳税所得额为限的可实现性判断。</li>
-<li><strong class="lbl">知识点</strong>：确认上限原则；未来应纳税所得额的证据来源（盈利预测、应纳税暂时性差异转回、税务规划机会）；证据不足时减记递延所得税资产账面价值及以后期间的恢复；相关披露（未确认递延所得税资产的可抵扣差异与亏损到期信息）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面给定的盈利前景或亏损情境，评价递延所得税资产确认是否过量并记录结论与调整建议。具体情境<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（评价说明与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：判断类小题嵌底稿记录。可实现性是递延所得税资产最具职业判断含量的环节，无法用纯计算考出，故以情境判断命题；作为本组末题，与所得税费用组的调节勾稽（S2-38）前后呼应。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：递延所得税资产可实现性评价、减记与披露。</li>
-<li><strong class="lbl">如何备考</strong>：见到连续亏损企业仍全额确认递延所得税资产，先亮红灯再找证据。易错点：盈利预测只是管理层单方材料，必须有历史盈利、订单或转回差异等 corroborating 证据支撑才算数。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-24">递延所得税资产审计</a></p>
-</div><h2 id="fd-107111">第八部分 FD 应付账款（第 107–111 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 107–111 共 5 题、底稿代号 FD、组名「应付账款」有实测记录，是专员2的采购循环收口科目；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按应付账款审计的标准维度分题：审定表、明细与对账、函证、未入账查找与截止、期后付款与重分类。本组与第一、二部分的采购内控、控制测试同属采购与付款循环，风险判断一脉相承。</p>
-</blockquote>
-<div class="qcard"><a id="s2-24" class="qanchor"></a>
-<h3 id="s2-24-107-fd">S2-24 第 107 题 FD 应付账款（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考应付账款审定表的编制——三层勾稽与借方余额重分类的收口。</li>
-<li><strong class="lbl">知识点</strong>：审定表结构；应付账款明细账出现借方余额的性质判定（实质为预付账款，须重分类列示）；应付账款与预付账款、其他应付款的边界；账龄结构的初步审视。</li>
-<li><strong class="lbl">要我们做什么</strong>：按审定表类模板完成三层核对与重分类处理，填写审计说明并下结论。具体数字<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（审定表类模板栏目同 S2-6）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：审定表类底稿填制，理由同 S2-6；应付账款审定表的特色判分点在借方余额重分类，几乎每套卷面都会在此设点。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第三节「应付账款审计」（审定与列报部分）。</li>
-<li><strong class="lbl">如何备考</strong>：审定表做到明细层先扫一遍借方余额，逐户判断是预付性质还是记账错误。易错点：借贷方余额在明细账内直接轧差列示，资产负债同时低估。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-25" class="qanchor"></a>
-<h3 id="s2-25-108-fd">S2-25 第 108 题 FD 应付账款（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考应付账款明细的审查——与供应商对账单、采购合同、验收与发票记录的核对，以及异常户的识别。</li>
-<li><strong class="lbl">知识点</strong>：明细账与供应商对账单的双向核对与差异追查（在途物资、未达账项、单据传递时间差）；长期挂账户、大额户、关联供应商的重点审查；应付账款账龄分析的运用。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面选取重点户实施核对程序，在明细类底稿中记录核对结果与差异说明。具体供应商与金额<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（明细底稿的核对标记与差异说明栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：明细底稿填制。应付账款的核心认定是完整性，明细核对是发现差异与异常的第一道程序，故逐户留痕命题。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第三节「应付账款审计」（细节测试部分）。</li>
-<li><strong class="lbl">如何备考</strong>：差异先分类再追查：时间差、单据差、记账差，处理路径完全不同。易错点：把供应商对账单差异一律当作被审计单位错报——在途与未达同样能形成差异。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-26" class="qanchor"></a>
-<h3 id="s2-26-109-fd">S2-26 第 109 题 FD 应付账款（其三）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考应付账款函证的实施与结果处理。</li>
-<li><strong class="lbl">知识点</strong>：应付账款函证的必要性判断（不同于应收账款：内控良好、金额不大时可不函证，但重大或异常户仍应函证，命题常在此设辨析点）；选样标准（大额、关联方、长期挂账、异常户）；未回函的替代程序（检查期后付款、验收单、发票与合同）；回函差异的性质判定。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面完成函证对象选择、结果汇总或差异处理类栏目，或判断函证程序的恰当性。具体函证户<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（函证结果汇总底稿的对应栏目，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：函证汇总类底稿填制＋程序判断嵌合。函证考的是「选谁、差异怎么办」的决策链，汇总表形态最贴近实务工作底稿。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第三节「应付账款审计」（函证部分）。</li>
-<li><strong class="lbl">如何备考</strong>：应收、应付函证对照记：应收重存在、原则上应函证；应付重完整性、函证是补充手段，未入账的负债函证查不出来，必须靠 S2-27 的查找程序。易错点：拿函证结果去证明完整性，认定与程序错配。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-27" class="qanchor"></a>
-<h3 id="s2-27-110-fd">S2-27 第 110 题 FD 应付账款（其四）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考未入账应付账款的查找与采购截止测试——应付账款完整性认定的核心程序。</li>
-<li><strong class="lbl">知识点</strong>：查找程序的证据来源（期后付款记录、期末未付款发票、验收单与入库记录、未结算采购合同）；截止测试的单据日期与入账期间比对；暂估入账的合理性与期后冲回检查；费用跨期与负债低估的联动风险。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面给定的期后或期末单据线索，判断是否存在未入账负债并记录应调整事项，或完成截止测试底稿。具体单据<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（查找／截止底稿的核对与调整记录栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：程序执行类底稿填制。完整性程序查的是「账外之物」，没有现成明细可勾对，只能靠线索逐条追单据，命题以线索驱动的填制形态还原这一过程；这是应付账款组公认的题眼题。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第三节「应付账款审计」（完整性与截止部分）。</li>
-<li><strong class="lbl">如何备考</strong>：查找四线索背熟：期后付款、未付发票、验收未入账、暂估冲回，见到线索先问「货到没到、账记没记」。易错点：只查到期末日为止的单据——期后单据恰恰是发现未入账负债的主力证据。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><div class="qcard"><a id="s2-28" class="qanchor"></a>
-<h3 id="s2-28-111-fd">S2-28 第 111 题 FD 应付账款（其五）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考期后付款检查、应付账款的列报重分类与关联方披露收口。</li>
-<li><strong class="lbl">知识点</strong>：期后付款凭证与期末明细的对应核对（验证存在与计价，同时为完整性提供反向证据）；应付关联方款项的单独列示与披露；一年以上应付账款的账龄披露；债务重组或异常豁免款项的识别（应转损益而非长期挂账）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面完成期后检查记录或列报判断，并对本组下收口结论。具体款项<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（检查记录与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：检查类底稿填制＋列报判断。作为本组末题收口整组：程序做完之后，命题要求把结果落到报表列示与披露上，检验「查得出也报得对」的完整链条。</li>
-<li><strong class="lbl">对应书与章节</strong>：唐雪松第十一章第三节「应付账款审计」（期后检查与列报部分）。</li>
-<li><strong class="lbl">如何备考</strong>：长期挂账先问一句：这笔钱还用不用还？债务豁免、无法支付的应付款长期挂账是高频错点。易错点：关联方应付款混在普通明细里不单独披露，明细查得再细也会在列报上丢分。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-17">第十一章 采购与付款循环审计（第一节至四节）</a></p>
-</div><h2 id="fq-123125">第九部分 FQ 递延所得税负债（第 123–125 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 123–125 共 3 题、底稿代号 FQ、组名「递延所得税负债」有实测记录；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按递延所得税负债审计的标准维度分题：审定表、暂时性差异与计算复核、抵销列报与披露。与 ZY 组镜像对照复习效率最高。</p>
-</blockquote>
-<div class="qcard"><a id="s2-29" class="qanchor"></a>
-<h3 id="s2-29-123-fq">S2-29 第 123 题 FQ 递延所得税负债（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考递延所得税负债审定表的编制——按应纳税暂时性差异来源列示的勾稽收口。</li>
-<li><strong class="lbl">知识点</strong>：常见来源（固定资产加速折旧的税会差异、公允价值变动收益、未实现收益类项目等，以单位实际来源为准，题面待复核）；审定表与递延所得税资产审定表、所得税费用底稿的三方勾稽。</li>
-<li><strong class="lbl">要我们做什么</strong>：按审定表类模板完成来源项目级核对、填写审计说明并下结论。具体来源与数字<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（审定表类模板栏目同 S2-6）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：审定表类底稿填制，理由同 S2-21；资产、负债两张递延所得税审定表成对命题，考的是同一框架的双向运用。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：递延所得税负债审定表、应纳税暂时性差异来源识别（唐雪松版无递延所得税专章，不硬套章节）。</li>
-<li><strong class="lbl">如何备考</strong>：与 S2-21 同一张来源清单正反两面用：同一差异先判方向再归表。易错点：固定资产税法折旧快于会计折旧形成的是应纳税差异（负债侧），方向判反整组皆错。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-25">递延所得税负债审计</a></p>
-</div><div class="qcard"><a id="s2-30" class="qanchor"></a>
-<h3 id="s2-30-124-fq">S2-30 第 124 题 FQ 递延所得税负债（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考应纳税暂时性差异的识别与递延所得税负债金额的重新计算。</li>
-<li><strong class="lbl">知识点</strong>：资产账面价值大于计税基础（或负债账面价值小于计税基础）形成应纳税暂时性差异的判断规则；不确认递延所得税负债的例外情形（如商誉初始确认、符合条件的初始确认豁免，以准则规定为准）；转回期间预期税率的适用。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面逐项判断差异性质、重新计算递延所得税负债并记录与账面的差异。具体项目、税率与金额<mark class="warn">待样卷复核</mark>，不预设数字。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（复核计算底稿的判断、测算与差异栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：复核计算类底稿填制，与 S2-22 镜像同构；命题用同一批差异素材正反各考一次的概率不低，方向判断的稳定性就是本组的分水岭。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：应纳税暂时性差异识别、递延所得税负债重新计算、确认例外。</li>
-<li><strong class="lbl">如何备考</strong>：与 S2-22 共用方向口诀，练到不假思索。易错点：递延所得税负债不存在「可实现性上限」问题——与资产侧不同，负债原则上全额确认，拿资产侧的减记逻辑套负债是典型串线错误。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-25">递延所得税负债审计</a></p>
-</div><div class="qcard"><a id="s2-31" class="qanchor"></a>
-<h3 id="s2-31-125-fq">S2-31 第 125 题 FQ 递延所得税负债（其三）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考递延所得税资产与负债的抵销列报条件与披露收口。</li>
-<li><strong class="lbl">知识点</strong>：抵销列报的法定条件（具有法定抵销权、且意图净额结算或同时实现资产清偿负债，并与同一税务机关、同一纳税主体相关）；不满足条件时总额列示；附注中暂时性差异类型与金额的披露。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面判断抵销列报是否合规、检查披露完整性并记录结论。具体列报情形<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（判断说明与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：判断类小题嵌底稿记录。抵销是纯条件判断题，条件逐项比对即可判分；作为所得税负债组的末题，把递延所得税两组的收口落在列报层面，为 SP 组（所得税费用）的调节勾稽铺垫。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：递延所得税抵销列报、所得税附注披露。</li>
-<li><strong class="lbl">如何备考</strong>：抵销三条件背成清单逐项打钩，缺一不可。易错点：不同纳税主体（母子公司之间）的递延所得税余额直接轧差列示，是最常见的列报错点。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-25">递延所得税负债审计</a></p>
-</div><h2 id="qc-126127">第十部分 QC 盈余公积（第 126–127 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 126–127 共 2 题、底稿代号 QC、组名「盈余公积」有实测记录；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按盈余公积审计的标准维度分题：审定与变动勾稽、计提与用途检查。本组与未分配利润组（QD）在利润分配链上首尾相接。</p>
-</blockquote>
-<div class="qcard"><a id="s2-32" class="qanchor"></a>
-<h3 id="s2-32-126-qc">S2-32 第 126 题 QC 盈余公积（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考盈余公积审定（变动）表的编制——期初、计提、动用、期末的变动勾稽收口。</li>
-<li><strong class="lbl">知识点</strong>：盈余公积的构成（法定盈余公积、任意盈余公积）；变动表与利润表净利润、未分配利润底稿的三方勾稽；所有者权益变动表的衔接。</li>
-<li><strong class="lbl">要我们做什么</strong>：按审定表类模板（权益类以变动勾稽形态呈现）完成变动核对、填写审计说明并下结论。具体数字<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（审定表类模板栏目同 S2-6，权益类栏目以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：审定表类底稿填制。权益类科目金额不大但勾稽链密（净利润→计提→未分配利润），命题用一张变动表即可同时扫描三条链的断点。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：盈余公积变动勾稽、所有者权益审定（唐雪松版无盈余公积专章，不硬套章节）。</li>
-<li><strong class="lbl">如何备考</strong>：权益两组（QC、QD）连着练：先算计提基数再走分配顺序。易错点：计提基数是当年净利润（弥补以前年度亏损之后），拿未分配利润期末余额当基数是经典错误。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-26">盈余公积审计</a></p>
-</div><div class="qcard"><a id="s2-33" class="qanchor"></a>
-<h3 id="s2-33-127-qc">S2-33 第 127 题 QC 盈余公积（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考盈余公积计提合规性与用途的检查——计提比例依据、股东会决议程序、动用去向的合法性。</li>
-<li><strong class="lbl">知识点</strong>：法定盈余公积按公司法与公司章程规定计提（具体比例以法规与题面资料为准，不预设数字）；任意盈余公积须经股东会决议；盈余公积的法定用途（弥补亏损、转增资本）与转增后的留存要求；计提不足或超提的调整处理。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面复核计提金额、检查决议文件与动用凭证，并记录结论。具体计提数据与决议情形<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（复核与检查底稿的测算、核对与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：复核＋检查类底稿填制。盈余公积的对错一半在算（计提额）、一半在程序（决议与用途），命题以双轨底稿同时覆盖两面。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：盈余公积计提复核、利润分配决议检查、权益变动合规性。</li>
-<li><strong class="lbl">如何备考</strong>：检查顺序固定：先看决议、再算金额、后查用途。易错点：用盈余公积发放现金股利或转增后留存低于法定要求，都是用途合规的设错点（具体留存要求以法规与题面为准）。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-26">盈余公积审计</a></p>
-</div><h2 id="qd-128129">第十一部分 QD 未分配利润（第 128–129 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 128–129 共 2 题、底稿代号 QD、组名「未分配利润」有实测记录；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按未分配利润审计的标准维度分题：变动勾稽审定、利润分配顺序与股利检查。</p>
-</blockquote>
-<div class="qcard"><a id="s2-34" class="qanchor"></a>
-<h3 id="s2-34-128-qd">S2-34 第 128 题 QD 未分配利润（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考未分配利润变动的勾稽审定——期初数＋本年净利润－利润分配＝期末数的全链核对。</li>
-<li><strong class="lbl">知识点</strong>：未分配利润的形成链（期初未分配利润、以前年度损益调整、本年净利润转入、提取盈余公积、应付股利）；与利润表、盈余公积底稿、所有者权益变动表的交叉勾稽；前期差错更正对期初数的影响识别。</li>
-<li><strong class="lbl">要我们做什么</strong>：按审定表类模板完成变动链核对、填写审计说明并下结论。具体数字<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（审定表类模板栏目同 S2-6，权益类栏目以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：审定表类底稿填制。未分配利润是全表利润的最终落点，一张变动表能把利润表审计结果、权益分配程序的对错全部显影，故以勾稽链命题。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：未分配利润变动勾稽、利润分配链条核对（唐雪松版无未分配利润专章，不硬套章节）。</li>
-<li><strong class="lbl">如何备考</strong>：变动链默写成一条等式再逐项找证据。易错点：以前年度损益调整直接计入当期损益而绕过期初未分配利润，会同时错报两个期间。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-27">未分配利润审计</a></p>
-</div><div class="qcard"><a id="s2-35" class="qanchor"></a>
-<h3 id="s2-35-129-qd">S2-35 第 129 题 QD 未分配利润（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考利润分配顺序的合规检查与应付股利的确认、期后支付检查。</li>
-<li><strong class="lbl">知识点</strong>：法定分配顺序（弥补亏损→提取法定盈余公积→经决议提取任意盈余公积→向投资者分配）；亏损状态下不得分配的底线；股利宣告的决议依据与应付股利确认时点；期后实际支付的核对。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面检查分配顺序与决议文件、核对股利计算与期后支付，并记录结论。具体分配数据<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（检查底稿的核对与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：检查类底稿填制＋顺序判断。作为权益线的末题收口：分配顺序是纯逻辑链，错一步全链皆错，命题以此检验利润分配全流程的闭合程度，并与 QC 组（S2-32、S2-33）构成完整的分配审计。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：利润分配顺序检查、应付股利审计、权益披露。</li>
-<li><strong class="lbl">如何备考</strong>：分配顺序四步背成固定序列，见到「先分红后提公积」的情境立即判错。易错点：股利在宣告前提前入账，或已宣告股利长期挂账未付且无说明。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-27">未分配利润审计</a></p>
-</div><h2 id="sp-155157">第十二部分 SP 所得税费用（第 155–157 题）</h2>
-<blockquote>
-<p>实测事实：本组题号 155–157 共 3 题、底稿代号 SP、组名「所得税费用」有实测记录；逐题题名、分值、小题构成未逐题核查，<mark class="warn">待样卷复核</mark>。以下按所得税费用审计的标准维度分题：审定表、当期所得税复核、递延所得税与调节表勾稽。本组是专员2全线的汇合点：ZY、FQ 两组的审定结果最终都要流入本组。</p>
-</blockquote>
-<div class="qcard"><a id="s2-36" class="qanchor"></a>
-<h3 id="s2-36-155-sp">S2-36 第 155 题 SP 所得税费用（其一）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考所得税费用审定表的编制——当期所得税与递延所得税两部分的构成勾稽收口。</li>
-<li><strong class="lbl">知识点</strong>：所得税费用的构成公式（所得税费用＝当期所得税＋递延所得税费用）；审定表与利润表所得税费用项目、ZY／FQ 两组审定结果的勾稽；汇算清缴差异对当期所得税的影响入口。</li>
-<li><strong class="lbl">要我们做什么</strong>：按审定表类模板完成构成核对、填写审计说明并下结论。具体数字<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（审定表类模板栏目同 S2-6）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：审定表类底稿填制，理由同 S2-6；本表是所得税三角的顶点审定页，命题以此检验跨组数据搬运的准确性——本线最容易「算对一组、搬错一组」的地方就在这里。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：所得税费用审定表、所得税构成勾稽（唐雪松版无所得税费用专章，不硬套章节）。</li>
-<li><strong class="lbl">如何备考</strong>：审定前先把 ZY、FQ 两组的审定数抄成一张对照表再动笔。易错点：递延所得税费用只取资产侧变动、漏掉负债侧变动，构成公式当场断裂。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-28">所得税费用审计</a></p>
-</div><div class="qcard"><a id="s2-37" class="qanchor"></a>
-<h3 id="s2-37-156-sp">S2-37 第 156 题 SP 所得税费用（其二）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考当期所得税的复核——以会计利润为起点、经纳税调整得到应纳税所得额的计算链审查。</li>
-<li><strong class="lbl">知识点</strong>：纳税调整的主要类型（永久性差异：免税收入、不得扣除项目；暂时性差异在当期所得税与递延所得税之间的分工）；汇算清缴申报表与账面计提的核对；补提或冲回以前年度所得税的会计处理；适用税率与税收优惠的依据核查（具体税率以题面资料为准）。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面复核纳税调整项目与当期所得税计算，在复核底稿中记录差异与调整建议。具体调整项目与金额<mark class="warn">待样卷复核</mark>，不预设数字。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（复核计算底稿的调整、测算与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：复核计算类底稿填制。当期所得税的判分点在调整项目「该不该调、往哪个方向调」，逐项复核的底稿形态与这一判断过程同构。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：当期所得税复核、纳税调整项目识别、汇算清缴核对。</li>
-<li><strong class="lbl">如何备考</strong>：调整项目先分永久与暂时两筐：永久差异只进当期、永不递延；暂时差异当期与递延两边都要落。易错点：把资产减值准备这类暂时性差异在当期所得税里直接全额调增后，又漏记对应的递延所得税资产。</li>
-</ol>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-28">所得税费用审计</a></p>
-</div><div class="qcard"><a id="s2-38" class="qanchor"></a>
-<h3 id="s2-38-157-sp">S2-38 第 157 题 SP 所得税费用（其三）【<mark class="warn">待样卷复核</mark>】</h3>
-<ol>
-<li><strong class="lbl">考什么</strong>：按组标准维度展开，考递延所得税费用的汇总复核与所得税费用调节表的勾稽验证——从会计利润乘以适用税率出发，调节至所得税费用的全桥复核。</li>
-<li><strong class="lbl">知识点</strong>：递延所得税费用与 ZY／FQ 两组资产负债变动额的勾稽（计入损益部分与计入其他综合收益、权益部分的区分）；会计利润与所得税费用调节表的结构（永久性差异、未确认递延所得税资产等调节项）；实际税率异常的分析性复核。</li>
-<li><strong class="lbl">要我们做什么</strong>：按题面完成调节表复核或递延所得税费用汇总核对，记录勾稽差异与结论。具体调节项目与数字<mark class="warn">待样卷复核</mark>。</li>
-<li><strong class="lbl">需要填什么</strong>：<mark class="warn">待样卷复核</mark>（调节／复核底稿的勾稽与结论栏，以样卷为准）。</li>
-<li><strong class="lbl">出题形式及为什么</strong>：勾稽复核类底稿填制。调节表是所得税审计的「总验算」，一张表同时验算当期、递延与利润三组数据，命题以此作为专员2全线的收官题，检验跨组闭合能力。</li>
-<li><strong class="lbl">对应书与章节</strong>：属《审计学原理与实务》范畴，只标知识点：所得税费用调节表复核、递延所得税费用勾稽、实际税率分析。</li>
-<li><strong class="lbl">如何备考</strong>：调节表从两头往中间对：起点是利润总额、终点是审定所得税费用，中间每一项都要能说出来源底稿。易错点：计入其他综合收益或权益的递延所得税被误塞进所得税费用，调节表永远差一截且最难自查。作为全线最后一题，做完务必留时间回头对 ZY、FQ、SP 三角勾稽。</li>
-</ol>
-<hr>
-<p class="kp-links">知识点回顾 → <a href="knowledge.html#kp-b-28">所得税费用审计</a></p>
-</div><h2 id="2">附一 专员2岗全局打法</h2>
-<ol>
-<li><p class="segp"><strong>分工定位：与专员1零重叠、与专员3分循环</strong>。专员2的 38 题与专员1的 41 题无一重叠（实测）：专员1管销售与收款循环＋货币资金、应收、应交税费等，专员2管采购与付款循环＋长资产（固定资产、无形资产、在建工程）、其他应收款、应付账款、所得税三角与权益两组，专员3管生产与存货循环＋薪酬、成本费用。</p><p class="segp">赛场上不要替别岗做题，也不要等别岗的结论才开工——跨岗只有报表层勾稽，没有底稿层依赖（所得税费用与利润的勾稽除外，见第4点）。</p></li>
-<li><p class="segp"><strong>开工前提：等经理串行前置链解锁</strong>。经理必须先完成账套数据四步（数据采集→检查校验→账表映射→报表生成，严格串行）与审计材料「资料获取」，专员任务与财务数据才可用（实测：专员端点数据采集直接提示当前角色不支持，后三步被前置提示逐级锁住，资料获取按钮对专员禁用）。</p><p class="segp">等待期间先做不依赖数据的题：第29–32题了解内控的判断类小题、第52题的模板结构熟悉（正式作答仍以解锁后界面为准）。</p></li>
-<li><p class="segp"><strong>模板复用是本岗的提速主线</strong>。本岗底稿以审定表类模板为主（ZH、ZO、ZU、ZP、ZY、FD、FQ、QC、QD、SP 各组的第一题均为审定／变动勾稽定位，按组标准维度展开，逐题模板待复核）：表头＋三层行＋审计说明＋结论下拉＋「自动生成底稿」按钮，一套打法通吃十组。</p><p class="segp">先把第一张审定表（建议从 ZH 或 ZO 开始）做规范，后面九张照模迁移；控制测试类模板只出现第52题一道，但与专员3的第53题、专员1的第54题三循环同模，赛前练熟一次、三岗受益。</p></li>
-<li><p class="segp"><strong>所得税三角必须成组推进</strong>。ZY（104–106）、FQ（123–125）、SP（155–157）在题号上被其他科目隔开，但逻辑上是一个整体：暂时性差异先判方向分入 ZY／FQ 两表，SP 的当期部分查纳税调整、递延部分直接取 ZY／FQ 的审定变动额，最后用 S2-38 的调节表总验算。</p><p class="segp">建议做题顺序按 SP 的需要倒排：先 ZY、FQ，后 SP，不要按题号顺序一路做到 155 才发现前面两组要返工。</p></li>
-<li><strong>长资产三组按上下游连做</strong>。ZP 在建工程（101–103）的出口是 ZO 固定资产（92–97）的新增入口，ZU 无形资产（98–100）与 ZO 程序同构。三组连做时统一口径：资本化边界（S2-10、S2-19）、转固时点（S2-20）与折旧起点（S2-11）三处必须自洽，跨组数字（转固金额）抄录后立即对读一次。</li>
-<li><strong>采购循环一条链复习、一套风险结论复用</strong>。29–32 了解内控识别的缺陷→52 控制测试的信赖结论→107–111 应付账款的实质性范围，三段共用同一套风险判断：内控越弱，控制测试越不能信赖，应付账款的查找与截止程序（S2-27）就越要做足。固定资产新增检查（S2-10）的采购来源凭证与本循环的验收、发票记录亦可相互印证。</li>
-<li><p class="segp"><strong class="lbl">时间与顺序建议（按组标准维度的工作量推定，非实测）</strong>：审定表类题目单题耗时短但数量多，靠模板熟练度走量；真正的时间黑洞是折旧／摊销／递延所得税三类复核计算与应付账款查找程序。顺序建议：解锁后先扫判断类与审定表保底，再攻复核计算，最后留整块时间给 S2-27 与所得税三角的收口验算。</p><p class="segp">每张底稿提交前先用「自动生成底稿」汇总再核对审定表，避免下级底稿改了、审定表没跟上的低级断链。</p></li>
-</ol>
-<h2 id="_1">附二 跨岗衔接</h2>
-<ol>
-<li><strong class="lbl">前置链（经理→全体专员）</strong>：账套数据四步与资料获取全部由经理完成，专员端无任何替代操作（实测）。经理前置链每晚一步，全队三名专员的有效做题时间就少一步——专员2能做的配合是：等待期先清判断类题目、把审定表模板练到不用看说明，前置链一通立即转入底稿填制。</li>
-<li><p class="segp"><strong class="lbl">第158题试算平衡表（<span class="score">8.00 分</span>，实测）与专员2的关系</strong>：EB 试算平衡表是全卷收口页之一（经理自有题），汇集各岗审定结果编制。专员2贡献的审定数据面很宽：其他应收款、固定资产、无形资产、在建工程、两类递延所得税、应付账款、两类权益与所得税费用，任一科目的审定表未提交或调整未落表，都会在第158题形成试算不平或与审定报表（159–160）对不上。</p><p class="segp">专员2的纪律：每组做完立即提交、调整分录与底稿同步，不把「最后统一改」留到收尾。</p></li>
-<li><p class="segp"><strong class="lbl">第161→162题连锁锁与专员底稿质量的关系</strong>：第162题审计报告编制题带锁，须先答对第161题（选择审计意见类型）才解锁（实测，对经理同样生效）。意见类型的判断依据是全队未更正错报的汇总评价——专员2各科目发现的错报若只记在底稿说明里、未按要求汇总上报或调整落表，经理在第161题就缺少完整的错报清单，选错意见类型将连带锁死第162题，两题杠杆损失远超单题分值（第161、162题逐题分值<mark class="warn">待样卷复核</mark>，本文不预设）。</p><p class="segp">专员2的配合动作：重大调整、未更正错报、减值与或有事项线索，随做随清、结论栏写明金额方向与科目（金额以底稿实际为准），让经理汇总时可直接取用。</p></li>
-<li><p class="segp"><strong class="lbl">经理复核单中的专员2底稿</strong>：经理「我的任务」146 题中含专员底稿类 102 题作为复核载体（实测），复核落在底稿表头「复核／复核日期」栏，无独立复核入口。专员2底稿的审计说明写得越具体（程序、样本、异常、结论四要素齐全），经理复核越快；说明空白或只写结论的底稿最容易被打回占用全队时间。</p><p class="segp">第31题穿行测试同时出现在经理复核单中（实测纳入），该题的单据链记录务必写全。</p></li>
-</ol>
-<h2 id="_2">附三 <mark class="warn">待样卷复核</mark>清单</h2>
-<p>以下事项均为本文的证据缺口，正式练习（样卷开放至 2026-12-03）逐题打开后须逐项回填校正，未复核前不得作为题面事实引用：</p>
-<ol>
-<li><strong class="lbl">逐题题名</strong>：S2-1 至 S2-38 全部题目的样卷原题名（本文标题中的科目内分题均为按组标准维度展开的工作标题，非题面实录）。</li>
-<li><strong class="lbl">逐题分值</strong>：除第52题 <span class="score">4.00 分</span>有实测外，其余 37 题分值全部未记录，待复核；第161、162题分值亦待复核（附二仅引其实测的连锁锁机制与第158题 <span class="score">8.00 分</span>）。</li>
-<li><strong class="lbl">小题构成</strong>：各题内嵌小题的数量、题型（单选／多选／判断）与小题间依赖关系，全部待复核。</li>
-<li><strong class="lbl">分题维度对应</strong>：各组内按标准维度切分的主题（如固定资产组的折旧、处置、盘点、减值分题）与样卷实际分题是否一一对应，待逐题打开后校正；如有出入，以样卷为准重排本文对应关系。</li>
-<li><strong class="lbl">底稿模板归属</strong>：各科目组第一题是否均为审定表类模板、明细／复核类题目的实际栏目构成，待复核；第31题底稿的具体栏目（穿行路径记录方式）待复核。</li>
-<li><strong class="lbl">第52题细节</strong>：两段式测试内容的具体控制点条目、样本笔数与凭证编号来源，待复核。</li>
-<li><strong class="lbl">科目素材数字</strong>：各题涉及的金额、税率、折旧与摊销参数、计提比例等题面数字，本文一律未写，<mark class="warn">待样卷复核</mark>后如需引用须注明出处题面。</li>
-<li><strong class="lbl">教材映射回查</strong>：唐雪松版第十一章各节与采购内控、控制测试、应付账款、固定资产的对应已按查证目录标注；属《审计学原理与实务》范畴的各题只有知识点标注，如后续取得该书目录或样卷题析给出出处，再补映射。</li>
-</ol>
+  <main class="content">
+<h1>专员2线：样卷原题复刻与平台答案（38 题，合计 <span class="score">167.50 分</span>）</h1>
+<p>案例公司：<strong>福州青风子伞业有限公司</strong>，审计期间 2025 年度（2025.01.01–2025.12.31），审计机构为大兴会计师事务所（特殊普通合伙）。本页 38 题按样卷逐题复刻：每题先给原题（选择题列全选项；底稿题按平台表样复刻，浅黄色格为任务表中待填的空白格），点「显示答案」展开平台答案，其后是解析与操作流程。底稿表头编制多为范宏博、日期 2026/01/22，复核为夏旭坤、日期 2026/01/23；任务表数值栏多为空白、无黄色标识的以本页浅黄色格统一标示待填位置。</p>
+<p>全线勾稽主线：审定表类题目先做报表数、总账数、明细账数三方核对，期末审定数由期末未审数加减账项调整与重分类调整得到（调整方向随科目性质而定，各题按答案表逐项验算）；明细类底稿一般紧跟在审定表题之后；题目页内一般没有单独的联查入口，查上游、下游底稿走顶栏「…」→「底稿联查」，按索引号在左侧底稿树中定位。</p>
+
+<h2 id="g1">一、采购与付款循环内控了解与评价（第 29–32 题）</h2>
+
+<section class="qcard" id="q29">
+<h3>第 29 题 评价内部控制设计（1）（CGL-3）（<span class="score">3.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<div class="stem"><p class="segp">在执行了解和评价青风子公司采购与付款循环中“采购活动”的内部控制时，需编制完成“评价内部控制设计底稿（CGL-3）”审计工作底稿，背景资料1为该底稿待完成的部分内容。请结合背景资料“了解内部控制设计—控制流程（CGL-2）”所提供的信息，完成下列第（1）至第（3）小题。</p></div>
+<p class="subq">第（1）小题（1.00 分）受该控制目标直接影响的相关交易和账户余额及认定是（　）</p>
+<div class="opt">A、应付账款：完整性</div>
+<div class="opt">B、销售费用：发生</div>
+<div class="opt">C、管理费用：发生</div>
+<div class="opt">D、应付账款：存在</div>
+<p class="subq">第（2）小题（1.00 分）以下选项中与该控制目标相关的青风子公司设计的采购业务控制活动有（　）</p>
+<div class="opt">A、采购部门收到请购单后，采购金额在10万元以下的请购单由采购经理负责审批，采购金额在10万元以上的请购单还需提交总经理审批。</div>
+<div class="opt">B、需发生销售（管理）费用支出的部门填写费用申请单，其部门经理可以审批金额人民币1万元以下的费用；金额在人民币1万元以上的费用由总经理审批。</div>
+<div class="opt">C、如采购物资经验收不合格，采购专员应联系供应商办理退货。</div>
+<div class="opt">D、每周，财务部门会计汇总本周内生成的所有采购订单并与请购单核对，编制采购信息报告。如采购订单与请购单相符，会计即在采购信息报告上签字。如有不符，会计将通知采购专员，与其共同调查该事项。会计还需在采购信息报告中注明不符事项及其调查结果。</div>
+<p class="subq">第（3）小题（1.00 分）结合第（2）题选择的结果，判断青风子公司制定的采购控制活动对实现控制目标是否有效</p>
+<div class="opt">A、是</div>
+<div class="opt">B、否</div>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<p class="segp">第（1）小题：<strong>BCD</strong>。第（2）小题：<strong>AB</strong>。第（3）小题：<strong>A（是）</strong>。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">本题评价的是“采购活动”环节的控制设计，对应 CGL-2 中请购审批这一控制点：请购单按金额分级审批（10 万元以下采购经理批、以上报总经理批），费用申请同样分级审批（1 万元以下部门经理批、以上总经理批）。这类“先审批、后发生”的控制约束的是交易能不能发生，直接影响的认定是应付账款的<strong>存在</strong>与销售费用、管理费用的<strong>发生</strong>，故第（1）题选 BCD；A 项“应付账款：完整性”防范的是已发生的采购漏记，属于“记录应付账款”环节（第 30 题）的控制目标，不在本题控制点之下。第（2）题 A、B 都是审批类控制，与控制目标直接对应；C 是验收不合格后的退货处理，属验收环节；D 是订单与请购单的事后汇总核对，属另一控制点，均不选。第（3）题：已识别的控制活动能够实现控制目标，设计有效，选“是”。易错点：把“完整性”与“存在/发生”混为一谈——审批类控制防的是虚构与越权（存在/发生），连续编号、汇总核对类控制防的才是漏记（完整性）。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 打开题目页「背景单据」按钮，先看背景资料1（待完成的 CGL-3 底稿节选），确认本题评价的业务活动与控制目标原文。</p><p>2. 再打开背景资料「了解内部控制设计—控制流程（CGL-2）」，在“采购”部分定位分级审批的原文表述（请购单 10 万元分界、费用申请单 1 万元分界），据此逐项比对第（2）题四个选项。</p><p>3. 本题不查账套，无账表查询路径；答完三小题后注意三题之间的逻辑链：第（1）题定认定、第（2）题选控制、第（3）题下有效性结论。</p></div>
+</section>
+
+<section class="qcard" id="q30">
+<h3>第 30 题 评价内部控制设计（2）（CGL-3）（<span class="score">3.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<div class="stem"><p class="segp">在执行了解和评价青风子公司采购与付款循环中“记录应付账款活动”的内部控制时，需编制“评价内部控制设计（CGL-3）”审计工作底稿，背景资料1为该底稿待完成的部分内容。请结合背景资料“了解内部控制设计—控制流程（CGL-2）”所提供的信息，完成下列第（1）至第（3）小题。</p></div>
+<p class="subq">第（1）小题（编号 2.1，1.00 分）请判断，受该控制目标直接影响的相关交易和账户余额及认定是（　）</p>
+<div class="opt">A、应付账款：存在</div>
+<div class="opt">B、应付账款：权利和义务</div>
+<div class="opt">C、管理费用：发生</div>
+<div class="opt">D、销售费用：发生</div>
+<p class="subq">第（2）小题（编号 2.2，1.00 分）请根据本题所提供的背景审计资料，从以下选项中选出与该控制目标相关的青风子公司设计的记录应付账款控制活动（　）</p>
+<div class="opt">A、收到采购发票后，财务会计将采购发票所载信息与收料单（验收单）、采购合同核对。如所有单据核对一致，则编制采购记账凭证输入财务系统，经财务经理审核后过至明细账和总账。</div>
+<div class="opt">B、财务会计定期与供应商对账，如有差异及时进行调查和处理。</div>
+<div class="opt">C、发生销售（管理）费用的部门收到费用发票后，由其部门经理签字确认并交至财务部会计处复核报销。</div>
+<div class="opt">D、财务会计对收到的费用发票、费用申请（报销）单和其他单据进行核对，核对内容包括有关单据是否经恰当人员审批，金额是否相符等。如所有单据核对一致，则编制采购记账凭证输入财务系统，经财务经理审核后过至明细账和总账。（末尾采集时被截断，按同题A项句式补齐）</div>
+<p class="subq">第（3）小题（编号 2.3，1.00 分）结合第（2）题选择的结果，判断青风子公司制定的采购控制活动对实现控制目标是否有效（　）</p>
+<div class="opt">A、是</div>
+<div class="opt">B、否</div>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<p class="segp">第（1）小题：<strong>ABCD</strong>（四项全选）。第（2）小题：<strong>ACD</strong>。第（3）小题：<strong>A（是）</strong>。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">本题评价“记录应付账款活动”：核心控制是“三单核对后入账”——发票、收料单（验收单）、采购合同核对一致才编制记账凭证，且凭证须经财务经理审核后才过账。入账环节同时决定应付账款记的是不是真实义务（存在、权利和义务），以及费用类交易是否真实入账（管理费用、销售费用的发生），故第（1）题四项全选。第（2）题 A 是采购入账的三单核对，D 是费用发票入账前的核对与审批检查，C 是费用发票经部门经理签字确认后交财务复核报销，三项都属记录环节的控制；B“定期与供应商对账”是事后的独立核对控制，不属本题“记录应付账款”控制点，故不选。易错点有二：一是把供应商对账误当入账控制；二是第（1）题漏选“权利和义务”——应付账款入账直接确认企业的偿付义务，该认定与记录环节绑定最紧。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 同第 29 题路径：先开「背景单据」看背景资料1 的控制目标原文，再开 CGL-2 定位“记录应付账款”部分的关键句：“收到采购发票后，财务会计将采购发票所载信息与收料单（验收单）、采购合同核对。如所有单据核对无误，财务会计将采购发票登记入账。”</p><p>2. 用这句原文逐项筛第（2）题选项：凡描述入账前核对、签字确认、复核报销的选入；描述事后对账的排除。</p><p>3. 本题不查账套；注意小题编号为 2.1、2.2、2.3，与第 29 题的（1）（2）（3）是同一张 CGL-3 的不同行。</p></div>
+</section>
+
+<section class="qcard" id="q31">
+<h3>第 31 题 确定控制是否得到执行——穿行测试（CGL-3）（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<div class="stem"><p class="segp">在了解青风子公司采购与付款循环内部控制时，需针对关键业务控制点执行穿行测试。以下截取部分内容，执行相应程序并完成底稿记录。</p></div>
+<p>底稿「采购与付款循环控制执行情况的评价结果」，索引号 CGL-3，页次 1，编制 范宏博、日期 2026-1-22（任务表预填），复核栏空白。表名「采购与付款循环穿行测试——与采购有关的业务活动的控制」（浅黄色为待填格）：</p>
+<table class="wp">
+<tr><th>主要业务活动</th><th>测试内容</th><th>测试结果</th></tr>
+<tr><td rowspan="6">采购</td><td>采购业务记账凭证编号#</td><td>2025年12月002#（预填）</td></tr>
+<tr><td>请购单编号#</td><td>QG202512001（预填）</td></tr>
+<tr><td>请购内容</td><td>化纤布（预填）</td></tr>
+<tr><td>请购单是否得到适当审批（是否）</td><td>是（预填）</td></tr>
+<tr><td>采购订单编号#</td><td>CG202512001（预填）</td></tr>
+<tr><td>采购合同编号#</td><td class="blank">（待填）</td></tr>
+<tr><td></td><td>采购物料是否经过恰当验收（是否）</td><td class="blank">（下拉待选）</td></tr>
+<tr><td rowspan="5">记录应付账款</td><td>记录应付账款的记账凭证编号#</td><td>2025年12月002#（预填）</td></tr>
+<tr><td>采购发票编号#</td><td class="blank">（待填）</td></tr>
+<tr><td>验收（收料）单编号#</td><td class="blank">（待填）</td></tr>
+<tr><td>发票内容与采购合同、验收单内容是否相符（是否）</td><td class="blank">（下拉待选）</td></tr>
+<tr><td>是否记入应付账款贷方（是否）</td><td class="blank">（下拉待选）</td></tr>
+<tr><td>其他业务活动</td><td colspan="2">（略）……</td></tr>
+</table>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>待填项</th><th>平台答案</th></tr>
+<tr><td>采购合同编号#</td><td>ZY20251201</td></tr>
+<tr><td>采购物料是否经过恰当验收</td><td>是</td></tr>
+<tr><td>采购发票编号#</td><td>00828625</td></tr>
+<tr><td>验收（收料）单编号#</td><td>SL2025111</td></tr>
+<tr><td>发票内容与采购合同、验收单内容是否相符</td><td>是</td></tr>
+<tr><td>是否记入应付账款贷方</td><td>是</td></tr>
+</table>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">穿行测试是选定一笔交易，沿业务流程从发起到入账完整走一遍，验证控制是否真实存在并得到执行。本题样本就是 2025 年 12 月 002# 记账凭证对应的这笔化纤布采购：请购单 QG202512001 → 采购订单 CG202512001 → 采购合同 ZY20251201 → 验收单 SL2025111 → 采购发票 00828625 → 记入应付账款贷方。六个待填格全部是单据编号或“是否”判断，没有金额计算，得分关键是单据链找全、编号抄对。易错点：验收单编号 SL2025111 是 7 位尾号，不要与第 52 题控制测试样本中的 SL 系列编号混淆；发票号 00828625 为 8 位数字，抄录时不要漏位。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 以预填的记账凭证编号 2025年12月002# 为起点：顶栏「…」→「账套数据」→「账表查询」，调出 2025 年 12 月采购业务记账凭证，顺凭证附件定位请购单、订单、合同、发票、验收单。</p><p>2. 背景对照：题目页「背景单据」打开 CGL-2 控制流程，确认每个节点的单据名称与编号规则（QG 请购、CG 订单、SL 收料）。</p><p>3. 逐格回填编号，“是否”项按单据实际核对结果选“是”；完成后本题结论直接供第 32 题 CGL-4 引用，不要另找样本。</p></div>
+</section>
+
+<section class="qcard" id="q32">
+<h3>第 32 题 控制执行情况的评价结果（CGL-4）（<span class="score">1.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<div class="stem"><p class="segp">根据第3题的测试执行结果，完成以下底稿（节选自“控制执行情况的评价结果（CGL-4）”）的编写。（题面“第3题”指本组第 3 题，即第 31 题穿行测试。）</p></div>
+<table class="wp">
+<tr><th>主要业务活动</th><th>控制目标</th><th>受影响的相关交易、账户余额及认定</th><th>被审计单位的控制活动</th><th>控制活动对实现控制目标是否有效</th><th>控制活动是否得到执行</th></tr>
+<tr><td>采购</td><td>采购订单均已得到处理</td><td>应付账款：完整性；管理费用：完整性；销售费用：完整性</td><td>……</td><td>是（预填）</td><td class="blank">（下拉待选）</td></tr>
+<tr><td>记录应付账款</td><td>采购物品交易记录于适当期间</td><td>应付账款：存在、完整性</td><td>……</td><td>是（预填）</td><td class="blank">（下拉待选）</td></tr>
+</table>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<p class="segp">两行「控制活动是否得到执行」均为：<strong>是</strong>。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">CGL-4 是内控评价的收口表：设计有效性已在第 29、30 题评价完毕（均为“是”，本表预填），本题只补最后一列——运行有效性的初步结论，证据就是第 31 题穿行测试的结果。穿行样本中审批、验收、三单核对、入账各节点均按设计执行、无一例外，故两行均填“是”。易错点：本题不重新评价设计，不要因为某一行控制目标写的是“完整性”就改动前列；只要穿行无例外，执行结论就是“是”。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 无需新查账套：直接引用第 31 题穿行测试的六项结果。</p><p>2. 如需回看上游底稿，走顶栏「…」→「底稿联查」，在左侧底稿树按索引号打开 CGL-2（控制流程）、CGL-3（设计评价与穿行记录）核对行次对应关系。</p><p>3. 两行下拉均选“是”后保存；本题是本组四题的结论题，先做完第 29–31 题再做本题。</p></div>
+</section>
+
+<h2 id="g2">二、采购与付款循环控制测试（第 52 题）</h2>
+
+<section class="qcard" id="q52">
+<h3>第 52 题 采购与付款循环控制测试过程（CGC-3）（<span class="score">4.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<div class="stem"><p class="segp">请完成与采购有关的业务活动的控制测试底稿内容。</p></div>
+<p>底稿「采购与付款循环控制测试过程」，索引号 CGC-3，页次 1，编制 范宏博、日期 2026-1-22（任务表预填），复核栏空白。样本为五个记账凭证：08月006#、09月008#、10月009#、11月009#、12月011#（浅黄色为待填格；“***”为平台对已给信息的遮蔽显示）：</p>
+<table class="wp">
+<tr><th>主要业务活动</th><th>测试内容</th><th>08月006#</th><th>09月008#</th><th>10月009#</th><th>11月009#</th><th>12月011#</th></tr>
+<tr><td rowspan="5">采购</td><td>请购单编号#</td><td>***</td><td>***</td><td>***</td><td>***</td><td>***</td></tr>
+<tr><td>请购单是否得到适当审批（是否）</td><td>是</td><td>是</td><td>是</td><td>是</td><td>是</td></tr>
+<tr><td>采购订单编号#</td><td>***</td><td>***</td><td>***</td><td>***</td><td>***</td></tr>
+<tr><td>采购合同编号#</td><td class="blank">（待填）</td><td class="blank">（待填）</td><td class="blank">（待填）</td><td class="blank">（待填）</td><td class="blank">（待填）</td></tr>
+<tr><td>请购内容</td><td>伞头</td><td>伞尾</td><td>珠尾</td><td>拉线</td><td>伞布、线</td></tr>
+<tr><td rowspan="6">记录应付账款</td><td>验收（收料）单编号#</td><td class="blank">（待填）</td><td class="blank">（待填）</td><td class="blank">（待填）</td><td class="blank">（待填）</td><td class="blank">（待填）</td></tr>
+<tr><td>接收的材料是否经质检验收签字（是否）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td></tr>
+<tr><td>采购发票编号#</td><td class="blank">（待填）</td><td class="blank">（待填）</td><td class="blank">（待填）</td><td class="blank">（待填）</td><td class="blank">（待填）</td></tr>
+<tr><td>发票内容与采购合同、验收单内容是否相符（是否）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td></tr>
+<tr><td>是否记入恰当的会计期间（是否）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td></tr>
+<tr><td>是否记入应付账款贷方（是否）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td><td class="blank">（待选）</td></tr>
+</table>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>测试内容</th><th>08月006#</th><th>09月008#</th><th>10月009#</th><th>11月009#</th><th>12月011#</th></tr>
+<tr><td>采购合同编号#</td><td>YX20250806</td><td>HN20250907</td><td>JLY20251008</td><td>LH20251109</td><td>EG20251210</td></tr>
+<tr><td>验收（收料）单编号#</td><td>SL2025076</td><td>SL2025087</td><td>SL2025098</td><td>SL20251109</td><td>SL2025120</td></tr>
+<tr><td>采购发票编号#</td><td>30230875</td><td>30283942</td><td>20494500</td><td>10041001</td><td>38829221</td></tr>
+<tr><td>其余全部「是否」项（质检验收签字、发票与合同验收单相符、记入恰当期间、记入应付账款贷方）</td><td colspan="5">均为「是」</td></tr>
+</table>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">控制测试与穿行测试的区别：穿行只走一笔（第 31 题），控制测试要抽多个样本重复验证同一控制。本题 5 个样本横跨 8–12 月，逐个样本核对合同、验收单、发票三单是否齐全相符、是否记入恰当期间与应付账款贷方，全部无偏差，支持控制运行有效的结论。编号规律可辅助记忆与防错：合同号为供应商拼音缩写＋年月＋序号（YX/HN/JLY/LH/EG），验收单为 SL＋年月＋序号。易错点：五个样本的发票号位数不一（8 位为主），抄录时以账套附件原图为准逐位核对；“是否记入恰当的会计期间”看的是发票与验收所属期间同凭证期间是否一致，不是看付款期间。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，按五个月份逐笔调出样本记账凭证（08月006# 等），打开凭证附件依次找采购合同、验收单、采购发票。</p><p>2. 逐样本核对：合同号、收料单号、发票号抄入对应列；再比对发票内容与合同、验收单的品名数量是否相符，验收单上有无质检签字，凭证期间与入账方向（应付账款贷方）是否正确，逐项选“是/否”。</p><p>3. 控制背景对照 CGL-2（经「背景单据」或底稿联查打开）；五个样本全部完成后再保存底稿。</p></div>
+</section>
+
+<h2 id="g3">三、ZH 其他应收款（第 74–76 题）</h2>
+
+<section class="qcard" id="q74">
+<h3>第 74 题 ZH-1 其他应收款审定表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>审定表结构：项目／期末未审数／账项调整（借方、贷方）／重分类调整（借方、贷方）／期末审定数／期初审定数／索引号，并附审计说明与审计结论栏。任务表数值栏为空白（浅黄色示意待填区）。</p>
+<table class="wp">
+<tr><th>项目</th><th class="num">期末未审数</th><th class="num">账项调整借方</th><th class="num">账项调整贷方</th><th class="num">重分类调整</th><th class="num">期末审定数</th><th class="num">期初审定数</th><th>索引号</th></tr>
+<tr><td>其他应收款</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+</table>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">期末未审数</th><th class="num">账项调整借方</th><th class="num">期末审定数</th><th class="num">期初审定数</th><th>索引号</th></tr>
+<tr><td>其他应收款</td><td class="num">242,023.00</td><td class="num">800.00</td><td class="num">242,823.00</td><td class="num">221,527.30</td><td>ZA1-1</td></tr>
+</table>
+<p class="segp">审计说明与索引号均指向 ZA1-1：本表唯一的账项调整 800.00 元来自库存现金监盘差异（见专员1线 ZA1-1），审定数＝242,023.00＋800.00＝242,823.00。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">审定表的填法是全线通用套路：先把报表数、总账数、明细账数核对一致，再汇总各明细底稿的调整。本题调整只有一笔 800.00 元借方调整，性质是现金盘点短缺转入其他应收款（向经办人追索），索引号直接写来源底稿 ZA1-1。易错点：账项调整借方使审定数增加，不要套用“调整即调减”的惯性；重分类调整本题为零，不要凭空填数。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调其他应收款的报表数、总账数、明细账合计数三方核对。</p><p>2. 调整来源走顶栏「…」→「底稿联查」，按索引号 ZA1-1 打开库存现金监盘表确认 800.00 元差异；明细数核对下一题 ZH-2。</p><p>3. 按答案表验算：242,023.00＋800.00＝242,823.00，勾稽一致后保存。</p></div>
+</section>
+
+<section class="qcard" id="q75">
+<h3>第 75 题 ZH-2 其他应收款明细表（<span class="score">4.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>明细表结构：按款项性质与往来单位列示期初余额／本期增加／本期减少／期末余额／账龄分列／期末审定数，并附审计说明。任务表数值栏为空白。本次采集时，未审数的账龄分列（1–2 年、2–3 年、3 年以上）未逐列读出，本页只列读到的数据，该三列的未审分列数字不在本页呈现。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>期初余额合计</td><td class="num">221,527.30</td></tr>
+<tr><td>本期增加合计</td><td class="num">2,763,435.00</td></tr>
+<tr><td>本期减少合计</td><td class="num">2,742,939.30</td></tr>
+<tr><td>期末余额合计（未审）</td><td class="num">242,023.00</td></tr>
+<tr><td>期末审定数合计</td><td class="num">242,823.00</td></tr>
+<tr><td>其中：备用金</td><td class="num">4,800.00</td></tr>
+<tr><td>其中：社保</td><td class="num">111,077.40</td></tr>
+<tr><td>其中：公积金</td><td class="num">126,945.60</td></tr>
+<tr><td>备用金明细：陈佳怡</td><td class="num">800.00</td></tr>
+<tr><td>备用金明细：卫琴</td><td class="num">4,000.00</td></tr>
+</table>
+<p class="segp">审计说明指向 ZA1-1（同第 74 题的 800.00 元调整）。勾稽：221,527.30＋2,763,435.00－2,742,939.30＝242,023.00；备用金 800.00＋4,000.00＝4,800.00；社保 111,077.40＋公积金 126,945.60＋备用金 4,800.00＝242,823.00（审定后合计）。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">明细表考的是按性质拆分与逐项勾稽：其他应收款期末余额由社保、公积金、备用金三类构成，其中社保与公积金是代扣代缴的垫付款项，备用金是员工借款。800.00 元调整落在备用金——陈佳怡名下：现金监盘发现的短缺 800.00 元转由经办人承担，挂入备用金明细，故审定数比未审数多 800.00。易错点：卫琴同时是采购经理（见 CGL-2 人员表），其 4,000.00 元为备用金正常余额，不要与 800.00 元调整混淆；合计行必须与 ZH-1 审定表的未审数、审定数逐项对上。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调其他应收款明细账，按款项性质（备用金、社保、公积金）与个人名归集发生额。</p><p>2. 账龄在明细账中按挂账日期分列填入；调整 800.00 元的出处经「底稿联查」打开 ZA1-1 核对。</p><p>3. 填完先自验三组勾稽（期初＋增加－减少＝期末；分项合计＝总计；审定合计＝ZH-1 审定数），再保存。</p></div>
+</section>
+
+<section class="qcard" id="q76">
+<h3>第 76 题 ZH2-1 其他应收款账龄分析表（<span class="score">4.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>账龄分析表结构：按账龄段（1 年以内、1–2 年、2–3 年、3 年以上）列示审定金额、其中不计提坏账准备的内部往来金额、应计提金额，以及坏账准备年初数、本期计提、本期转回。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>账龄</th><th class="num">审定金额</th><th class="num">其中：不计提坏账准备的内部往来</th><th class="num">应计提金额</th></tr>
+<tr><td>1 年以内</td><td class="num">242,823.00</td><td class="num">242,823.00</td><td class="num">-</td></tr>
+<tr><td>合计</td><td class="num">242,823.00</td><td class="num">242,823.00</td><td class="num">-</td></tr>
+</table>
+<p class="segp">坏账准备：年初数 0.00、本期计提 0.00、本期转回 0.00。审计说明：「经复核，未见异常。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">本题的结论链是：其他应收款全部账龄在 1 年以内，且全部属于不计提坏账准备的内部往来（社保、公积金代垫与员工备用金），故应计提金额为零、本期不计提也不转回。与应收账款按 5% 计提（见第 106 题 ZY-3）形成对照：计提与否取决于款项性质与预期信用损失，不是所有债权都机械套比例。易错点：看到“账龄分析表”就套账龄比例计提——本题答案明确全额列入“不计提”一栏。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 数据承接第 75 题 ZH-2 明细表：账龄分列与审定数直接过入本表，经「底稿联查」按索引号 ZH-2 打开核对。</p><p>2. 逐项判断款项性质：社保、公积金、备用金属内部往来，全额填入“不计提坏账准备的内部往来”列，应计提列填“-”。</p><p>3. 坏账准备三栏按账套坏账准备科目本年发生额填 0.00，审计说明写「经复核，未见异常。」</p></div>
+</section>
+
+<h2 id="g4">四、ZO 固定资产（第 92–97 题）</h2>
+
+<section class="qcard" id="q92">
+<h3>第 92 题 ZO-1 固定资产审定表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>审定表结构：固定资产原值、累计折旧、减值准备、账面价值四行，各列期末未审数／账项调整／重分类调整／期末审定数／期初审定数。任务表数值栏为空白。本题无审计调整，各行审定数即未审数。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">期末数</th><th class="num">期初数</th></tr>
+<tr><td>固定资产原值</td><td class="num">26,690,554.20</td><td class="num">25,821,354.20</td></tr>
+<tr><td>累计折旧</td><td class="num">2,447,032.08</td><td class="num">1,314,522.92</td></tr>
+<tr><td>减值准备</td><td class="num">0.00</td><td class="num">0.00</td></tr>
+<tr><td>账面价值</td><td class="num">24,243,522.12</td><td class="num">24,506,831.28</td></tr>
+</table>
+<p class="segp">勾稽：26,690,554.20－2,447,032.08－0.00＝24,243,522.12。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">固定资产审定表是四行结构表，核心勾稽只有一条：账面价值＝原值－累计折旧－减值准备。本题无任何审计调整，审定数等于账面数；但“无调整”本身是结论，前提是后面五题（增减变动、监盘、折旧复核、新增查验、报废查验）全部未见异常。易错点：期初账面价值 24,506,831.28 高于期末，是因为本期折旧计提（约 113.8 万元）超过新增原值净额，不要误判为填反。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，核固定资产报表数、总账数与卡片明细合计数。</p><p>2. 本表数字由第 93 题 ZO-2 增减变动表汇总过入；经「底稿联查」按 ZO-2 打开核对期末、期初两列。</p><p>3. 调整栏本题全为零/空白，按答案表口径不填数；最后验算账面价值一行。</p></div>
+</section>
+
+<section class="qcard" id="q93">
+<h3>第 93 题 ZO-2 固定资产增减变动表（<span class="score">4.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>增减变动表结构：按资产类别列示原值与累计折旧的期初余额／本期增加／本期减少／期末余额，并汇总账面价值。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">期初余额</th><th class="num">本期增加</th><th class="num">本期减少</th><th class="num">期末余额</th></tr>
+<tr><td>固定资产原值</td><td class="num">25,821,354.20</td><td class="num">877,200.00</td><td class="num">8,000.00</td><td class="num">26,690,554.20</td></tr>
+<tr><td>累计折旧</td><td class="num">1,314,522.92</td><td class="num">1,137,998.28</td><td class="num">5,489.12</td><td class="num">2,447,032.08</td></tr>
+<tr><td>账面价值</td><td class="num">24,506,831.28</td><td class="num"></td><td class="num"></td><td class="num">24,243,522.12</td></tr>
+</table>
+<p class="segp">本期减少全部来自电子设备报废：减少原值 8,000.00、转出累计折旧 5,489.12（见第 97 题 ZO-6）。本期增加原值 877,200.00 为本期新增资产合计（见第 96 题 ZO-5）。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">增减变动表的每一行都服从“期初＋增加－减少＝期末”。两个关键勾稽：原值增加 877,200.00 必须等于 ZO-5 新增查验表的合计；原值减少 8,000.00 与折旧减少 5,489.12 必须等于 ZO-6 报废查验表的报废资产原值与累计折旧。累计折旧本期增加 1,137,998.28 是本期计提额，与第 95 题 ZO-4 折旧复核表的“本期应提＝已提”对上。易错点：折旧减少不是计提的负数，而是随报废资产一并转出的累计折旧，别把两栏混填。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调固定资产明细账（卡片账），按类别汇总期初、增加、减少、期末。</p><p>2. 增加、减少两栏分别与「底稿联查」中的 ZO-5、ZO-6 对照；折旧计提额与 ZO-4 对照。</p><p>3. 逐行验算“期初＋增加－减少＝期末”，合计行与第 92 题 ZO-1 对上后保存。</p></div>
+</section>
+
+<section class="qcard" id="q94">
+<h3>第 94 题 ZO-3 固定资产监盘表（<span class="score">4.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>监盘表结构：逐项列示固定资产卡片编号、名称、账面数量、监盘数量、差异、账面单位原值与备注，共 56 行资产。本页按表样列示结构与关键行，全部 56 行的监盘结论一致（见答案）。</p>
+<table class="wp">
+<tr><th>行次</th><th>监盘要点</th><th>说明</th></tr>
+<tr><td>1–56</td><td>账面数量 vs 监盘数量逐项核对</td><td>任务表待填：监盘数量、差异、备注</td></tr>
+<tr><td>48</td><td>厂房 GJ-002</td><td>账面单位原值较大，需单独核实</td></tr>
+<tr><td>28、36、37、38、49、50、51、52</td><td>本期新增资产</td><td>备注栏标注「本期新增」</td></tr>
+</table>
+<p class="segp">注意：本监盘表不含已报废资产（GF-008、GF-022 已剔除）；第 95 题折旧复核表则保留原编号并备注报废，两表口径不同，不要混淆。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<p class="segp">56 行监盘数量均等于账面数量，差异均为「-」；备注「本期新增」见于第 28、36、37、38、49、50、51、52 行；合计账面单位原值 24,830,734.20；第 48 号厂房 GJ-002 账面单位原值 7,263,498.00。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">监盘验证的是固定资产的存在与完整性：以账查实（按卡片找实物）证存在，以实查账（现场实物反查卡片）证完整。本题 56 项账实全部相符、无差异，结论支持 ZO-1 无调整。合计 24,830,734.20 是“账面单位原值”列的合计口径，与 ZO-1 原值 26,690,554.20 不是同一口径（监盘表按卡片单位原值列示且不含已报废资产），两个数字不要互相套改。易错点：把报废资产 GF-008、GF-022 误列入监盘范围——它们已处置，只在折旧复核表中留痕。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 监盘路径：先经「底稿联查」打开 ZO-2 取得卡片清单，再按清单实地逐项盘点（本题在平台内按表填列监盘数量与差异）。</p><p>2. 本期新增的 8 行与第 96 题 ZO-5 的新增清单互相对照；厂房 GJ-002 单独核对卡片原值。</p><p>3. 差异列全部填“-”，备注只在新增行填「本期新增」，最后核对合计行。</p></div>
+</section>
+
+<section class="qcard" id="q95">
+<h3>第 95 题 ZO-4 固定资产折旧复核表（<span class="score">10.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>折旧复核表结构：逐项列示固定资产的累计折旧期初余额、本期应提折旧、本期已提折旧、差异与备注，按卡片原编号排列（已报废资产保留编号并备注报废）。任务表待填应提数与差异栏。本题为本组分值最高题（10.00 分），考的是逐项重新计算。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>累计折旧期初余额合计</td><td class="num">1,314,522.92</td></tr>
+<tr><td>本期应提折旧合计</td><td class="num">1,137,998.28</td></tr>
+<tr><td>本期已提折旧合计</td><td class="num">1,137,998.28</td></tr>
+<tr><td>差异</td><td class="num">全部为「-」</td></tr>
+</table>
+<p class="segp">备注分布：GF-008 报废（第 15 号）、GF-022 报废（第 25 号）；本期新增见于第 18、28、36、37、38、49、50、51、52 号；第 41 号切管机累计折旧期初余额 15,516.48。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">折旧复核是重新执行程序：按每项资产的原值、折旧年限、残值率与已使用月份重算应提折旧，再与账面已提数逐项比对。本题应提＝已提、差异全为零，说明折旧计提准确，这也是 ZO-1 无调整的证据之一。两个口径提醒：报废资产在本表保留原编号（与第 94 题监盘表剔除报废资产的口径不同）；本期新增资产自次月起计提折旧，复核时按新增月份折算，不要按全年计提。易错点：合计 1,137,998.28 必须与第 93 题 ZO-2 累计折旧“本期增加”一致，差一分钱都要回查。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调固定资产卡片账与折旧计提明细，取得每项资产的原值、启用日期、年限、残值率。</p><p>2. 可用右下角工具箱计算器逐项复算月折旧额×本期应提月份，与账面已提数比对，差异栏填“-”或具体差额。</p><p>3. 报废两项（GF-008、GF-022）核对至「底稿联查」ZO-6；合计与 ZO-2 对上后保存。</p></div>
+</section>
+
+<section class="qcard" id="q96">
+<h3>第 96 题 ZO-5 固定资产新增查验表（<span class="score">6.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>新增查验表结构：逐项列示本期新增固定资产的名称、金额、对应科目与核对内容 1–6 的勾选结果。核对内容说明共 6 项，平台原文第 6 项即写作「6、…」。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<p class="segp">本期新增固定资产共 8 项，合计 <strong>877,200.00</strong>；8 项的对应科目均为银行存款；核对内容 1–5 均为「√」，第 6 列空白。审计说明：「1.经查验，未见异常情形。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">新增查验验证入账价值与真实性：逐项核对采购合同、发票、验收单与付款凭证（核对内容 1–5），8 项全部相符，付款均经银行存款支付。合计 877,200.00 与第 93 题 ZO-2 原值“本期增加”严格勾稽。平台原文细节照录：核对内容说明第 6 项平台上就写为「6、…」，第 6 列答案为空白，不要自行补勾或补写说明文字。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调本期固定资产增加明细，逐项追到采购合同、发票、验收单。</p><p>2. 付款核对走银行存款明细账，确认 8 项对应科目均为银行存款且金额一致。</p><p>3. 核对内容 1–5 逐项打「√」，第 6 列留空；合计与「底稿联查」ZO-2 对上后保存。</p></div>
+</section>
+
+<section class="qcard" id="q97">
+<h3>第 97 题 ZO-6 固定资产报废查验表（<span class="score">4.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>报废查验表结构：列示报废资产的名称数量、原值、累计折旧、账面价值、清理收入、清理费用、清理净损益、处置日期与凭证号，并逐项勾选核对内容 1–5。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>报废资产：台式电脑 2 台，原值</td><td class="num">8,000.00</td></tr>
+<tr><td>累计折旧</td><td class="num">5,489.12</td></tr>
+<tr><td>账面价值</td><td class="num">2,510.88</td></tr>
+<tr><td>清理收入</td><td class="num">1,000.00</td></tr>
+<tr><td>清理费用</td><td class="num">0.00</td></tr>
+<tr><td>清理净损失</td><td class="num">1,510.88</td></tr>
+</table>
+<p class="segp">处置日期 2025/12，凭证号 记-26/27/28；核对内容 1–5 均为「√」。审计说明：「1.本期固定资产清理净损失，转入营业外支出 1,510.88，与营业外支出核对一致。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">清理净损益的计算链：账面价值 2,510.88（＝原值 8,000.00－累计折旧 5,489.12）＋清理费用 0.00－清理收入 1,000.00＝净损失 1,510.88，转入营业外支出。本题数字与未审利润表的营业外支出 1,510.88 完全一致，是跨表勾稽点。原值与折旧两数同时也是第 93 题 ZO-2 的“本期减少”。易错点：清理收入是冲减损失而不是计入营业外收入；净损失方向不要填反。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调固定资产报废审批记录与记-26/27/28 三张凭证，核对转入清理、收到残料款、结转损益三步处理。</p><p>2. 清理净损失与利润表营业外支出核对（未审利润表营业外支出 1,510.88，资料经顶栏「…」→「审计材料」→「资料查看」打开利润表（未审））。</p><p>3. 核对内容 1–5 打「√」，原值、折旧与「底稿联查」ZO-2 的减少栏对上后保存。</p></div>
+</section>
+
+<h2 id="g5">五、ZU 无形资产（第 98–100 题）</h2>
+
+<section class="qcard" id="q98">
+<h3>第 98 题 ZU-1 无形资产审定表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>审定表结构：无形资产原值、累计摊销、减值准备、账面价值四行，各列期末未审数／账项调整／重分类调整／期末审定数／期初审定数。任务表数值栏为空白。本题无审计调整。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">期末数</th><th class="num">期初数</th></tr>
+<tr><td>无形资产原值</td><td class="num">6,860,400.00</td><td class="num">6,860,400.00</td></tr>
+<tr><td>累计摊销</td><td class="num">745,540.00</td><td class="num">394,900.00</td></tr>
+<tr><td>减值准备</td><td class="num">0.00</td><td class="num">0.00</td></tr>
+<tr><td>账面价值</td><td class="num">6,114,860.00</td><td class="num">6,465,500.00</td></tr>
+</table>
+<p class="segp">勾稽：6,860,400.00－745,540.00＝6,114,860.00；本期原值无增减，账面价值下降额 350,640.00 即本期摊销额（见第 100 题）。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">结构与固定资产审定表完全平行：账面价值＝原值－累计摊销－减值准备。本期原值期初期末均为 6,860,400.00，说明本期无新增、无处置无形资产，全年变动只有摊销。易错点：把累计摊销期末数 745,540.00 与本期摊销额 350,640.00 混淆——前者是累计数，后者＝745,540.00－394,900.00。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，核无形资产报表数、总账数、明细账合计数。</p><p>2. 明细与摊销分别由下一题 ZU-2 与第 100 题 ZU-3 支撑，经「底稿联查」打开核对。</p><p>3. 调整栏本题为零，验算账面价值行后保存。</p></div>
+</section>
+
+<section class="qcard" id="q99">
+<h3>第 99 题 ZU-2 无形资产明细表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>明细表结构：按无形资产类别（土地使用权、专利权、商标权、软件）列示原值、累计摊销、减值准备、账面价值及调整栏。任务表数值栏为空白。本次采集时，本表的账项调整贷方、重分类调整与调整索引三处未逐格单独读出，只确认了规律：调整列各明细行均为 0.00、总计行为「-」，即本题无调整；本页按此口径呈现，不列该三处的逐格数字。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>类别</th><th class="num">原值</th><th class="num">累计摊销</th><th class="num">账面价值</th></tr>
+<tr><td>土地使用权</td><td class="num">5,976,000.00</td><td class="num">448,200.00</td><td class="num">5,527,800.00</td></tr>
+<tr><td>专利权</td><td class="num">152,400.00</td><td class="num">24,940.00</td><td class="num">127,460.00</td></tr>
+<tr><td>商标权</td><td class="num">102,000.00</td><td class="num">20,400.00</td><td class="num">81,600.00</td></tr>
+<tr><td>软件</td><td class="num">630,000.00</td><td class="num">252,000.00</td><td class="num">378,000.00</td></tr>
+<tr><td>合计</td><td class="num">6,860,400.00</td><td class="num">745,540.00</td><td class="num">6,114,860.00</td></tr>
+</table>
+<p class="segp">审计说明：「1.总账与明细账核对一致。」四类原值合计、摊销合计、账面价值合计与第 98 题 ZU-1 期末数逐项一致。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">明细表的价值在分项勾稽：土地使用权占原值的 87% 以上，是本组无形资产的绝对主体，其账面价值 5,527,800.00 单独超过其余三类之和。逐项验算“原值－摊销＝账面价值”四行全部成立，合计与审定表对上，本题无调整。易错点：软件累计摊销 252,000.00 恰为原值的 40%，不要与摊销年限混算；本题只填期末构成，不做摊销复核（复核在下一题）。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调无形资产明细账，按四类资产归集原值与累计摊销。</p><p>2. 调整列按明细账实际发生额填列（本题各明细行 0.00、总计行「-」）。</p><p>3. 合计三数与「底稿联查」ZU-1 对上，审计说明按平台原文写「总账与明细账核对一致。」后保存。</p></div>
+</section>
+
+<section class="qcard" id="q100">
+<h3>第 100 题 ZU-3 无形资产摊销复核表（<span class="score">6.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>摊销复核表结构：逐项列示无形资产的月摊销金额、累计摊销期初余额、本期应计摊销、本期实计摊销、差异、残值率与减值准备累计金额；土地使用权在答案区按厂房 1、厂房 2、厂房 3 分行列示。任务表待填应计与差异栏。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>月摊销金额合计</td><td class="num">29,220.00</td></tr>
+<tr><td>累计摊销期初余额合计</td><td class="num">394,900.00</td></tr>
+<tr><td>本期应计摊销</td><td class="num">350,640.00</td></tr>
+<tr><td>本期实计摊销</td><td class="num">350,640.00</td></tr>
+<tr><td>差异</td><td class="num">全部为「-」</td></tr>
+<tr><td>其中：商标权月摊销金额</td><td class="num">850.00</td></tr>
+<tr><td>商标权累计摊销期初余额</td><td class="num">10,200.00</td></tr>
+</table>
+<p class="segp">各行残值率均为「-」，减值准备累计金额均为 0.00；审计说明栏为空白。验算：29,220.00×12＝350,640.00；商标权 850.00×12＝10,200.00，与其期初累计摊销自洽。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">摊销复核与折旧复核同理：按月摊销额×12 个月重算本期应计额，与实计额比对，本题完全一致、差异全为零。商标权一行最具辨识度：月摊销 850.00（原值 102,000.00÷10 年÷12 月），期初累计摊销恰为 10,200.00（已摊 12 个月）。土地使用权按厂房 1、2、3 分行复核，与在建工程厂房（第 101–103 题）是不同资产，不要把土地摊销与厂房折旧混在一起。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调无形资产明细账与摊销计提明细，取得各项月摊销额。</p><p>2. 逐项复算：月摊销额×12＝本期应计额，与实计额比对，差异填“-”；可用右下角工具箱计算器验算合计 29,220.00×12＝350,640.00。</p><p>3. 期初合计 394,900.00 与「底稿联查」ZU-1 期初累计摊销对上后保存；审计说明栏按平台口径留空。</p></div>
+</section>
+
+<h2 id="g6">六、ZP 在建工程（第 101–103 题）</h2>
+
+<section class="qcard" id="q101">
+<h3>第 101 题 ZP-1 在建工程审定表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>审定表结构：期末未审数／账项调整（借方、贷方）／重分类调整／期末审定数／期初审定数／索引号。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>期末未审数</td><td class="num">3,317,500.00</td></tr>
+<tr><td>账项调整借方</td><td class="num">100,650.00</td></tr>
+<tr><td>期末审定数</td><td class="num">3,418,150.00</td></tr>
+<tr><td>期初审定数</td><td class="num">0.00</td></tr>
+</table>
+<p class="segp">调整索引号 ZP-3：100,650.00＝契税 99,000.00＋印花税 1,650.00，系购置厂房的相关税费应计入在建工程初始成本（见第 103 题）。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">在建工程期初为零，本期全部为新购厂房一笔。审定数比未审数多 100,650.00，调整方向是“费用转资本”：企业把契税、印花税分别记进了管理费用与税金及附加，按准则购置资产的相关税费应计入资产初始成本，故调增在建工程。这笔调整同时牵动管理费用（第 103 题审计说明）与税金及附加（SP 组），是全线跨科目勾稽的枢纽之一。易错点：只调在建工程、忘了调整的对方科目在说明中要写全分录。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，核在建工程报表数、总账数、明细账数。</p><p>2. 调整出处经「底稿联查」按索引号 ZP-3 打开厂房购置查验表，确认契税 99,000.00 与印花税 1,650.00 两笔税费的构成。</p><p>3. 索引号填 ZP-3，验算 3,317,500.00＋100,650.00＝3,418,150.00 后保存。</p></div>
+</section>
+
+<section class="qcard" id="q102">
+<h3>第 102 题 ZP-2 在建工程明细表（<span class="score">4.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>明细表结构：原值与账面价值两组，各列期初余额／本期增加／本期减少／期末余额／账项调整／期末审定数。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>期初余额（原值/账面价值）</td><td class="num">-</td></tr>
+<tr><td>本期增加</td><td class="num">3,317,500.00</td></tr>
+<tr><td>本期减少</td><td class="num">-</td></tr>
+<tr><td>期末余额</td><td class="num">3,317,500.00</td></tr>
+<tr><td>账项调整借方</td><td class="num">100,650.00</td></tr>
+<tr><td>期末审定数</td><td class="num">3,418,150.00</td></tr>
+</table>
+<p class="segp">厂房行调整索引为 ZP-3。在建工程未完工不计提折旧、不摊销，故原值与账面价值两组数字完全相同。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">本题只有一个工程项目（厂房），明细表与审定表数字一一对应。期初与减少两栏为「-」是平台对零值的列示方式，不要改填 0.00——本线各表对“-”与“0.00”的使用有固定口径（无发生额或不适用填“-”，金额栏零值填 0.00），照答案表口径填列。易错点：把期末审定数误填为未审数 3,317,500.00，漏掉 100,650.00 调整。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调在建工程明细账，确认本期只有厂房一笔增加。</p><p>2. 调整索引在厂房行填 ZP-3，明细出处经「底稿联查」打开 ZP-3 核对。</p><p>3. 期末审定数与第 101 题 ZP-1 对上后保存。</p></div>
+</section>
+
+<section class="qcard" id="q103">
+<h3>第 103 题 ZP-3 在建工程厂房购置查验表（<span class="score">10.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>查验表结构：列示购置厂房的账面原值、数量、记账凭证号、对应科目，并逐项勾选核对内容 1–6，最后给审计说明与调整分录。任务表待填核对结果与审计说明。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th>内容</th></tr>
+<tr><td>厂房账面原值</td><td class="num">3,317,500.00</td></tr>
+<tr><td>数量</td><td class="num">1.00</td></tr>
+<tr><td>记账凭证号</td><td>记-61</td></tr>
+<tr><td>对应科目</td><td>银行存款</td></tr>
+<tr><td>核对内容 1–6</td><td>1 为 ×、2 为 √、3 为 √、4 为 ×、5 为 √、6 空白</td></tr>
+</table>
+<p class="segp">审计说明全文：「经查验，在建工程初始成本应包括相关税费，厂房购置时缴纳的契税和印花税应计入初始成本，该事项应作如下审计调整：借：在建工程-厂房 100650，贷：管理费用-其他 99000，税金及附加 1650。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">本题是本组的核心题（10.00 分）：核对内容出现两个“×”，正对应两笔税费未计入初始成本——契税 99,000.00 被记入管理费用-其他，印花税 1,650.00 被记入税金及附加。调整分录借在建工程-厂房 100,650.00，贷管理费用-其他 99,000.00、税金及附加 1,650.00，一笔分录同时修正三个科目，并向上支撑 ZP-1、ZP-2 的调整数，向外与 SP 组税金及附加、管理费用勾稽。易错点：审计说明中的金额平台原文无千分位分隔符（100650、99000、1650），复刻与作答时按原文写；第 6 项核对内容为空白，不要补勾。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调记-61 凭证及厂房购置合同、发票，核对原值 3,317,500.00 与付款（银行存款）。</p><p>2. 查契税、印花税完税凭证，并到管理费用-其他与税金及附加明细账中定位 99,000.00 与 1,650.00 两笔误记，确认调整方向。</p><p>3. 核对内容逐项勾选（1、4 为 ×，2、3、5 为 √，6 留空），审计说明按平台原文写全调整分录；调整数经「底稿联查」与 ZP-1、ZP-2 对上后保存。</p></div>
+</section>
+
+<h2 id="g7">七、ZY 递延所得税资产（第 104–106 题）</h2>
+
+<section class="qcard" id="q104">
+<h3>第 104 题 ZY-1 递延所得税资产审定表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>审定表结构：按形成原因分行（计入所得税费用、计入所有者权益、计入其他），各列期末未审数／账项调整（借、贷）／重分类调整（借、贷）／期末审定数／期初审定数／索引号，并附审计说明与审计结论。表头：编制 范宏博 2026/01/22，复核 夏旭坤 2026/01/23（答案表）。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>期末未审数（全部为计入所得税费用行；计入所有者权益、计入其他均为 0.00）</td><td class="num">92,944.52</td></tr>
+<tr><td>账项调整借方</td><td class="num">0.00</td></tr>
+<tr><td>账项调整贷方</td><td class="num">54,177.25</td></tr>
+<tr><td>重分类调整借方/贷方</td><td class="num">0.00 / 0.00</td></tr>
+<tr><td>期末审定数</td><td class="num">38,767.27</td></tr>
+<tr><td>期初审定数</td><td class="num">43,448.52</td></tr>
+</table>
+<p class="segp">索引号 ZY-3（计入所得税费用行）。审计说明：「1.报表与总账合计核对一致。2.明细账与总账核对及查验明细科目底稿。3.审定调整分录详见底稿：ZY-3。」审计结论：「经审计，调整后的期末余额可予以确认。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">递延所得税资产的调整来自坏账准备的审定变化：应收账款坏账准备经审计调减 216,709.00，可抵扣暂时性差异随之减少，按 25% 税率应确认的递延所得税资产减少 216,709.00×25%＝54,177.25，故账调贷方 54,177.25，审定数＝92,944.52－54,177.25＝38,767.27。这条链的源头在专员1线 ZD2-1 坏账准备审核，本题是其所得税后果的落点。易错点：调整方向——暂时性差异减少调减递延所得税资产（贷方），不要做反。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，核递延所得税资产报表数、总账数、明细账数。</p><p>2. 调整测算看第 106 题 ZY-3 明细内容汇总表：经「底稿联查」打开，确认差异 (1)-(2)＝-54,177.25。</p><p>3. 索引号在计入所得税费用行填 ZY-3，其余两行按 0.00 口径填列，审计说明与结论按平台原文写全后保存。</p></div>
+</section>
+
+<section class="qcard" id="q105">
+<h3>第 105 题 ZY-2 递延所得税资产明细表（<span class="score">4.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>明细表结构：按形成原因分行——计入所得税费用、计入所有者权益、资本公积/其他综合收益/留存收益、其他、商誉及一空白行，各列期初余额／本期增加／本期减少／期末余额／账项调整（借、贷）／重分类调整（借、贷）／调整索引／期末审定数／备注。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>行</th><th class="num">期初</th><th class="num">增加</th><th class="num">减少</th><th class="num">期末</th><th class="num">账调借</th><th class="num">账调贷</th><th class="num">重分类借/贷</th><th>索引</th><th class="num">期末审定数</th></tr>
+<tr><td>计入所得税费用</td><td class="num">43,448.52</td><td class="num">49,496.00</td><td class="num">0.00</td><td class="num">92,944.52</td><td class="num">0.00</td><td class="num">54,177.25</td><td class="num">0.00/0.00</td><td>ZY-3</td><td class="num">38,767.27</td></tr>
+<tr><td>计入所有者权益</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-/-</td><td></td><td class="num">-</td></tr>
+<tr><td>资本公积/其他综合收益/留存收益</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">-</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00/0.00</td><td></td><td class="num">-</td></tr>
+<tr><td>其他</td><td class="num">-</td><td class="num">-</td><td class="num">0.00</td><td class="num">-</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00/0.00</td><td></td><td class="num">-</td></tr>
+<tr><td>商誉</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-/-</td><td></td><td class="num">-</td></tr>
+<tr><td>合计</td><td class="num">43,448.52</td><td class="num">49,496.00</td><td class="num">-</td><td class="num">92,944.52</td><td class="num">-</td><td class="num">54,177.25</td><td class="num">-/-</td><td>---</td><td class="num">38,767.27</td></tr>
+</table>
+<p class="segp">审计说明：「1.总账与明细账核对一致。2.审计调整详见底稿索引：ZY-3。」合计行备注为「---」。本期增加 49,496.00 是账面按未审坏账准备计提数确认的递延所得税资产增加额，后经 ZY-3 复核调减 54,177.25。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">本题只有“计入所得税费用”一行有实质数字，其余各行是平台的固定行次，填列口径在“-”与“0.00”之间逐行不同，必须照答案表逐行对应，不能整表统一。勾稽：43,448.52＋49,496.00－0.00＝92,944.52（期末未审）；92,944.52－54,177.25＝38,767.27（审定）。易错点：合计行账调借方为「-」而明细行是 0.00，合计行调整索引与备注为「---」，这些细节都是逐格给分点。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调递延所得税资产明细账，按形成原因归集期初与本年发生额。</p><p>2. 调整索引只在计入所得税费用行填 ZY-3；调整金额出处经「底稿联查」打开 ZY-3。</p><p>3. 逐行核对“-”与“0.00”的分布，合计行与第 104 题 ZY-1 对上后保存。</p></div>
+</section>
+
+<section class="qcard" id="q106">
+<h3>第 106 题 ZY-3 递延所得税资产明细内容汇总表（<span class="score">8.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>汇总表结构：按暂时性差异来源逐项列示期末账面价值、期末计税基础、适用税率、可抵扣暂时性差异（其中已确认、其中未确认）、期末应计金额(1)、应计对方科目、期末账面余额(2)、实计对方科目、差异(1)-(2)；分“一、资产账面价值小于计税基础”“二、负债账面价值大于计税基础”两部分汇总。本题唯一有数字的来源是应收账款（坏账准备）。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目（应收账款-坏账准备）</th><th class="num">金额</th></tr>
+<tr><td>期末账面价值</td><td class="num">2,946,312.68</td></tr>
+<tr><td>期末计税基础</td><td class="num">3,101,381.77</td></tr>
+<tr><td>适用税率</td><td class="num">25.00%</td></tr>
+<tr><td>可抵扣暂时性差异</td><td class="num">155,069.09</td></tr>
+<tr><td>其中：已确认</td><td class="num">371,778.09</td></tr>
+<tr><td>其中：未确认</td><td class="num">-216,709.00</td></tr>
+<tr><td>期末应计金额(1)</td><td class="num">38,767.27</td></tr>
+<tr><td>应计对方科目</td><td>所得税费用</td></tr>
+<tr><td>期末账面余额(2)</td><td class="num">92,944.52</td></tr>
+<tr><td>实计对方科目</td><td>所得税费用</td></tr>
+<tr><td>差异(1)-(2)</td><td class="num">-54,177.25</td></tr>
+</table>
+<p class="segp">“一、资产账面价值小于计税基础”行与合计行同上数（审定数、应计/实计对方科目列为「---」）；“二、负债账面价值大于计税基础”行各栏为「-」或「---」；其余空白行均为 0.00、税率 25.00%。审计说明：「1.递延所得税资产的确认需把握重要性原则和谨慎性原则。2.关注以前年度的所得税汇算清缴差异对递延所得税资产的影响。3.经查验，应作如下审计调整：借：所得税费用-递延所得税费用 54,177.25，贷：递延所得税资产 54,177.25。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">计算链要背熟：应收账款账面价值 2,946,312.68（审定后净额）与计税基础 3,101,381.77（账面余额，坏账准备税法不认可、纳税时才扣除）之差 155,069.09，恰等于审定后的坏账准备余额；×25%＝38,767.27 为期末应确认的递延所得税资产。账面已确认 371,778.09 是按未审坏账准备计算的，其中 216,709.00 随坏账准备调减而“未确认”，对应税额 54,177.25 即调整额。本题与第 156 题 SP-2 勾稽：SP-2 中递延所得税资产影响税额 -4,681.25＝本期账面增加 49,496.00－调整 54,177.25。易错点：“其中未确认”为负数 -216,709.00，不要填成正数。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 数据来源：应收账款审定数经「底稿联查」打开 ZD-1、ZD2-1（专员1线）取得账面价值 2,946,312.68 与计税基础 3,101,381.77；递延所得税资产账面余额经「账套数据」→「账表查询」调明细账。</p><p>2. 逐项复算：差异额×25%＝应计金额，与账面余额比对得出调整额，可用右下角计算器验算 155,069.09×25%＝38,767.27。</p><p>3. 审计说明第 3 条的调整分录写全；本题结论回填第 104、105 题的调整栏，并与第 156 题 SP-2 的递延所得税资产影响税额一行对照。</p></div>
+</section>
+
+<h2 id="g8">八、FD 应付账款（第 107–111 题）</h2>
+
+<section class="qcard" id="q107">
+<h3>第 107 题 FD-1 应付账款审定表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>审定表结构：按关联方、非关联方分行，各列期末未审数／账项调整（借、贷）／重分类调整（借、贷）／期末审定数／期初审定数／索引号，并附审计说明与审计结论。任务表数值栏为空白。本题无审计调整。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">期末未审数</th><th class="num">期末审定数</th><th class="num">期初审定数</th></tr>
+<tr><td>非关联方</td><td class="num">1,747,974.34</td><td class="num">1,747,974.34</td><td class="num">1,579,739.70</td></tr>
+<tr><td>关联方</td><td class="num">0.00</td><td class="num">-</td><td class="num">0.00</td></tr>
+<tr><td>合计</td><td class="num">1,747,974.34</td><td class="num">1,747,974.34</td><td class="num">1,579,739.70</td></tr>
+</table>
+<p class="segp">账项调整借、贷均为 0.00（明细账数行为「-」），重分类调整借、贷均为 0.00（明细账数行为「-」），索引号栏为空白。审计说明：「1.报表与总账合计数核对一致。2.明细账与总账核对及查验明细科目底稿。」审计结论：「经审计，期末余额可予以确认。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">应付账款全部为非关联方往来，无关联方余额、无调整。无调整的依据是后面四题的完整证据链：明细表 10 家供应商勾稽一致（第 108 题）、函证 10 家全发（第 109 题）、1 家差异经调节解释（第 111 题）、1 家未回函经替代程序确认（第 110 题）。易错点：关联方行期末审定数填「-」而未审数填 0.00，口径照答案表，不要统一。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，核应付账款报表数、总账数、明细账合计数（1,747,974.34）。</p><p>2. 明细与函证证据经「底稿联查」按 FD-2、FD-3 打开核对；调整栏按零填列。</p><p>3. 审计说明与结论按平台原文写全，索引号栏留空后保存。</p></div>
+</section>
+
+<section class="qcard" id="q108">
+<h3>第 108 题 FD-2 应付账款明细表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>明细表结构：按供应商逐行列示期初余额／本期增加／本期减少／期末余额／账龄分列／账项调整／重分类调整／调整索引／期末审定数／审定账龄／备注，并附欠款原因与币种。10 家供应商欠款原因均为「货款」、币种均为「人民币」。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>供应商</th><th class="num">期初余额</th><th class="num">本期增加</th><th class="num">本期减少</th><th class="num">期末余额（＝审定数，全部 1 年以内）</th></tr>
+<tr><td>长乐正阳纺织有限公司</td><td class="num">203,498.96</td><td class="num">4,852,247.12</td><td class="num">4,834,173.12</td><td class="num">221,572.96</td></tr>
+<tr><td>泉州历城贸易有限公司</td><td class="num">152,515.76</td><td class="num">3,638,230.56</td><td class="num">3,624,352.73</td><td class="num">166,393.59</td></tr>
+<tr><td>浙江立安钢铁有限公司</td><td class="num">133,961.43</td><td class="num">1,597,512.33</td><td class="num">1,584,328.31</td><td class="num">147,145.45</td></tr>
+<tr><td>武汉翰林制品有限公司</td><td class="num">196,796.41</td><td class="num">4,693,956.99</td><td class="num">4,670,166.92</td><td class="num">220,586.48</td></tr>
+<tr><td>宁波郊绳股份有限公司</td><td class="num">10,924.52</td><td class="num">130,270.26</td><td class="num">129,142.94</td><td class="num">12,051.84</td></tr>
+<tr><td>上饶亿兴配件有限公司</td><td class="num">118,834.68</td><td class="num">1,417,023.15</td><td class="num">1,405,543.52</td><td class="num">130,314.31</td></tr>
+<tr><td>吉安怀南配件有限公司</td><td class="num">24,697.35</td><td class="num">294,581.96</td><td class="num">291,784.49</td><td class="num">27,494.82</td></tr>
+<tr><td>惠州金凌云配件加工厂</td><td class="num">702,037.01</td><td class="num">11,959,552.73</td><td class="num">11,880,903.99</td><td class="num">780,685.75</td></tr>
+<tr><td>漳州市龙舟五金制品厂</td><td class="num">15,122.88</td><td class="num">180,346.08</td><td class="num">178,443.16</td><td class="num">17,025.80</td></tr>
+<tr><td>抚州恩古纺织有限公司</td><td class="num">21,350.70</td><td class="num">254,635.12</td><td class="num">251,282.48</td><td class="num">24,703.34</td></tr>
+<tr><td>合计（非关联方）</td><td class="num">1,579,739.70</td><td class="num">29,018,356.30</td><td class="num">28,850,121.66</td><td class="num">1,747,974.34</td></tr>
+</table>
+<p class="segp">各供应商账项调整借、贷均为 0.00，重分类调整借、贷均为 0.00（分组行与合计行为「-」）；期末审定数＝期末数；审定账龄全部在 1 年以内（1–2 年、2–3 年、3 年以上各供应商为 0.00、分组与合计行为「-」）；调整索引与备注为空白（合计行「---」）；关联方各栏为「-」。审计说明：「总账与明细账核对一致。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">逐户验算“期初＋增加－减少＝期末”十户全部成立，合计与 FD-1 对上。两个数字要记住：本期增加合计 29,018,356.30 是全年采购入账总额；最大供应商惠州金凌云期末 780,685.75，占期末余额约 45%，是函证与细节测试的重点户。本表也是第 109 题函证的发函清单来源——函证范围就是这 10 户的期末余额全额。易错点：账龄全部 1 年以内，不要因为期初余额存在就把期初部分划入 1–2 年——账龄按每笔欠款发生时间算，本表口径为全部 1 年以内。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调应付账款明细账，按 10 家供应商归集期初、增加、减少、期末与账龄。</p><p>2. 逐户验算勾稽，合计与「底稿联查」FD-1 对上；调整、索引、备注各栏按答案口径填列（多为空白或「---」）。</p><p>3. 本表期末余额直接作为下一题函证的发函金额基础，先保存本表再进第 109 题。</p></div>
+</section>
+
+<section class="qcard" id="q109">
+<h3>第 109 题 FD-3 应付账款函证结果汇总表（<span class="score">10.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<div class="stem"><p class="segp">审计人员使用平台的“数字化函证”进行制函、提交授权、发函，根据回函结果编制应付账款函证结果汇总表。</p></div>
+<p>汇总表结构（列）：账面余额(1)／发函日期／发函金额／是否回函／回函日期／回函金额／回函差异调节金额／调节索引／替代程序可确认金额／查验索引／可确认金额(2)／金额差异／函证索引／备注。发函对象为 FD-2 的全部 10 家供应商，发函日期均为 2026-01-02，发函金额＝账面余额。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>供应商</th><th class="num">账面余额(1)</th><th>是否回函</th><th>回函日期</th><th class="num">回函金额</th><th class="num">差异调节金额</th><th>调节索引</th><th class="num">替代程序可确认金额</th><th class="num">可确认金额(2)</th><th>函证索引</th><th>备注</th></tr>
+<tr><td>长乐正阳纺织有限公司</td><td class="num">221,572.96</td><td>是</td><td>2026-01-08</td><td class="num">610,305.99</td><td class="num">388,733.03</td><td>FD-5</td><td class="num">0.00</td><td class="num">221,572.96</td><td>FD-3-1</td><td>收款在途</td></tr>
+<tr><td>泉州历城贸易有限公司</td><td class="num">166,393.59</td><td>是</td><td>2026-01-07</td><td class="num">166,393.59</td><td class="num">0.00</td><td></td><td class="num">0.00</td><td class="num">166,393.59</td><td>FD-3-2</td><td></td></tr>
+<tr><td>浙江立安钢铁有限公司</td><td class="num">147,145.45</td><td>否</td><td></td><td></td><td class="num">0.00</td><td></td><td class="num">147,145.45</td><td class="num">147,145.45</td><td></td><td></td></tr>
+<tr><td>武汉翰林制品有限公司</td><td class="num">220,586.48</td><td>是</td><td>2026-01-16</td><td class="num">220,586.48</td><td class="num">0.00</td><td></td><td class="num">0.00</td><td class="num">220,586.48</td><td>FD-3-4</td><td></td></tr>
+<tr><td>宁波郊绳股份有限公司</td><td class="num">12,051.84</td><td>是</td><td>2026-01-16</td><td class="num">12,051.84</td><td class="num">0.00</td><td></td><td class="num">0.00</td><td class="num">12,051.84</td><td>FD-3-5</td><td></td></tr>
+<tr><td>上饶亿兴配件有限公司</td><td class="num">130,314.31</td><td>是</td><td>2026-01-13</td><td class="num">130,314.31</td><td class="num">0.00</td><td></td><td class="num">0.00</td><td class="num">130,314.31</td><td>FD-3-6</td><td></td></tr>
+<tr><td>吉安怀南配件有限公司</td><td class="num">27,494.82</td><td>是</td><td>2026-01-15</td><td class="num">27,494.82</td><td class="num">0.00</td><td></td><td class="num">0.00</td><td class="num">27,494.82</td><td>FD-3-7</td><td></td></tr>
+<tr><td>惠州金凌云配件加工厂</td><td class="num">780,685.75</td><td>是</td><td>2026-01-17</td><td class="num">780,685.75</td><td class="num">0.00</td><td></td><td class="num">0.00</td><td class="num">780,685.75</td><td>FD-3-8</td><td></td></tr>
+<tr><td>漳州市龙舟五金制品厂</td><td class="num">17,025.80</td><td>是</td><td>2026-01-09</td><td class="num">17,025.80</td><td class="num">0.00</td><td></td><td class="num">0.00</td><td class="num">17,025.80</td><td>FD-3-9</td><td></td></tr>
+<tr><td>抚州恩古纺织有限公司</td><td class="num">24,703.34</td><td>是</td><td>2026-01-19</td><td class="num">24,703.34</td><td class="num">0.00</td><td></td><td class="num">0.00</td><td class="num">24,703.34</td><td>FD-3-10</td><td></td></tr>
+<tr><td>合计</td><td class="num">1,747,974.34</td><td></td><td></td><td class="num">1,989,561.92</td><td class="num">388,733.03</td><td></td><td class="num">147,145.45</td><td class="num">1,747,974.34</td><td></td><td></td></tr>
+</table>
+<p class="segp">各行金额差异均为「-」，合计行其余栏目为「---」；浙江立安一行调节索引为 0.00、查验索引为 FD-4。审计说明：「1.对所有销货方实施函证。2.对往来函证全过程保持控制。3.通过实施函证程序和替代程序，未发现异常情况。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">本题是函证组的枢纽（10.00 分）：10 家全部发函，9 家回函、1 家未回函。三种结果三种处理——回函一致的（8 家）直接确认；回函有差异的长乐正阳（回函 610,305.99 比账面多 388,733.03）走调节程序，差异是“收款在途”：公司已付款、供货方尚未入账，故供货方确认的应收余额更高，调节后差异为零，索引 FD-5（第 111 题）；未回函的浙江立安走替代程序，索引 FD-4（第 110 题）。可确认金额合计 1,747,974.34 与账面余额全额一致，应付账款无调整。易错点：回函金额合计 1,989,561.92 大于账面合计，正是那笔在途款造成的，不要误判为错报；函证索引 FD-3-1 至 FD-3-10 中缺 FD-3-3——未回函的浙江立安行函证索引为空白，不要自作主张补编。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 制函：顶栏「…」→「数字化函证」→进入项目「福州青风子伞业有限公司年报审计」→「发函管理」→「快速制函」，函证类型选<strong>往来函证</strong>（应付账款属往来函证，不要选银行函证），按制函向导以 FD-2 的 10 家供应商期末余额生成函证，核对制函方（大兴会计师事务所）与授权方（福州青风子伞业有限公司）信息。</p><p>2. 提交授权：在制函流程内点「提交授权」，由被审计单位授权后到「发送函证」发出；全过程保持控制，记录每户的发函日期（本例均为 2026-01-02）与函证编号。</p><p>3. 看回函：「函证查询」中逐户查看回函状态与回函金额、回函日期，把结果过入本汇总表；如需作废重发，走「发函管理」→「函证作废」。</p><p>4. 差异与未回函处理：长乐正阳差异 388,733.03 在调节索引列填 FD-5，转第 111 题编调节表；浙江立安未回函，在替代程序可确认金额列填 147,145.45、查验索引填 FD-4，转第 110 题编替代程序底稿。</p><p>5. 合计验算：可确认金额(2)合计＝账面余额(1)合计 1,747,974.34，金额差异为「-」，再写审计说明三条并保存。</p></div>
+</section>
+
+<section class="qcard" id="q110">
+<h3>第 110 题 FD-4 应付账款替代程序（<span class="score">4.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<div class="stem"><p class="segp">依据回函结果执行应付账款替代程序并编制工作底稿。</p></div>
+<p>底稿结构：单位名称；一、期初余额；二、本期借方发生额（逐行列凭证日期、凭证号、金额与核对内容 1–5 勾选，附合计与测试比例）；三、本期贷方发生额（同上）；四、期末余额；五、期后付款情况（同上）。核对内容说明：「1、原始凭证内容完整；2、授权批准完整；3、账务处理正确；4、金额核对相符；5、…」。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th><th>说明</th></tr>
+<tr><td>单位名称</td><td colspan="2">浙江立安钢铁有限公司</td></tr>
+<tr><td>一、期初余额</td><td class="num">133,961.43</td><td></td></tr>
+<tr><td>二、本期借方发生额（总额）</td><td class="num">1,584,328.31</td><td>抽查 3 行凭证栏空白；借方发生额合计「-」；测试金额占本期借方发生额比例 0.00%</td></tr>
+<tr><td>三、本期贷方发生额（总额）</td><td class="num">1,597,512.33</td><td>抽查第 1 行：2025/12/03、记-04、147,145.45，核对内容 1√2√3√4√、5 空白；贷方发生额合计 147,145.45；测试比例 9.21%</td></tr>
+<tr><td>四、期末余额</td><td class="num">147,145.45</td><td>任务表预填的 133,961.43 是借方/贷方未填时的公式值，以答案值 147,145.45 为准</td></tr>
+<tr><td>五、期后付款情况</td><td class="num">147,145.45</td><td>第 1 行：2026/01/21、记-42、147,145.45，核对内容 1√2√3√4√、5 空白；期后付款合计 147,145.45</td></tr>
+</table>
+<p class="segp">审计说明：「1.针对未收到回函的账户，实施替代审计程序，以确认期末应付账款的存在性。2.本审计程序的样本量选取：形成该账户期末余额的发生额部分。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">替代程序的逻辑是“用凭证链替代回函”：抽查形成期末余额的贷方发生额（2025/12/03 记-04，147,145.45，核对内容 1–4 全勾），再查期后付款（2026/01/21 记-42 全额付清），两条证据互相印证期末余额真实存在。勾稽：期初 133,961.43＋贷方发生 1,597,512.33－借方发生 1,584,328.31＝期末 147,145.45。借方发生额本题未抽查（合计「-」、比例 0.00%），因为样本选取口径是“形成期末余额的发生额部分”，即贷方那一笔。易错点：不要把 FD-2 的全年发生额当抽查额填入合计行——贷方发生额合计填的是抽查额 147,145.45，不是总额 1,597,512.33。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 触发点在函证环节：顶栏「…」→「数字化函证」→「函证查询」确认浙江立安状态为未回函后，启动替代程序（与第 109 题 FD-3 的 FD-4 索引对应）。</p><p>2. 查凭证：顶栏「…」→「账套数据」→「账表查询」，调浙江立安明细账，定位贷方 2025/12/03 记-04 凭证，核对原始凭证内容、授权批准、账务处理与金额（核对内容 1–4）。</p><p>3. 查期后付款：按记-42（2026/01/21）调付款凭证与银行付款记录，确认期末余额已全额支付。</p><p>4. 期初、借方、贷方总额按明细账填列，抽查行只填记-04 与记-42 两行，核对内容第 5 项留空，验算期末余额后保存。</p></div>
+</section>
+
+<section class="qcard" id="q111">
+<h3>第 111 题 FD-5 应付账款函证结果调节表（<span class="score">4.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<div class="stem"><p class="segp">依据回函结果执行执行程序并编制应付账款函证结果调节表。</p></div>
+<p class="segp"><mark class="warn">平台原文照录</mark>：任务要求原文中“执行执行程序”四字含重复的“执行”，本页按原文呈现，不作改动。</p>
+<p>调节表结构：被询证单位、账面余额、发函日期、回函金额；1、回函确认金额与账面余额差异；2、减：调节项目（逐行列记账日期、业务摘要、凭证号、发生额、可确认金额）；3、加：调节项目；4、调节后的差异金额；5、审计说明。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>被询证单位：长乐正阳纺织有限公司，账面余额</td><td class="num">221,572.96</td></tr>
+<tr><td>发函日期</td><td>2026/01/02</td></tr>
+<tr><td>回函金额</td><td class="num">610,305.99</td></tr>
+<tr><td>1、回函确认金额与账面余额差异</td><td class="num">388,733.03</td></tr>
+<tr><td>2、减：第 1 行——2025/12/31，业务摘要“客户收款在途”，凭证号 记-56，发生额/可确认金额</td><td class="num">388,733.03</td></tr>
+<tr><td>2、减：合计（发生额/可确认金额）</td><td class="num">388,733.03</td></tr>
+<tr><td>3、加：合计</td><td class="num">-</td></tr>
+<tr><td>4、调节后的差异金额</td><td class="num">-</td></tr>
+</table>
+<p class="segp">减方第 2、3 行与加方 3 行均为空白，合计行日期、摘要、凭证号列为「---」。审计说明：「1.经查验，该笔应收账款原始凭证内容完整，授权批准完整，账务处理正确，金额核对相符，不存在异常。2.经核实，供货方采用的是委托银行收款结算方式，已获取供货方委托收款表（收账通知、回单）等资料，不存在审计调整事项。」</p>
+<p class="segp"><mark class="warn">平台原文照录</mark>：审计说明第 1 条原文写作“该笔<strong>应收账款</strong>原始凭证……”，本题对象是应付账款，此处系平台原文的笔误，本页照录原文并在此点明，作答时以应付账款口径理解。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">差异方向先判清：回函金额（供货方确认的应收账款）610,305.99 大于我方应付账款账面 221,572.96，差 388,733.03。原因是 2025/12/31 公司已通过委托银行收款方式付款 388,733.03（记-56），款项在途、供货方尚未收账入账，故在调节表中作“减”项：回函数－在途款＝账面数，调节后差异为零，不需要审计调整。这与银行存款余额调节表“企业已付、银行未付”的在途逻辑完全同构。易错点：把在途款作“加”项，或误判为供货方多记——判断标准是差异形成时点在资产负债表日且期后已收讫。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 差异来源在函证环节：顶栏「…」→「数字化函证」→「函证查询」打开长乐正阳回函，确认回函金额 610,305.99 与差异 388,733.03（与第 109 题 FD-3 的调节索引 FD-5 对应）。</p><p>2. 查在途证据：顶栏「…」→「账套数据」→「账表查询」，调 2025/12/31 记-56 付款凭证，核对金额 388,733.03 与委托银行收款方式；再到「审计材料」中查供货方委托收款表（收账通知、回单）。</p><p>3. 调节表只填减方第 1 行一行，加方留空，调节后差异填「-」；审计说明两条按平台原文写全后保存，并回填 FD-3 的调节索引。</p></div>
+</section>
+
+<h2 id="g9">九、FQ 递延所得税负债（第 123–125 题）</h2>
+
+<section class="qcard" id="q123">
+<h3>第 123 题 FQ-1 递延所得税负债审定表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>审定表结构：按形成原因分行（计入所得税费用、计入所有者权益、计入其他），各列期末未审数／账项调整（借、贷）／重分类调整（借、贷）／期末审定数／期初审定数／索引号，并附审计说明与审计结论。任务表数值栏为空白。本题无审计调整。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>期末未审数（全部为计入所得税费用行；所有者权益、其他行未审数 0.00）</td><td class="num">102,275.00</td></tr>
+<tr><td>账项调整借/贷</td><td class="num">0.00 / 0.00</td></tr>
+<tr><td>重分类调整借/贷</td><td class="num">0.00 / 0.00</td></tr>
+<tr><td>期末审定数（所有者权益、其他行为「-」）</td><td class="num">102,275.00</td></tr>
+<tr><td>期初审定数（所有者权益、其他行 0.00）</td><td class="num">66,800.00</td></tr>
+</table>
+<p class="segp">索引号栏为空白。审计说明：「1.报表与总账合计核对一致。2.明细账与总账核对及查验明细科目底稿。」审计结论：「经审计，期末余额可予以确认。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">与 ZY 组对照看：递延所得税负债源于应纳税暂时性差异，本题唯一来源是交易性金融资产公允价值变动（第 125 题），账面确认无误、无需调整，审定数＝未审数。本期增加 35,475.00（102,275.00－66,800.00）是公允价值上升新增的应纳税差异×25%。易错点：递延所得税负债与资产方向相反——公允价值上升产生应纳税暂时性差异，形成负债，不要与 ZY 的可抵扣差异混淆。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，核递延所得税负债报表数、总账数、明细账数。</p><p>2. 测算依据经「底稿联查」打开第 125 题 FQ-3，确认应计金额(1)＝账面余额(2)、差异为「-」。</p><p>3. 调整栏按零填列，索引号留空，说明与结论按平台原文写全后保存。</p></div>
+</section>
+
+<section class="qcard" id="q124">
+<h3>第 124 题 FQ-2 递延所得税负债明细表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>明细表结构与第 105 题 ZY-2 完全平行：按计入所得税费用、计入所有者权益、资本公积/其他综合收益/留存收益、其他、商誉及一空白行分行，各列期初／增加／减少／期末／账项调整／重分类调整／调整索引／期末审定数／备注。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>行</th><th class="num">期初</th><th class="num">增加</th><th class="num">减少</th><th class="num">期末</th><th class="num">账调借/贷</th><th class="num">重分类借/贷</th><th class="num">期末审定数</th></tr>
+<tr><td>计入所得税费用</td><td class="num">66,800.00</td><td class="num">35,475.00</td><td class="num">0.00</td><td class="num">102,275.00</td><td class="num">0.00/0.00</td><td class="num">0.00/0.00</td><td class="num">102,275.00</td></tr>
+<tr><td>计入所有者权益</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-/-</td><td class="num">-/-</td><td class="num">-</td></tr>
+<tr><td>资本公积/其他综合收益/留存收益</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">-</td><td class="num">0.00/0.00</td><td class="num">0.00/0.00</td><td class="num">-</td></tr>
+<tr><td>其他</td><td class="num">-</td><td class="num">-</td><td class="num">0.00</td><td class="num">-</td><td class="num">0.00/0.00</td><td class="num">0.00/0.00</td><td class="num">-</td></tr>
+<tr><td>商誉</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">-</td><td class="num">-</td><td class="num">-/-</td><td class="num">-/-</td><td class="num">-</td></tr>
+<tr><td>合计</td><td class="num">66,800.00</td><td class="num">35,475.00</td><td class="num">-</td><td class="num">102,275.00</td><td class="num">-/-</td><td class="num">-/-</td><td class="num">102,275.00</td></tr>
+</table>
+<p class="segp">调整索引与备注：计入所得税费用行为空白，合计行调整索引「---」、备注「---」。审计说明仅 1 条：「1.总账与明细账核对一致。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">填法与 ZY-2 同构，差别在调整：ZY-2 有 54,177.25 的贷方调整，本题调整全为零。勾稽：66,800.00＋35,475.00＝102,275.00。本期增加 35,475.00 同时出现在第 156 题 SP-2 的“递延所得税负债影响税额”一行，是所得税费用计算的组成。易错点仍在“-”与“0.00”的逐行分布，照答案表对应，不要凭手感统一。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调递延所得税负债明细账归集期初与发生额。</p><p>2. 增加额 35,475.00 的来源经「底稿联查」打开 FQ-3 核对（交易性金融资产应纳税暂时性差异×25%）。</p><p>3. 合计行与第 123 题 FQ-1 对上，审计说明只写 1 条后保存。</p></div>
+</section>
+
+<section class="qcard" id="q125">
+<h3>第 125 题 FQ-3 递延所得税负债明细内容汇总表（<span class="score">6.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>汇总表结构与第 106 题 ZY-3 平行：逐项列示期末账面价值、期末计税基础、适用税率、应纳税暂时性差异（其中已确认、其中未确认）、期末应计金额(1)、应计对方科目、期末账面余额(2)、实计对方科目、差异(1)-(2)；分“一、资产账面价值大于计税基础”“二、负债账面价值小于计税基础”两部分。本题唯一有数字的来源是交易性金融资产（公允价值与账面差异）。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目（交易性金融资产）</th><th class="num">金额</th></tr>
+<tr><td>期末账面价值</td><td class="num">2,398,600.00</td></tr>
+<tr><td>期末计税基础</td><td class="num">1,989,500.00</td></tr>
+<tr><td>适用税率</td><td class="num">25.00%</td></tr>
+<tr><td>应纳税暂时性差异</td><td class="num">409,100.00</td></tr>
+<tr><td>其中：已确认</td><td class="num">409,100.00</td></tr>
+<tr><td>其中：未确认</td><td class="num">-</td></tr>
+<tr><td>期末应计金额(1)</td><td class="num">102,275.00</td></tr>
+<tr><td>应计对方科目</td><td>所得税费用</td></tr>
+<tr><td>期末账面余额(2)</td><td class="num">102,275.00</td></tr>
+<tr><td>实计对方科目</td><td>所得税费用</td></tr>
+<tr><td>差异(1)-(2)</td><td class="num">-</td></tr>
+</table>
+<p class="segp">“一、资产账面价值大于计税基础”行与合计行同上数（审定数、应计/实计对方科目列为「---」）；“二、负债账面价值小于计税基础”行各栏为「-」或「---」；其余空白行均为 0.00、税率 25.00%。审计说明：「1.递延所得税负债的确认需把握重要性原则和谨慎性原则。2.关注以前年度的所得税汇算清缴差异对递延所得税负债的影响。」（无调整分录条。）</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">计算链：交易性金融资产账面价值 2,398,600.00（公允价值）高于计税基础 1,989,500.00（取得成本），差 409,100.00 为应纳税暂时性差异，×25%＝102,275.00，与账面已确认的递延所得税负债完全一致，差异为零、无调整。与 ZY-3 对照：同样是“账面 vs 计税基础”，方向相反结论相反——那边差异需调减资产，这边账面无误。账面价值 2,398,600.00 与未审资产负债表交易性金融资产一致，可交叉验算。本题影响税额 35,475.00（本期新增部分）在第 156 题 SP-2 中单列。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 账面价值取自资产负债表与交易性金融资产明细账（顶栏「…」→「账套数据」→「账表查询」）；计税基础按取得成本资料核对，可经「审计材料」查投资取得凭证。</p><p>2. 复算 409,100.00×25%＝102,275.00，与账面余额比对，差异填「-」。</p><p>3. 审计说明只写原则性两条（无第 3 条调整分录），与第 123、124 题对上后保存。</p></div>
+</section>
+
+<h2 id="g10">十、QC 盈余公积（第 126–127 题）</h2>
+
+<section class="qcard" id="q126">
+<h3>第 126 题 QC-1 盈余公积审定表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>审定表结构：按法定盈余公积、任意盈余公积分行，各列期末未审数／账项调整（借、贷）／重分类调整（借、贷）／期末审定数／期初审定数／索引号，并附审计说明与审计结论。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>期末未审数（全部为法定盈余公积；任意盈余公积 0.00）</td><td class="num">2,011,351.57</td></tr>
+<tr><td>账项调整借方</td><td class="num">251,272.58</td></tr>
+<tr><td>账项调整贷方</td><td class="num">0.00</td></tr>
+<tr><td>重分类调整借/贷</td><td class="num">0.00 / 0.00</td></tr>
+<tr><td>期末审定数（任意盈余公积行「-」）</td><td class="num">1,760,078.99</td></tr>
+<tr><td>期初审定数（任意盈余公积行 0.00）</td><td class="num">761,893.02</td></tr>
+</table>
+<p class="segp">索引号 QC-2（法定盈余公积行），其余为空白。审计说明：「1.报表与总账合计数核对一致。2.明细账与总账核对及查验明细科目底稿。3.审计调整分录详见底稿：QC-2。」审计结论：「经审计，调整后的期末余额可以确认。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">调整逻辑：盈余公积按未审净利润 12,494,585.54 的 10% 计提了 1,249,458.55，但审定净利润只有 9,981,859.78，应提 998,185.97，多提 251,272.58 须冲回，故账调借方 251,272.58，审定数＝2,011,351.57－251,272.58＝1,760,078.99。冲回的对方科目是未分配利润（第 128 题 QD-1 账调贷方同为 251,272.58，两表互勾）。易错点：期初审定数 761,893.02＋本期审定计提 998,185.97＝1,760,078.99，可用此式验算期末审定数。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，核盈余公积报表数、总账数、明细账数。</p><p>2. 调整测算看第 127 题 QC-2 计提复核表：经「底稿联查」打开，确认多提额 251,272.58 与调整分录。</p><p>3. 索引号在法定盈余公积行填 QC-2，说明第 3 条指向 QC-2，验算后保存。</p></div>
+</section>
+
+<section class="qcard" id="q127">
+<h3>第 127 题 QC-2 盈余公积计提复核表（<span class="score">8.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>计提复核表结构：一、本期净利润；减：弥补亏损；二、弥补亏损后盈余公积计提基数；计提比例；三、本期应提取法定盈余公积。各行列未审数／账项调整（借、贷）／重分类调整（借、贷）／调整索引／审定数／备注。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">未审数</th><th class="num">账调借</th><th class="num">账调贷</th><th class="num">重分类借/贷</th><th class="num">审定数</th></tr>
+<tr><td>一、本期净利润</td><td class="num">12,494,585.54</td><td class="num">2,512,725.76</td><td class="num">---</td><td class="num">0.00/0.00</td><td class="num">9,981,859.78</td></tr>
+<tr><td>减：弥补亏损</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00/0.00</td><td class="num">-</td></tr>
+<tr><td>二、计提基数</td><td class="num">12,494,585.54</td><td class="num">2,512,725.76</td><td class="num">-</td><td class="num">-/-</td><td class="num">9,981,859.78</td></tr>
+<tr><td>计提比例</td><td class="num">0.10</td><td class="num">10.00%</td><td class="num">-</td><td class="num">-/-</td><td class="num">10.00%</td></tr>
+<tr><td>三、本期应提取法定盈余公积</td><td class="num">1,249,458.55</td><td class="num">251,272.58</td><td class="num">-</td><td class="num">-/-</td><td class="num">998,185.97</td></tr>
+</table>
+<p class="segp">各行调整索引与备注均为空白。审计说明：「经复核，需作如下审计调整：借：盈余公积-法定盈余公积 251272.58；贷：利润分配-未分配利润 251272.58。」（金额无千分位分隔符，照录。）</p>
+<p class="segp"><mark class="warn">平台原文照录</mark>：“计提比例”行账调借栏平台显示为「10.00%」，与该行未审数、审定数的比例口径并列出现，本页按原文呈现；该栏并不影响审定比例 10.00% 与应提额的计算。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">复核链条：审定净利润 9,981,859.78（＝未审 12,494,585.54－审计调整净额 2,512,725.76，调整构成见第 156 题 SP-2 的利润总额调整链）×10%＝998,185.97 应提额；账面已提 1,249,458.55，多提 251,272.58 冲回。注意尾数：9,981,859.78×10%＝998,185.978，平台审定数作 998,185.97（截尾），复算时以平台数为准。本题是 QC-1 调整与 QD 组未分配利润变动的共同源头，三表数字必须一致：251,272.58 同时出现在 QC-1 账调借、QD-1 账调贷、QD-2 利润分配行。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 审定净利润的来源：经「底稿联查」与第 129 题 QD-2、第 156 题 SP-2 对照（审定利润总额 13,032,931.51－审定所得税费用 3,051,071.73＝9,981,859.78）。</p><p>2. 按基数×10% 复算应提额（可用右下角计算器），与账面已提数比对得出多提额，写调整分录。</p><p>3. 调整索引、备注两栏留空；分录金额按平台原文无千分位写法，完成后回填第 126 题 QC-1 并保存。</p></div>
+</section>
+
+<h2 id="g11">十一、QD 未分配利润（第 128–129 题）</h2>
+
+<section class="qcard" id="q128">
+<h3>第 128 题 QD-1 未分配利润审定表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p class="segp"><mark class="warn">平台原文照录</mark>：本题平台任务名原文为「未利润分配审定表」（语序如此），底稿表名为「未分配利润审定表」，本页标题按表名书写，任务名原文在此点明。</p>
+<p>审定表结构：期末未审数／账项调整（借、贷）／重分类调整（借、贷）／期末审定数／期初审定数／索引号，并附审计说明与审计结论。未分配利润为唯一明细行。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">金额</th></tr>
+<tr><td>期末未审数</td><td class="num">18,102,164.16</td></tr>
+<tr><td>账项调整借方</td><td class="num">2,512,725.76</td></tr>
+<tr><td>账项调整贷方</td><td class="num">251,272.58</td></tr>
+<tr><td>重分类调整借/贷</td><td class="num">0.00 / 0.00</td></tr>
+<tr><td>期末审定数</td><td class="num">15,840,710.98</td></tr>
+<tr><td>期初审定数</td><td class="num">6,857,037.17</td></tr>
+</table>
+<p class="segp">索引号栏为空白。审计说明：「1.报表与总账合计数核对一致。2.明细账与总账核对及查验明细科目底稿。」审计结论：「经审计，调整后的期末余额可予以确认。」</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">两个调整方向相反、来源不同：账调借方 2,512,725.76 是净利润的审计调减额（审定净利润比未审少的部分，直接冲减未分配利润）；账调贷方 251,272.58 是盈余公积多提冲回的转入（第 126、127 题）。审定数＝18,102,164.16－2,512,725.76＋251,272.58＝15,840,710.98。易错点：251,272.58 在 QC-1 是借方调整、在本题是贷方调整，同一笔分录的两侧，不要同向填列。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，核未分配利润报表数、总账数、明细账数。</p><p>2. 两笔调整分别经「底稿联查」溯源：净利润调整看 SP-2/QC-2，盈余公积冲回看 QC-1/QC-2。</p><p>3. 明细构成看下一题 QD-2，期末审定数与 QD-2 的“五、年末未分配利润”审定数对上后保存。</p></div>
+</section>
+
+<section class="qcard" id="q129">
+<h3>第 129 题 QD-2 利润分配增减变动及余额明细表（<span class="score">8.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>明细表结构：一、本年年初余额；二、本年净利润；三、利润分配（其中：提取法定盈余公积、提取任意盈余公积）；四、所有者权益内部结转（其中：盈余公积补亏）；五、年末未分配利润。各行列未审数／账项调整（借、贷）／重分类调整（借、贷）／调整索引／审定数／备注。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">未审数</th><th class="num">账调借</th><th class="num">账调贷</th><th class="num">重分类借/贷</th><th class="num">审定数</th></tr>
+<tr><td>一、本年年初余额</td><td class="num">6,857,037.17</td><td class="num">-</td><td class="num">-</td><td class="num">-/-</td><td class="num">6,857,037.17</td></tr>
+<tr><td>二、本年净利润</td><td class="num">12,494,585.54</td><td class="num">2,512,725.76</td><td class="num">---</td><td class="num">0.00/0.00</td><td class="num">9,981,859.78</td></tr>
+<tr><td>三、利润分配</td><td class="num">1,249,458.55</td><td class="num">-</td><td class="num">251,272.58</td><td class="num">-/-</td><td class="num">998,185.97</td></tr>
+<tr><td>其中：提取法定盈余公积</td><td class="num">1,249,458.55</td><td class="num">0.00</td><td class="num">251,272.58</td><td class="num">0.00/0.00</td><td class="num">1,500,731.13</td></tr>
+<tr><td>其中：提取任意盈余公积</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00/0.00</td><td class="num">-</td></tr>
+<tr><td>四、所有者权益内部结转</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td class="num">-/-</td><td class="num">-</td></tr>
+<tr><td>其中：盈余公积补亏</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00/0.00</td><td class="num">-</td></tr>
+<tr><td>五、年末未分配利润</td><td class="num">18,102,164.16</td><td class="num">2,512,725.76</td><td class="num">251,272.58</td><td class="num">-/-</td><td class="num">15,840,710.98</td></tr>
+</table>
+<p class="segp">各行调整索引与备注均为空白。审计说明：「(1) 总账与明细账核对一致；(2) 经调整，本期未分配利润应调整数为251272.76。」</p>
+<p class="segp"><mark class="warn">平台原文照录</mark>：本表有两处平台数据彼此对不上，本页均按原文呈现，不作改动：①“三、利润分配”审定数 998,185.97 与其下“其中：提取法定盈余公积”审定数 1,500,731.13 不一致（按未审数 1,249,458.55＋账调贷 251,272.58 逐格相加得 1,500,731.13，而利润分配行审定数 998,185.97 与第 127 题 QC-2 的应提额一致）；②审计说明中的应调整数写作「251272.76」，与表中账项调整 251,272.58 相差 0.18。作答与引用时以各格原值分别对应，不要自行轧平。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">主线勾稽成立：年初 6,857,037.17＋审定净利润 9,981,859.78－利润分配 998,185.97＝15,840,710.98，与 QD-1 期末审定数一致；未审口径同样成立（6,857,037.17＋12,494,585.54－1,249,458.55＝18,102,164.16）。利润分配在本表中是减项列示（未审数在借方性质栏、调整在贷方），与 QC 组的计提额互为镜像。上面照录的两处平台矛盾点是本表的已知特征：考试作答按平台预设值填列即可，复盘时注意区分“行合计口径”与“其中项加计口径”。易错点：把“三、利润分配”的账调贷 251,272.58 误填到借方——它表示分配额的调减（冲回多提），方向与净利润调整相反。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，调利润分配明细账，归集年初余额、本年净利润与分配发生额。</p><p>2. 净利润审定数与盈余公积应提额分别经「底稿联查」与 QC-2、SP-2 对照（251,272.58 与 2,512,725.76 两笔调整的出处）。</p><p>3. 逐行按答案表口径填列（含「---」与「-」的区别），年末数与第 128 题 QD-1 对上；审计说明按平台原文抄录（含 251272.76 的原样数字）后保存。</p></div>
+</section>
+
+<h2 id="g12">十二、SP 所得税费用（第 155–157 题）</h2>
+
+<section class="qcard" id="q155">
+<h3>第 155 题 SP-1 所得税费用审定表（<span class="score">2.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>审定表结构：所得税费用合计行下分当期所得税费用、递延所得税费用两行，各列本期未审数／账项调整（借、贷）／本期审定数／上期审定数／索引号，并附审计说明与审计结论。任务表数值栏为空白。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">本期未审数</th><th class="num">账调借</th><th class="num">账调贷</th><th class="num">本期审定数</th><th class="num">上期审定数</th></tr>
+<tr><td>所得税费用合计</td><td class="num">3,888,246.98</td><td class="num">54,177.25</td><td class="num">891,352.50</td><td class="num">3,051,071.73</td><td class="num">2,624,581.92</td></tr>
+<tr><td>当期所得税费用</td><td class="num">3,902,267.98</td><td class="num">0</td><td class="num">891,352.50</td><td class="num">3,010,915.48</td><td class="num">2,600,530.44</td></tr>
+<tr><td>递延所得税费用</td><td class="num">-14,021.00</td><td class="num">54,177.25</td><td class="num">0</td><td class="num">40,156.25</td><td class="num">24,051.48</td></tr>
+</table>
+<p class="segp">索引号 SP-2（当期、递延两行），其余为空白。审计说明：「1.报表与总账合计数核对一致。2.明细账与总账核对及查验明细科目底稿。3.审计调整分录详见底稿：SP-2。」审计结论：「经审计，调整后的发生额可予以确认。」当期行账调借与递延行账调贷平台显示为「0」（无千分位与小数位），照录。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">两笔调整各有出处：当期所得税调减 891,352.50——应纳税所得额经审计调减后，当期应交所得税由 3,902,267.98 降至 3,010,915.48（计算在第 156 题）；递延所得税调增 54,177.25——即第 106 题 ZY-3 的递延所得税资产调减额，借记所得税费用。递延所得税费用未审数为负数 -14,021.00（账面递延净收益），调整后转正为 40,156.25（＝-14,021.00＋54,177.25）。审定所得税费用 3,051,071.73 是审定净利润的计算基础：13,032,931.51－3,051,071.73＝9,981,859.78，与 QC/QD 组完全勾稽。易错点：递延行未审负数不要当成填错，它是“递延所得税资产增加 49,496.00－负债增加 35,475.00”的净收益口径。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 顶栏「…」→「账套数据」→「账表查询」，核所得税费用报表数、总账数、明细账数。</p><p>2. 两笔调整经「底稿联查」溯源：当期调整看 SP-2 的应纳税所得额计算，递延调整看 ZY-3 的调整分录。</p><p>3. 索引号两行均填 SP-2，审定合计与 SP-2 的“七、本期利润表所列所得税费用”审定金额对上后保存。</p></div>
+</section>
+
+<section class="qcard" id="q156">
+<h3>第 156 题 SP-2 所得税费用明细表（<span class="score">12.50 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>明细表结构（列）：未审金额／调整数增加／调整数减少／调整索引／审定金额／其中：已确认递延所得税科目的暂时性差异／其中：永久性差异及未确认递延所得税科目的暂时性差异。行次为标准所得税费用计算链：一、本期利润总额；加：纳税调整增加额（1 工会经费支出超支、2 职工教育经费支出超支、3 广告费和业务宣传费超支、4 业务招待费超支、5 计提坏账损失、6 计提减值准备）；减：纳税调整减少额（1 国债利息收入、2 技术开发费加计扣除、3 计提的减值准备转回、4 金融商品公允价值变动）；二、本期应纳税所得额；减：预补亏损；三、弥补亏损后应纳税所得额；适用税率；免税期限；四、计算的本期应纳所得税额；加：补投资收益税率差异影响的所得税；减：安全环保节能设备抵免所得税；五、本期应纳所得税额；加：计入本期的上年所得税汇算清缴补(+)退(-)数；六、当期所得税费用；减：递延所得税资产影响税额；加：递延所得税负债影响税额；七、本期利润表所列所得税费用。表后附勾稽关系核对表。任务表数值栏为空白。本题为全线分值最高的单题。</p>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>项目</th><th class="num">未审金额</th><th class="num">调整增加</th><th class="num">调整减少</th><th>调整索引</th><th class="num">审定金额</th><th class="num">已确认递延差异</th><th class="num">永久性等差异</th></tr>
+<tr><td>一、本期利润总额</td><td class="num">16,382,832.52</td><td class="num">511,412.60</td><td class="num">3,861,313.61</td><td>ZD2-1等</td><td class="num">13,032,931.51</td><td class="num">---</td><td class="num">---</td></tr>
+<tr><td>加：纳税调整增加额</td><td class="num">219,785.60</td><td class="num">1,200.00</td><td class="num">216,709.00</td><td></td><td class="num">4,276.60</td><td class="num">-18,725.00</td><td class="num">23,001.60</td></tr>
+<tr><td>　1 工会经费支出超支</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">-</td><td class="num">0.00</td><td class="num">0.00</td></tr>
+<tr><td>　2 职工教育经费支出超支</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">-</td><td class="num">0.00</td><td class="num">0.00</td></tr>
+<tr><td>　3 广告费和业务宣传费超支</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">-</td><td class="num">0.00</td><td class="num">0.00</td></tr>
+<tr><td>　4 业务招待费超支</td><td class="num">21,801.60</td><td class="num">1,200.00</td><td class="num">0.00</td><td>SP-3</td><td class="num">23,001.60</td><td class="num">0.00</td><td class="num">23,001.60</td></tr>
+<tr><td>　5 计提坏账损失</td><td class="num">197,984.00</td><td class="num">0.00</td><td class="num">216,709.00</td><td>ZD2-1</td><td class="num">-18,725.00</td><td class="num">-18,725.00</td><td class="num">0.00</td></tr>
+<tr><td>　6 计提减值准备</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">-</td><td class="num">0.00</td><td class="num">0.00</td></tr>
+<tr><td>减：纳税调整减少额</td><td class="num">993,546.24</td><td class="num">-</td><td class="num">-</td><td></td><td class="num">993,546.24</td><td class="num">141,900.00</td><td class="num">851,646.24</td></tr>
+<tr><td>　1 国债利息收入</td><td class="num">206,516.00</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">206,516.00</td><td class="num">0.00</td><td class="num">206,516.00</td></tr>
+<tr><td>　2 技术开发费加计扣除</td><td class="num">645,130.24</td><td class="num">0.00</td><td class="num">0.00</td><td>SP-3</td><td class="num">645,130.24</td><td class="num">0.00</td><td class="num">645,130.24</td></tr>
+<tr><td>　3 计提的减值准备转回</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">-</td><td class="num">0.00</td><td class="num">0.00</td></tr>
+<tr><td>　4 金融商品公允价值变动</td><td class="num">141,900.00</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">141,900.00</td><td class="num">141,900.00</td><td class="num">0.00</td></tr>
+<tr><td>二、本期应纳税所得额</td><td class="num">15,609,071.88</td><td class="num">512,612.60</td><td class="num">4,078,022.61</td><td></td><td class="num">12,043,661.87</td><td class="num">-160,625.00</td><td class="num">-828,644.64</td></tr>
+<tr><td>减：预补亏损</td><td class="num">-</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">-</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>三、弥补亏损后应纳税所得额</td><td class="num">15,609,071.88</td><td class="num">512,612.60</td><td class="num">4,078,022.61</td><td></td><td class="num">12,043,661.87</td><td class="num">-160,625.00</td><td class="num">-828,644.64</td></tr>
+<tr><td>适用税率</td><td class="num">25.00%</td><td class="num">25.00%</td><td class="num">25.00%</td><td></td><td class="num">25.00%</td><td class="num">25.00%</td><td class="num">25.00%</td></tr>
+<tr><td>免税期限</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td></td><td class="num">-</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>四、计算的本期应纳所得税额</td><td class="num">3,902,267.98</td><td class="num">128,153.15</td><td class="num">1,019,505.65</td><td></td><td class="num">3,010,915.48</td><td class="num">-40,156.25</td><td class="num">-207,161.16</td></tr>
+<tr><td>加：补投资收益税率差异影响的所得税</td><td class="num">-</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">-</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>减：安全环保节能设备抵免所得税</td><td class="num">-</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">-</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>五、本期应纳所得税额</td><td class="num">3,902,267.98</td><td class="num">128,153.15</td><td class="num">1,019,505.65</td><td></td><td class="num">3,010,915.48</td><td class="num">-40,156.25</td><td class="num">-207,161.16</td></tr>
+<tr><td>加：上年汇算清缴补(+)退(-)数</td><td class="num">-</td><td class="num">-</td><td class="num">-</td><td></td><td class="num">-</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>六、当期所得税费用</td><td class="num">3,902,267.98</td><td class="num">128,153.15</td><td class="num">1,019,505.65</td><td></td><td class="num">3,010,915.48</td><td class="num">-40,156.25</td><td class="num">-207,161.16</td></tr>
+<tr><td>减：递延所得税资产影响税额</td><td class="num">49,496.00</td><td class="num">0.00</td><td class="num">54,177.25</td><td>ZY-3</td><td class="num">-4,681.25</td><td class="num">---</td><td class="num">---</td></tr>
+<tr><td>加：递延所得税负债影响税额</td><td class="num">35,475.00</td><td class="num">0.00</td><td class="num">0.00</td><td></td><td class="num">35,475.00</td><td class="num">---</td><td class="num">---</td></tr>
+<tr><td>七、本期利润表所列所得税费用</td><td class="num">3,888,246.98</td><td class="num">128,153.15</td><td class="num">965,328.40</td><td></td><td class="num">3,051,071.73</td><td class="num">---</td><td class="num">---</td></tr>
+</table>
+<p class="segp">勾稽关系核对表（列：项目／审定金额／应交税金-所得税本期贷方发生额／递延所得税资产本期发生额／递延所得税负债本期发生额／按“利润总额＋永久性差异”×税率计算的所得税费用／核对差异／差异分析）：</p>
+<table class="wp">
+<tr><th>项目</th><th class="num">审定金额</th><th class="num">应交税金贷方发生额</th><th class="num">递延资产发生额</th><th class="num">递延负债发生额</th><th class="num">公式计算所得税费用</th><th>核对差异</th></tr>
+<tr><td>本期应纳所得税额</td><td class="num">3,010,915.48</td><td class="num">3,902,267.98</td><td class="num">---</td><td class="num">---</td><td class="num">-891,352.50</td><td></td></tr>
+<tr><td>递延所得税资产影响税额</td><td class="num">-4,681.25</td><td class="num">---</td><td class="num">49,496.00</td><td class="num">---</td><td class="num">-54,177.25</td><td></td></tr>
+<tr><td>递延所得税负债影响税额</td><td class="num">35,475.00</td><td class="num">---</td><td class="num">---</td><td class="num">35,475.00</td><td class="num">-</td><td></td></tr>
+<tr><td>与当期利润相关的所得税费用</td><td class="num">3,051,071.73</td><td class="num">---</td><td class="num">---</td><td class="num">---</td><td class="num">3,888,246.98</td><td>-837,175.25</td></tr>
+</table>
+<p class="segp">审计说明全文：「1.经查验，本期应纳所得税额应作如下审计调整：借：应交税费-应交企业所得税 891352.50，贷：所得税费用-当期所得税费用 891352.50。2.经查验，递延所得税资产应作如下审计调整：借：所得税费用-递延所得税 54177.25，贷：递延所得税资产 54177.25，详见底稿索引：ZY-3。」（金额无千分位分隔符，照录。）</p>
+<p class="segp"><mark class="warn">平台原文照录</mark>：审计说明第 2 条的借方科目原文写作「所得税费用-递延所得税」，与第 106 题 ZY-3 审计说明中的「所得税费用-递延所得税费用」表述不同，两处均按各自原文呈现。</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">全表一条主线：审定利润总额 13,032,931.51（＝未审 16,382,832.52＋调整增加 511,412.60－调整减少 3,861,313.61，调整主体是各科目审计调整对利润的影响，索引标注“ZD2-1等”）＋纳税调增审定 4,276.60－纳税调减 993,546.24＝应纳税所得额审定 12,043,661.87，×25%＝3,010,915.48 当期所得税；再减递延所得税资产影响 -4,681.25、加递延所得税负债影响 35,475.00，得利润表所得税费用审定 3,051,071.73。四个调整索引必须记牢：业务招待费超支与技术开发费加计扣除→SP-3（第 157 题），计提坏账损失→ZD2-1，递延所得税资产影响→ZY-3。纳税调增额从未审 219,785.60 降到审定 4,276.60，是因为坏账损失一行随坏账准备调减 216,709.00 而转为 -18,725.00（计提数小于税法认可口径后的净额）。勾稽核对表的最后一行差异 -837,175.25 是“公式法”与账面法的口径差，由差异分析列解释，属表内预设项目，不要当作错报。易错点：调整增加/减少两列是“对未审数的修正”而非纳税调整本身，方向不要与加、减行混淆。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 基础数据：利润总额与各纳税调整项目经「账套数据」→「账表查询」调利润表、所得税费用与应交税费-应交企业所得税明细账；审定利润总额与全线各科目审定数一致（经「底稿联查」逐项对照）。</p><p>2. 两个 SP-3 项目先做第 157 题：业务招待费超支 23,001.60、技术开发费加计扣除 645,130.24 在 SP-3 算出后过入本表。</p><p>3. 递延两行分别溯源 ZY-3（资产影响 -4,681.25）与 FQ-3（负债影响 35,475.00）；坏账损失行溯源 ZD2-1（专员1线）。</p><p>4. 自上而下逐行复算（可用右下角计算器），审定金额列与勾稽核对表对上后，审计说明两条调整分录按平台原文写全（金额无千分位），最后回填第 155 题 SP-1。</p></div>
+</section>
+
+<section class="qcard" id="q157">
+<h3>第 157 题 SP-3 所得税费用项目调整计算表（<span class="score">8.00 分</span>）</h3>
+<p><strong class="lbl">原题</strong></p>
+<p>底稿「所得税费用项目调整计算表」，索引号 SP-3，页次 1，编制 范宏博、日期 2026/01/22（任务表预填），复核栏空白；无单独任务要求文字。表为项目/金额两列，分四项查验与审计说明（浅黄色为待填格，预填「-」处按平台原样）：</p>
+<table class="wp">
+<tr><th>查验项目</th><th class="num">金额</th></tr>
+<tr><td>1、公益性捐赠列支查验：本期调整后利润总额</td><td class="blank">（待填）</td></tr>
+<tr><td>　调整后账面应列支公益性捐赠</td><td class="blank">（待填）</td></tr>
+<tr><td>　可税前列支公益性捐赠</td><td class="blank">（待填）</td></tr>
+<tr><td>　超支金额</td><td>-（预填）</td></tr>
+<tr><td>2、业务招待费列支查验：本年调整后营业收入</td><td class="blank">（待填）</td></tr>
+<tr><td>　调整后账面应列支业务招待费（交际应酬费）</td><td class="blank">（待填）</td></tr>
+<tr><td>　可税前列支业务招待费（交际应酬费）</td><td class="blank">（待填）</td></tr>
+<tr><td>　超支金额</td><td>-（预填）</td></tr>
+<tr><td>3、广告费和业务宣传费列支查验：调整后账面应列支广告费和业务宣传费</td><td class="blank">（待填）</td></tr>
+<tr><td>　可税前列支广告费和业务宣传费</td><td class="blank">（待填）</td></tr>
+<tr><td>　超支金额</td><td>-（预填）</td></tr>
+<tr><td>4、研发费用加计扣除查验：调整后列入当期损益可加计扣除的研发费用</td><td class="blank">（待填）</td></tr>
+<tr><td>　调整后列入资本性支出可加计扣除的研发支出本期摊销额</td><td class="blank">（待填）</td></tr>
+<tr><td>　小计</td><td>-（预填）</td></tr>
+<tr><td>　加计扣除金额</td><td class="blank">（待填）</td></tr>
+<tr><td>5、审计说明</td><td class="blank">（待填，大空白格）</td></tr>
+</table>
+<details class="answer"><summary>显示答案</summary><div class="ans-body">
+<table class="wp">
+<tr><th>查验项目</th><th class="num">金额</th></tr>
+<tr><td>1、公益性捐赠：本期调整后利润总额</td><td class="num">13,032,931.51</td></tr>
+<tr><td>　调整后账面应列支公益性捐赠</td><td class="num">0.00</td></tr>
+<tr><td>　可税前列支公益性捐赠</td><td class="num">0.00</td></tr>
+<tr><td>　超支金额</td><td class="num">-</td></tr>
+<tr><td>2、业务招待费：本年调整后营业收入</td><td class="num">62,716,866.00</td></tr>
+<tr><td>　调整后账面应列支业务招待费（交际应酬费）</td><td class="num">57,504.00</td></tr>
+<tr><td>　可税前列支业务招待费（交际应酬费）</td><td class="num">34,502.40</td></tr>
+<tr><td>　超支金额</td><td class="num">23,001.60</td></tr>
+<tr><td>3、广告费：调整后账面应列支</td><td class="num">610,560.00</td></tr>
+<tr><td>　可税前列支</td><td class="num">610,560.00</td></tr>
+<tr><td>　超支金额</td><td class="num">-</td></tr>
+<tr><td>4、研发费用：调整后列入当期损益可加计扣除的研发费用</td><td class="num">645,130.24</td></tr>
+<tr><td>　调整后列入资本性支出可加计扣除的研发支出本期摊销额</td><td class="num">0.00</td></tr>
+<tr><td>　小计</td><td class="num">645,130.24</td></tr>
+<tr><td>　加计扣除金额</td><td class="num">645,130.24</td></tr>
+</table>
+<p class="segp">审计说明：「经审订，业务招待费超支金额为23001.60元，账面超支调整数为21801.60元，需纳税调增1200.00元。」（「审订」二字与无千分位金额均为平台原文，照录；编制 范宏博 2026/01/22，复核 夏旭坤 2026/01/23。）</p>
+</div></details>
+<p><strong class="lbl">解析</strong></p>
+<p class="segp">四项查验只有业务招待费有超支：可税前列支额取“实际发生额×60%”与“营业收入×5‰”孰低——57,504.00×60%＝34,502.40，而 62,716,866.00×5‰＝313,584.33 更高，故按 34,502.40 列支，超支 57,504.00－34,502.40＝23,001.60。注意两个口径差：账面原计算的超支是 21,801.60（按未审收入计算），审定后超支 23,001.60，差额 1,200.00 正是第 156 题业务招待费行“调整增加 1,200.00”的来源。两个基数都是审定数：营业收入 62,716,866.00（未审 66,571,866.00－审计调整 3,855,000.00，见专员1线 SA 组），利润总额 13,032,931.51 与 SP-2 一致。广告费账面 610,560.00 远低于收入 15% 的限额（9,407,529.90），全额列支、无超支；公益性捐赠本期为零；研发费用加计扣除 645,130.24 全部为当期损益部分。易错点：招待费限额两道标准取孰低，不要只算 60% 就下结论——本题恰好在 60% 一侧触发，仍要把 5‰ 一侧算出来比对。</p>
+<p><strong class="lbl">操作流程</strong></p>
+<div class="ops"><p>1. 基数取审定数：调整后利润总额与调整后营业收入经「底稿联查」与 SP-2、SA-1（专员1线）对照确认，不用未审数。</p><p>2. 账面列支额查账套：顶栏「…」→「账套数据」→「账表查询」，调管理费用-业务招待费、销售费用-广告费、研发费用明细账，取得 57,504.00、610,560.00、645,130.24。</p><p>3. 逐项复算限额（招待费两标准孰低、广告费 15%、捐赠 12% 利润限额），超支额过入第 156 题 SP-2 对应行；审计说明按平台原文写（含「经审订」原字与无千分位金额）后保存。</p></div>
+</section>
+
   </main>
 </div>
-<footer class="footer">本站内容由备赛原始文档原文转换，证据标注（<mark class="warn">待样卷复核</mark>等）均按原文保留。</footer>
+<footer class="footer">本页为样卷复刻学习材料，正式赛卷案例未知。页面内容依据审计实务样卷（福州青风子伞业有限公司，2025 年度）逐题采集整理，平台答案以样卷“查看答案”为准。</footer>
 <script src="search.js"></script>
 </body>
 </html>
